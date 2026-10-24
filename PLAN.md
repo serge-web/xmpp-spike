@@ -53,7 +53,7 @@ gantt
 
     section Decision
     summary.md, recommendation, mock list :         d1, after m3, 1d
-    Human: air-gapped host install (S8)   :crit,    h1, after d1, 2d
+    Team air-gapped install check (S8)    :crit,    h1, after d1, 2d
 ```
 
 ejabberd takes the longest because the shared suite is built during its days. Prosody and OpenFire then reuse the suite. OpenFire gets an extra day for its setup wizard and its REST-heavy admin surface.
