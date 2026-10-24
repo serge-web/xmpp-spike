@@ -4,7 +4,9 @@ Released 2026-09-30, 24 days before the spike. Erlang/OTP 27, Elixir 1.19. Stack
 
 ## Summary
 
-<!-- SUMMARY -->
+**Mandatory checks:** S0 PASS, S1 PASS (quirky mechanism), S2 PASS (revocation needs subscription removal), S3 PASS, S4 PASS, S5 PASS (SQLite backend), **S10 FAIL on a strict reading** (anonymous users can list PubSub node *names*; all content and actions are denied).
+**Verdict:** a strong candidate if S10 node-name enumeration is accepted, or avoided with opaque node ids. Every admin operation works over XMPP with the admin's own credentials.
+**REST dependencies: 0.**
 
 ## Checks
 
@@ -81,16 +83,43 @@ For the mock:
 REST / secret needed: no.
 
 ### S5 MAM paging at scale
-<!-- S5 -->
+Result: PASS (with the bundled SQLite backend)
+Mechanism / config: `mod_mam` (`default: always`), with room archives on by default. `default_db: sql`, `sql_type: sqlite`.
+Evidence: `S05-mam-paging.test.ts`. 10,000 messages were seeded in 86 s, about 116 msg/s from one client.
+| Page size | Pages | Total | Average / max per page | Gaps / duplicates / order |
+|---|---|---|---|---|
+| 50 | 200 | 2.2 s | 11 / 24 ms | none / none / correct |
+| 200 | 50 | 1.6 s | 31 / 44 ms | none / none / correct |
+The `complete='true'` flag arrives on the last page.
+For the mock:
+- The MAM result id equals the `<stanza-id by='room@conference…'>` on live and join-history messages, so ids are stable across live, history and MAM. Ids are numeric strings (µs timestamps).
+- **`<delay from>` differs**: join history uses the room JID (`s5-mam@conference.localhost`), while MAM forwarded items use the service JID (`conference.localhost`). Timestamps are identical.
+- Join history (`maxstanzas=5`) gives the same 5 latest messages as a MAM `before=''` page of 5, so a client should de-duplicate by stanza-id.
+- Page order: each page is oldest-first; RSM `<first>` is the cursor for the next `before`.
+- **Surprise: the stock Mnesia backend is unusable at this scale.** Seeding ran at about 5 msg/s and a MAM count query (`max=0`) timed out after 15 s at ~9.5k messages. ejabberd logs a warning that Mnesia isn't recommended for MAM. Switching to SQLite is configuration only, with no extra service.
+REST / secret needed: no.
 
 ### S6 Publisher notifications
-<!-- S6 -->
+Result: recorded
+- A subscribed publisher **does** receive the event for its own publish.
+- Notifications **carry the payload** (`pubsub#deliver_payloads` defaults to true) and are `type='headline'` messages from `pubsub.localhost`.
+- Two publishes sent back-to-back arrive at a subscriber in publish order (1 then 2).
+- Events go to the bare JID, so a session receives them only after sending initial presence. The harness does this now; before that change no events arrived.
+- Subscriptions are by bare JID; unsubscribing must name that JID.
+Evidence: `S06-publisher-notifications.test.ts`, `S6-publisher.xml`, `S6-subscriber.xml`.
 
 ### S7 Are groups needed? (R6)
-<!-- S7 -->
+Result: no groups needed
+Every §4 rule is expressed with per-user affiliations. Nodes use only `open` or `whitelist` (member/publisher affiliations); rooms use per-JID `member` affiliations in members-only rooms. No shared roster groups, `roster` access model or `pubsub#roster_groups_allowed` are used. `mod_shared_roster` is loaded but unused. The cost is that admin tooling must write N affiliations per node or room, and revoke subscriptions too (see S12).
+Evidence: `S07-groups.test.ts` reads the provisioned configuration back; S1, S2 and S10 prove enforcement.
 
 ### S8 Operations (NFR-2, NFR-10)
-<!-- S8 -->
+Result: PASS. **Air-gapped host install: pending human verification.**
+- **Offline install:** `ops/offline-install.sh save` tags and saves the image (`docker save`, 7b830397… sha256 of the tar). `load-run` loads it and starts it with `--network none --pull never`. The server starts with only `lo` and accepts registrations. Tag before saving, because an archive saved by digest loads untagged.
+- **TLS with an internal CA:** `spike/docker/tls/make-ca.sh` creates the CA and a `localhost` certificate with SANs for the service subdomains. `compose.tls.yaml` mounts it as `server.pem` (cert and key in one PEM). The listener on 5443 has `tls: true` and serves `/ws`. With `NODE_EXTRA_CA_CERTS=ca.crt`, StanzaJS gets a session over `wss://localhost:5443/ws`; without the CA, no session. `openssl s_client` reports verify 0.
+- **Backup / restore:** `ops/backup.sh` does a cold backup (stop, tar the `database` volume holding SQLite and Mnesia, start). `ops/restore.sh` destroys the volume (`down -v`) and restores the tar. `spike/s8-state.ts verify` confirmed all logins, rooms with config and affiliations, all 16 nodes with access model and affiliations, the marker item, and the marker in blue-hq MAM. A marker written after the backup is absent after restore. **The persisted S1 visitor role also survives** a restore.
+- A hot online backup is also possible (`ejabberdctl backup` for Mnesia plus SQLite `.backup`) but was not exercised.
+- Admin console: web admin at `/admin` on 5280 (admin JID login). Not needed for anything above.
 
 ### S9 Escape hatch
 Result: PASS (hello world loads)
@@ -99,16 +128,60 @@ Effort: about 20 minutes to a working hello world. One gotcha: the source direct
 Not used in any other check.
 
 ### S10 Anonymous access limits (D20, NFR-21)
-<!-- S10 -->
+Result: **FAIL on a strict reading (node-name enumeration). Every content and action limit holds.** Needs a human decision (see Risks).
+| Attempt as SASL ANONYMOUS (`<random>@localhost`) | Outcome |
+|---|---|
+| read `game-setup`, `assets:theme` | allowed |
+| read `objectives:*`, `announcements`, `forces:*`, `roles:*`, `game-state` | `<not-allowed/>` cancel |
+| join any game room | `<registration-required/>` auth, "Membership is required to enter this room" |
+| MAM of any game room | `<forbidden/>` auth, "Only members may query archives of this room" |
+| create a room | `<forbidden/>` auth, "Room creation is denied by service policy" |
+| publish to `game-setup`, create a node | denied |
+| XEP-0133 list registered users | denied |
+| disco#items on MUC service | empty (game rooms are `publicroom=false`) |
+| disco#items on server | services only (`conference`, `pubsub`, "API Commands" node); no users |
+| **disco#items on PubSub service** | **lists every node name**: `objectives:blue`, `roles:blue-co`, `rooms:…`, `forces:…` |
+Node *contents* stay protected, but the names reveal role, force and room ids. Mitigations tried:
+- `mod_pubsub: max_nodes_discoitems: 0` crashes the disco query (Mnesia `badarg`, `<internal-server-error/>`).
+- `max_nodes_discoitems: 1` still lists one node.
+- Neither is acceptable, so the config is stock.
+Other options: opaque node ids (e.g. `objectives:<uuid>`), or a separate vhost for anonymous users (not tried).
+Evidence: `S10-anonymous.test.ts`, `S10-anonymous.xml`.
 
 ### S11 Same role, two sessions (D22)
-<!-- S11 -->
+Result: recorded (works)
+- Two `blue-co` sessions with different resources can both join `blue-hq` with nick `blue-co`. The second join succeeds and others see one occupant (two presence updates for the same nick).
+- Both sessions receive every message.
+- A post from one session reaches each other occupant **once**, and is also reflected to the sibling session once.
+- When one session leaves, other occupants receive **no** unavailable presence, and the remaining session keeps receiving messages. ejabberd treats this as one multi-session occupant.
+Evidence: `S11-two-sessions.test.ts`, `S11-*.xml`.
 
 ### S12 Live changes (D23, ADM-25)
-<!-- S12 -->
+Result: recorded (advisory). Grant-then-revoke works with no lock-out window.
+Move online blue-co from blue to red:
+1. Grant red (`red-hq` member, `objectives:red` member). Immediately, blue-co can read both objectives nodes and join `red-hq`. Nothing is pushed to the session.
+2. Revoke blue (`blue-hq` affiliation none). The online session receives, in order:
+   - bare `<presence type='unavailable' from='blue-hq@conference…'/>`;
+   - self-presence `type='unavailable'` with `affiliation='none' role='none'` and status codes **110, 321** (removed because of an affiliation change).
+3. **PubSub revocation needs two steps.** Setting the `objectives:blue` affiliation to none is not enough for a subscribed user, who keeps reading items and receiving events. The subscription must also be removed (owner `pubsub#owner` subscriptions, state none). After that, reads give `<not-allowed/>` and re-subscribe gives `<not-allowed/>`. The provisioning helper `revokeNodeAccess` does both.
+Delete an online user: the session gets `<stream:error><conflict/><text>User removed</text>`. Other occupants see the user's room presence go unavailable. The user's room affiliation is removed automatically.
+Evidence: `S12-live-changes.test.ts`, `S12-move-force.xml`, `S12-deleted-user.xml`.
 
 ## Operational notes
-<!-- OPS -->
+- **Install:** one container, official image, one YAML file. Admin bootstrap is a single `ejabberdctl register`; everything else is over XMPP.
+- **Storage:** switch to bundled SQLite (`default_db: sql`). The stock Mnesia backend failed S5 performance. With SQLite the whole state is one volume.
+- **TLS:** PEM file(s) in `certfiles`; any listener can have `tls: true`.
+- **Backup/restore:** cold volume tar is simple and verified; hot backup is possible.
+- **Config reload:** `ejabberdctl reload_config` doesn't re-apply every module option. `mod_pubsub` options needed a restart.
+- **Admin console:** web admin at `/admin`. The whole admin API is also available as XEP-0050 commands to the admin JID (`mod_adhoc_api`), which suits a browser admin UI.
+- **Docs:** comprehensive (docs.ejabberd.im), with every option documented. Some behaviours had to be found empirically: persisted roles, subscriptions surviving revocation, the `accountjid` field name.
+- **Resources:** ~180 MB RAM idle under test; CPU stayed low with SQLite.
 
 ## Risks and surprises
-<!-- RISKS -->
+1. **S1 relies on persisted voice revocation**, an ejabberd behaviour that isn't in XEP-0045. It needs the observer to be online once during provisioning (done with the admin-set password), and it is **silently cleared by any affiliation change** (e.g. none→member). Admin tooling must re-apply it. A server upgrade could change it, so keep S1 in CI.
+2. **S10 node-name enumeration** (above). Human decision: accept, rename nodes opaquely, or fail.
+3. **PubSub revocation needs subscription removal as well as the affiliation change.** If admin tooling forgets this, a player moved off a force keeps receiving that force's objectives.
+4. **No WebSocket stanza size limit** (32 MB accepted). Find and set a limit for the reference deployment (e.g. a reverse proxy frame limit, or `ejabberd_http` options), or accept the risk.
+5. **The stock Mnesia backend is unsuitable for MAM at 10k messages.** SQLite is required.
+6. SCRAM-SHA-1 is the default hash; choose `auth_scram_hash: sha256` before creating accounts if wanted.
+7. XEP-0133 deviation: `end-user-session` uses field `accountjid`.

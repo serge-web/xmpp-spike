@@ -32,3 +32,19 @@
 {"check":"S12","key":"deleted online user: session outcome","value":"disconnected","at":"2026-10-24T14:34:30.886Z"}
 {"check":"S12","key":"deleted online user: room presence seen by others","value":["available","unavailable"],"at":"2026-10-24T14:34:30.887Z"}
 {"check":"S12","key":"deleted user still listed as room member","value":true,"at":"2026-10-24T14:34:30.889Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"ok","at":"2026-10-24T14:35:02.159Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:35:32.902Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:35:32.990Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792852532763-vc9ts@localhost"]},"at":"2026-10-24T14:35:33.102Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:35:33.203Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792852532763-vc9ts@localhost"],"at":"2026-10-24T14:35:33.231Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:35:33.305Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:35:33.306Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:35:33.916Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:35:33.922Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:35:33.925Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:35:33.933Z"}
+{"check":"S2","key":"subscribed reader after affiliation=none only: can still read","value":false,"at":"2026-10-24T14:35:33.988Z"}
+{"check":"S2","key":"subscribed reader after affiliation=none + subscription removed: can read","value":false,"at":"2026-10-24T14:35:33.993Z"}
+{"check":"S7","key":"node access models","value":{"game-setup":"open","assets:theme":"open","forces:blue":"whitelist","forces:red":"whitelist","forces:umpire":"whitelist","roles:blue-co":"whitelist","roles:blue-obs":"whitelist","roles:red-co":"whitelist","roles:umpire-1":"whitelist","rooms:blue-hq":"whitelist","rooms:red-hq":"whitelist","rooms:negotiation":"whitelist","objectives:blue":"whitelist","objectives:red":"whitelist","announcements":"whitelist","game-state":"whitelist"},"at":"2026-10-24T14:35:34.358Z"}
+{"check":"S7","key":"room member affiliations","value":{"blue-hq":["umpire-1@localhost","blue-co@localhost","blue-obs@localhost"],"red-hq":["red-co@localhost","umpire-1@localhost"],"negotiation":["red-co@localhost","blue-co@localhost","umpire-1@localhost"]},"at":"2026-10-24T14:35:34.418Z"}
