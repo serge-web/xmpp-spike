@@ -1,0 +1,50 @@
+# Contract suite against the reference deployment (ejabberd, pinned). SPIKE-BRIEF §7: the winning
+# server's stack is the CI target. Tests fail, never skip: an unreachable server fails the run.
+name: contract-ejabberd
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      # Actions pinned to commit SHAs (tags noted), each at least 14 days old when pinned.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+
+      - name: Start ejabberd
+        run: |
+          docker compose -f spike/docker/ejabberd/compose.yaml up -d --wait
+          docker compose -f spike/docker/ejabberd/compose.yaml exec -T ejabberd sh /home/ejabberd/bootstrap.sh
+
+      - name: Contract suite (S00-S12, S01b, C01)
+        env:
+          SERVER: ejabberd
+        run: npm test
+
+      - name: Server log on failure
+        if: failure()
+        run: docker compose -f spike/docker/ejabberd/compose.yaml logs --tail 300
+
+      - name: Keep observations and stanzas
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ejabberd-contract-results
+          path: |
+            results/ejabberd/observations.jsonl
+            results/ejabberd/stanzas/
+          retention-days: 14

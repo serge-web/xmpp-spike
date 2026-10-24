@@ -26,11 +26,11 @@ The spike also records exactly how each server behaves, including error conditio
 
 | Server | Version | Mandatory checks | Verdict |
 |---|---|---|---|
-| OpenFire | – | not started | – |
-| ejabberd | – | not started | – |
-| Prosody | – | not started | – |
+| OpenFire | 5.1.2 | fails S1, S5, S10 (S2 as written) | out |
+| ejabberd | 26.09 | all pass (S10 node-name listing accepted) | **selected** |
+| Prosody | 13.0.7 | fails S1 (stock); all others pass | fallback, with custom module |
 
-**Recommendation:** pending. See [`results/summary.md`](results/summary.md) when it exists.
+**Decision:** ejabberd (2026-10-24). See [`results/summary.md`](results/summary.md).
 
 ## Checks
 
@@ -78,6 +78,7 @@ npm install
 
 # start one server
 docker compose -f spike/docker/ejabberd/compose.yaml up -d
+docker compose -f spike/docker/ejabberd/compose.yaml exec ejabberd sh /home/ejabberd/bootstrap.sh
 
 # provision the test game and run every check against it
 SERVER=ejabberd npm test
@@ -88,7 +89,7 @@ docker compose -f spike/docker/ejabberd/compose.yaml down -v
 
 Replace `ejabberd` with `openfire` or `prosody` to test the others. The tests **fail** if the server is unreachable; they never skip.
 
-> The harness scaffold exists (`spike/tests/harness.ts`); compose stacks and checks are still to be written.
+> Each server has its own bring-up notes in `results/<server>.md` (Prosody and OpenFire differ slightly).
 
 ## Conventions
 

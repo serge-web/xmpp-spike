@@ -1,0 +1,27 @@
+# OpenFire 5.1.2, official Ignite Realtime image (ghcr.io/igniterealtime/openfire), pinned by digest.
+# Before first start: ./fetch-plugins.sh (official plugins, sha256-verified). After start: ./bootstrap.sh.
+name: wrx-openfire
+services:
+  openfire:
+    image: ghcr.io/igniterealtime/openfire:v5.1.2@sha256:5c9119cd4ea6edaa4dfead0cccbeb98847614d47d61715de8fd98c3b189670d6
+    entrypoint: ["/entrypoint-wrapper.sh"]
+    ports:
+      # IPv4 only (no IPv6 in the spike container). Host ports avoid ejabberd (5222/5280) and Prosody (5380/5322).
+      - "0.0.0.0:7070:7070" # HTTP: /ws/ WebSocket (RFC 7395), /http-bind/ BOSH
+      - "0.0.0.0:7443:7443" # HTTPS: wss:// /ws/ (S8 TLS)
+      - "0.0.0.0:9090:9090" # admin console + REST API plugin
+      - "0.0.0.0:5223:5222" # c2s STARTTLS (not used by tests; browser path is WebSocket)
+    volumes:
+      # Bootstrap config: the stock entrypoint copies conf_org/ into the data volume on first start only.
+      - ./openfire.xml:/usr/local/openfire/conf_org/openfire.xml:ro
+      - ./entrypoint-wrapper.sh:/entrypoint-wrapper.sh:ro
+      # Plugin jars are copied into the plugins dir on start (stock entrypoint behaviour for /opt/plugins).
+      - ./plugins:/opt/plugins:ro
+      - data:/var/lib/openfire
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:7070/"]
+      interval: 3s
+      timeout: 5s
+      retries: 60
+volumes:
+  data:

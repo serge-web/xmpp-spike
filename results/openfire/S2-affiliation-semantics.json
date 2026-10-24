@@ -1,0 +1,17 @@
+{
+  "0 red-co read (outcast, fixture)": "not-allowed",
+  "1 set red-co=member -> listed as": "[\"admin@localhost=owner\",\"red-co@localhost=outcast\",\"umpire-1@localhost=publisher\"]",
+  "1 red-co read": "not-allowed",
+  "2 set red-co=none -> red-co read (same online session)": "ok",
+  "2 listed affiliations (none omitted)": "[\"admin@localhost=owner\",\"umpire-1@localhost=publisher\"]",
+  "3 set red-co=outcast -> red-co read (same online session)": "not-allowed",
+  "4 blue-co=publisher: publish": true,
+  "5 blue-co=none: publish": "forbidden",
+  "5 blue-co=none: read": "ok",
+  "6 blue-co subscribe (bare JID)": "ok",
+  "6 blue-co subscribe again (multiple-subscriptions on by default)": "ok",
+  "6 blue-co read with two subscriptions": "bad-request",
+  "7 after its subscriptions are removed: blue-co read": "not-allowed",
+  "7 listed affiliations": "[\"admin@localhost=owner\",\"red-co@localhost=outcast\",\"umpire-1@localhost=publisher\"]",
+  "8 restored blue-co=none: read": "ok"
+}

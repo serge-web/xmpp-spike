@@ -1,0 +1,7 @@
+# S8 overlay: use the internal test CA's server cert. Generate first: sh spike/docker/tls/make-ca.sh
+#   docker compose -f compose.yaml -f compose.tls.yaml up -d
+services:
+  ejabberd:
+    volumes:
+      - ../tls/out/server.pem:/home/ejabberd/conf/server.pem:ro
+      - ../tls/out/ca.crt:/home/ejabberd/conf/cacert.pem:ro

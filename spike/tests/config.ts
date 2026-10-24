@@ -8,6 +8,8 @@ export interface ServerConfig {
   mucDomain: string;
   pubsubDomain: string;
   websocketUrl: string;
+  /** Host for SASL ANONYMOUS logins (S10), if not `domain`. Prosody does anonymous auth per VirtualHost. */
+  anonymousDomain?: string;
 }
 
 const configs: Record<ServerName, ServerConfig> = {
@@ -17,21 +19,24 @@ const configs: Record<ServerName, ServerConfig> = {
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:7070/ws/',
+    // OPENFIRE_WS overrides for the S8 (wss://localhost:7443/ws/) and S9 (isolated stack) probes.
+    websocketUrl: process.env['OPENFIRE_WS'] ?? 'ws://localhost:7070/ws/',
   },
   ejabberd: {
     name: 'ejabberd',
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:5280/ws',
+    // EJABBERD_WS overrides for side stacks (e.g. the version/upgrade probe on 6280).
+    websocketUrl: process.env['EJABBERD_WS'] ?? 'ws://localhost:5280/ws',
   },
   prosody: {
     name: 'prosody',
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:5280/xmpp-websocket',
+    websocketUrl: 'ws://localhost:5380/xmpp-websocket', // 5380 avoids ejabberd's 5280 so stacks can run side by side
+    anonymousDomain: 'anon.localhost', // separate VirtualHost with authentication = "anonymous"
   },
 };
 

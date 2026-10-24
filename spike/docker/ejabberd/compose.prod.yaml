@@ -1,0 +1,9 @@
+# Reference-deployment overlay: browsers reach ejabberd over wss:// only.
+#   docker compose -f compose.yaml -f compose.tls.yaml -f compose.prod.yaml up -d
+# compose.tls.yaml supplies the certificate (internal CA in the spike; use the site's CA in production).
+# Plain ws:// (5280) and c2s (5222) stay inside the container network, not published on the host.
+services:
+  ejabberd:
+    ports: !override
+      - "5443:5443" # wss://<host>:5443/ws
+    restart: unless-stopped

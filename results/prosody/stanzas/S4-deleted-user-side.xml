@@ -1,0 +1,59 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xml:lang='en' xmlns='urn:ietf:params:xml:ns:xmpp-framing' from='localhost' version='1.0' id='69a9b128-860f-4582-bcee-646141c2edc3'/>
+
+<!-- in -->
+<stream:features xmlns:stream='http://etherx.jabber.org/streams' xmlns='jabber:client'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>OAUTHBEARER</mechanism><mechanism>SCRAM-SHA-1</mechanism><mechanism>PLAIN</mechanism></mechanisms><limits xmlns='urn:xmpp:stream-limits:0'><max-bytes>10000</max-bytes><idle-seconds>840</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1zNHVzZXItMTc5Mjg1Mzk2MTE1Ny1wcjRpcSxyPTczMWFmMjY5NzRiZmQ0ZjczYTI0YzcyOGYwMWE5YjkwYWI2OTIyYzMxM2I4NDljZGY1OTAwODE4ZDg5YTdjODY=</auth>
+
+<!-- in -->
+<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj03MzFhZjI2OTc0YmZkNGY3M2EyNGM3MjhmMDFhOWI5MGFiNjkyMmMzMTNiODQ5Y2RmNTkwMDgxOGQ4OWE3Yzg2OGNmY2M4M2EtMTdiZS00ZDdmLTkzMTktMGUwMDM0NzkzMGFjLHM9T1dWalpqVm1abVF0T1Rka09TMDBNalZoTFdJeE0yVXRPR05tTm1Nek1UTXpOekJpLGk9MTAwMDA=</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9NzMxYWYyNjk3NGJmZDRmNzNhMjRjNzI4ZjAxYTliOTBhYjY5MjJjMzEzYjg0OWNkZjU5MDA4MThkODlhN2M4NjhjZmNjODNhLTE3YmUtNGQ3Zi05MzE5LTBlMDAzNDc5MzBhYyxwPTBlVG9mTkRxNisxcUR3R213SGJpNy82Y2FkOD0=</response>
+
+<!-- in -->
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1CUnA3WTBqckRHWmQwN2JzZ0oyTDhEVmFRTEU9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xml:lang='en' xmlns='urn:ietf:params:xml:ns:xmpp-framing' from='localhost' version='1.0' id='23ceb4c1-2f9b-44bc-bd87-063c7055a46b'/>
+
+<!-- in -->
+<stream:features xmlns:stream='http://etherx.jabber.org/streams' xmlns='jabber:client'><c hash='sha-1' xmlns='http://jabber.org/protocol/caps' node='http://prosody.im' ver='TYuvZQJNyDt5C1jmIS6RiXCoVGs='/><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><required/></bind><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><sub xmlns='urn:xmpp:features:pre-approval'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><ver xmlns='urn:xmpp:features:rosterver'/><limits xmlns='urn:xmpp:stream-limits:0'><max-bytes>262144</max-bytes><idle-seconds>840</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="4968f83b-6e2e-4312-8ab6-048a8fc1459d" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>t-1792853961601-mb8qx</resource></bind></iq>
+
+<!-- in -->
+<iq type='result' xmlns='jabber:client' id='4968f83b-6e2e-4312-8ab6-048a8fc1459d'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>s4user-1792853961157-pr4iq@localhost/t-1792853961601-mb8qx</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="770792f1-e7c9-438c-a6d8-4f64c434d18f"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- in -->
+<presence xmlns='jabber:client' xml:lang='en' id='770792f1-e7c9-438c-a6d8-4f64c434d18f' from='s4user-1792853961157-pr4iq@localhost/t-1792853961601-mb8qx'/>
+
+<!-- in -->
+<enabled xmlns='urn:xmpp:sm:3'/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='0'/>
+
+<!-- in -->
+<stream:error><not-authorized xmlns='urn:ietf:params:xml:ns:xmpp-streams'/><text xmlns='urn:ietf:params:xml:ns:xmpp-streams'>Account deleted</text></stream:error>
+
+<!-- in -->
+<close xmlns='urn:ietf:params:xml:ns:xmpp-framing'/>
+
+<!-- out -->
+<close xmlns="urn:ietf:params:xml:ns:xmpp-framing"/>

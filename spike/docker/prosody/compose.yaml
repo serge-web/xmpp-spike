@@ -1,0 +1,29 @@
+# Prosody 13.0.7, official image (Docker Hub prosodyim/prosody, per https://prosody.im/doc/docker),
+# pinned by digest. The image has no per-release tags: this digest is the "13.0" branch build
+# "13.0 nightly build 100 (2026-09-24, cafd74b9c5ea)", whose Lua code is byte-identical to the
+# 13.0.7 release tarball. See results/prosody.md for provenance.
+name: wrx-prosody
+services:
+  prosody:
+    image: prosodyim/prosody:13.0@sha256:3003867be7f61877890d0f2ff0f1e2a439fd727bfd4bf5bc250c9c3278d5f757
+    ports:
+      - "5322:5222" # c2s (not used by tests; browser path is WebSocket). Host 5322 avoids ejabberd.
+      - "5380:5280" # HTTP: /xmpp-websocket. Host 5380 avoids ejabberd's 5280.
+      - "5381:5281" # HTTPS: wss:// /xmpp-websocket once TLS certs are mounted (S8)
+    environment:
+      # Operator bootstrap, the only out-of-band step: the image entrypoint runs
+      # `prosodyctl register $LOCAL $DOMAIN $PASSWORD` at start. Everything else is
+      # provisioned over XMPP with the admin's own credentials (SPIKE-BRIEF S4).
+      LOCAL: admin
+      DOMAIN: localhost
+      PASSWORD: ${ADMIN_PASSWORD:-spike-password}
+    volumes:
+      - ./prosody.cfg.lua:/etc/prosody/prosody.cfg.lua:ro
+      - data:/var/lib/prosody
+    healthcheck:
+      test: ["CMD", "prosodyctl", "status"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+volumes:
+  data:

@@ -1,0 +1,80 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="31d9b4d8v1" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="KdXQY20Qqx9ZU4iCaEJBb+dxSr0="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1ibHVlLW9icyxyPWRiMDAxODkxOGIyZTM0ODY1YTE4ZTg3NzcwMWNlYWRjNTFlNGUwNzgxZGZkZTIxMzIyN2VkNjdiMzJkOWRjMTg=</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj1kYjAwMTg5MThiMmUzNDg2NWExOGU4Nzc3MDFjZWFkYzUxZTRlMDc4MWRmZGUyMTMyMjdlZDY3YjMyZDlkYzE4YWE1MzE3M2QtNDJlMi00MzQ5LTk3OTYtMTI1MmM3MjVmZjA3LHM9TUVqRlNvR0tyVW56Ti9pMzJCaVpWYlpLWUxYZGdrS2ksaT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9ZGIwMDE4OTE4YjJlMzQ4NjVhMThlODc3NzAxY2VhZGM1MWU0ZTA3ODFkZmRlMjEzMjI3ZWQ2N2IzMmQ5ZGMxOGFhNTMxNzNkLTQyZTItNDM0OS05Nzk2LTEyNTJjNzI1ZmYwNyxwPWJXTldtN1N2YkV2cWY3YUd0YlVZdlJSMzVVVT0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj1Hc2wyMVdPVEF1ME5yM3VJMTNsSW9zdkI4VDQ9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="31d9b4d8v1" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="0D8ZpZ0cMKskOKy2VmSkPS+k6a4="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5111e18c-fabd-44b0-809c-fdfb83cd6401" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>obs-1792853284242-y9oji</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="5111e18c-fabd-44b0-809c-fdfb83cd6401" to="localhost/c2a3486f-2ba1-4f99-a439-532bde9bd590"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>blue-obs@localhost/obs-1792853284242-y9oji</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="d0fc389e-4097-4e48-a3bc-08a691573bea"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="f8cea4a8-8f18-482b-8bf5-c019e6b65430" to="s9-room@conference.localhost/blue-obs"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="d0fc389e-4097-4e48-a3bc-08a691573bea" from="blue-obs@localhost/obs-1792853284242-y9oji" to="blue-obs@localhost/obs-1792853284242-y9oji"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<message xmlns="jabber:client" from="s9-room@conference.localhost" to="blue-obs@localhost"><x xmlns="http://jabber.org/protocol/muc#user"><invite from="admin@localhost"/></x><x xmlns="jabber:x:conference" jid="s9-room@conference.localhost"></x><delay xmlns="urn:xmpp:delay" from="localhost" stamp="2026-10-24T14:48:03.967Z"/></message>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="3a550898-6966-4114-a9ed-8aa3c579b212" to="blue-obs@localhost/obs-1792853284242-y9oji" from="s9-room@conference.localhost/blue-co"><x xmlns="vcard-temp:x:update"><photo/></x><occupant-id xmlns="urn:xmpp:occupant-id:0" id="3bc958f096e059a858357642546c7ecf9b850d24"/><x xmlns="http://jabber.org/protocol/muc#user"><item jid="blue-co@localhost/co-1792853284176-yx7cn" affiliation="member" role="participant"/></x></presence>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="f8cea4a8-8f18-482b-8bf5-c019e6b65430" to="blue-obs@localhost/obs-1792853284242-y9oji" from="s9-room@conference.localhost/blue-obs"><x xmlns="vcard-temp:x:update"><photo/></x><occupant-id xmlns="urn:xmpp:occupant-id:0" id="ecb5c7824a648ded1eb40686bb69f00abb19caff"/><x xmlns="http://jabber.org/protocol/muc#user"><item jid="blue-obs@localhost/obs-1792853284242-y9oji" affiliation="member" role="participant"/><status code="110"/><status code="100"/><status code="170"/></x></presence>
+
+<!-- out -->
+<message xmlns="jabber:client" id="707af8cc-b41c-4f0c-932d-4b5f9d2d9ffc" to="s9-room@conference.localhost" type="groupchat"><origin-id xmlns="urn:xmpp:sid:0" id="707af8cc-b41c-4f0c-932d-4b5f9d2d9ffc"/><body>s9-1792853284320-rk4us</body></message>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<message xmlns="jabber:client" from="s9-room@conference.localhost" type="groupchat" id="de92638d-5ce2-4f37-9a0a-5c3c2f87e5aa" to="blue-obs@localhost/obs-1792853284242-y9oji"><subject/></message>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />
+
+<!-- in -->
+<message xmlns="jabber:client" id="707af8cc-b41c-4f0c-932d-4b5f9d2d9ffc" to="blue-obs@localhost/obs-1792853284242-y9oji" type="error" from="s9-room@conference.localhost"><origin-id xmlns="urn:xmpp:sid:0" id="707af8cc-b41c-4f0c-932d-4b5f9d2d9ffc"></origin-id><body>s9-1792853284320-rk4us</body><error type="auth" code="403"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">Read-only role: posting is not allowed (WRX1 plugin).</text></error></message>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='2' />

@@ -6,6 +6,14 @@ hosts:
 
 loglevel: info
 
+# S5: store everything in the bundled SQLite backend. With the stock Mnesia backend, MAM at ~10k
+# room messages ingested ~5 msg/s and a MAM count query timed out (ejabberd itself warns that
+# Mnesia is not recommended for mod_mam). Schema is created automatically.
+sql_type: sqlite
+sql_database: /home/ejabberd/database/ejabberd.db
+default_db: sql
+update_sql_schema: true
+
 certfiles:
   - /home/ejabberd/conf/server.pem
 ca_file: /home/ejabberd/conf/cacert.pem
@@ -13,6 +21,8 @@ ca_file: /home/ejabberd/conf/cacert.pem
 # Named accounts (SCRAM) plus SASL ANONYMOUS on the same host, for S10.
 auth_method: [internal, anonymous]
 auth_password_format: scram
+# Hardening: SCRAM-SHA-256 instead of the default SHA-1. Applies to passwords set after the change.
+auth_scram_hash: sha256
 anonymous_protocol: sasl_anon
 allow_multiple_connections: true
 
@@ -32,8 +42,16 @@ listen:
     module: ejabberd_http
     request_handlers:
       /ws: ejabberd_http_ws
-      /admin: ejabberd_web_admin
-      /api: mod_http_api
+      # Hardening: no /api (REST isn't needed, S4) and no public web admin; use `ejabberdctl`.
+  -
+    # S8: TLS WebSocket (wss://localhost:5443/ws). Cert comes from certfiles above; compose.tls.yaml
+    # swaps in a server cert issued by the spike's internal test CA (spike/docker/tls).
+    port: 5443
+    ip: "0.0.0.0"
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /ws: ejabberd_http_ws
 
 acl:
   local:
@@ -62,55 +80,38 @@ access_rules:
   pubsub_createnode:
     allow: admin
 
+# Hardening: only ejabberdctl (console) and nothing over HTTP or ad-hoc API commands.
 api_permissions:
   "console commands":
     from: ejabberd_ctl
     who: all
     what: "*"
-  "webadmin commands":
-    from: ejabberd_web_admin
-    who: admin
-    what: "*"
-  "adhoc commands":
-    from: mod_adhoc_api
-    who: admin
-    what: "*"
-  "http access":
-    from: mod_http_api
-    who:
-      access:
-        allow:
-          - acl: admin
-    what:
-      - "*"
-      - "!stop"
-      - "!start"
-
+# Per-connection inbound rate limits. "player": 50 kB/s sustained with a 300 kB burst, so a ~100 kB
+# PubSub item (S3) goes through at once and S5's 10k-message seed (~25 kB/s) isn't throttled, while a
+# runaway client is held to a modest rate. The admin (provisioning, bulk publishes) is unlimited.
+# Stock "normal" (3000 B/s, 20 kB burst) would delay a 100 kB item by ~30 s.
 shaper:
-  normal:
-    rate: 3000
-    burst_size: 20000
-  fast: 100000
+  player:
+    rate: 50000
+    burst_size: 300000
 
 shaper_rules:
   max_user_sessions: 10
   c2s_shaper:
     none: admin
-    # Tests seed 10k MAM messages (S5); the stock 3000 B/s shaper would throttle that.
-    fast: all
+    player: all
 
+# Hardening: only what WRX1 uses. Removed vs the image default: adhoc_api (whole admin API over
+# XMPP), http_api, last, privacy, private, shared_roster (S7: groups not needed), vcard (user
+# directory), version, announce (WRX1 announcements are a PubSub node), plus the earlier-removed avatar/blocking/bosh/mqtt/proxy65/push/register/sip/
+# stun/http_upload/fail2ban.
 modules:
   mod_adhoc: {}
-  mod_adhoc_api: {}
   mod_admin_extra: {}
-  mod_announce:
-    access: announce
   mod_caps: {}
   mod_carboncopy: {}
   mod_configure: {}
   mod_disco: {}
-  mod_http_api: {}
-  mod_last: {}
   mod_mam:
     assume_mam_usage: true
     default: always
@@ -129,18 +130,18 @@ modules:
       members_only: true
   mod_muc_admin: {}
   mod_ping: {}
-  mod_privacy: {}
-  mod_private: {}
   mod_pubsub:
     access_createnode: pubsub_createnode
     plugins:
       - flat
       - pep
+    # S10 finding: disco#items on the service lists every node name to anyone, anonymous included.
+    # max_nodes_discoitems: 0 crashes the query (mnesia badarg -> internal-server-error) and 1 still
+    # lists an arbitrary node, so neither hides the names. Left stock; see results/ejabberd.md.
+    # S3: node owners cannot set pubsub#max_payload_size above the server default (stock 250000;
+    # higher values get <resource-constraint/>). Raise the server default here if needed, e.g.
+    # default_node_config: {max_payload_size: 2000000}. Left stock: 100 KB items fit.
   mod_roster:
     versioning: true
-  mod_shared_roster: {}
   mod_stream_mgmt:
     resend_on_timeout: if_offline
-  mod_vcard: {}
-  mod_version:
-    show_os: false
