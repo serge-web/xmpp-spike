@@ -89,8 +89,22 @@ PubSub events:
 Multiple sessions:
 - Two sessions with the same nick share one occupant. One leaving sends others nothing.
 
+## Admin-tooling contract (for the WRX1 admin UI and the mock)
+
+`spike/tests/provision/admin-ops.ts` (`AdminOps`) is the single place for the rules the admin UI must follow when it changes a live game. `checks/C01-admin-tooling.test.ts` proves them against the server, using temporary users, rooms and nodes. All pass on ejabberd.
+
+| Rule | Why | Evidence on ejabberd |
+|---|---|---|
+| **R-A** Revoking node access = whitelist affiliation off **and** subscription removed | A subscribed reader otherwise keeps reading and receiving events | after `revokeNode`: no read, 0 events, re-subscribe `not-allowed` |
+| **R-B** Any room affiliation change for an observer re-applies the voice revocation | An affiliation change clears the stored `visitor` role | helper gives visitor; raw none→member gives **participant**; helper again gives visitor |
+| **R-C** Game rooms stay moderated | Stored roles only apply in moderated rooms | `ensureModerated` detects and fixes; observer is visitor again |
+| **R-D** Move a role: grant new, then revoke old | No lock-out window | ejected from old room (110, 321); old node closed; new room and node work |
+| **R-E** Delete a role: remove room and node affiliations and subscriptions, then the account | Some servers leave stale affiliations (Prosody) | no member, affiliation or subscription left; login fails |
+
+**Design implication of R-B:** re-applying an observer's voice revocation needs the observer to be in the room once, so the admin must be able to log in as the observer. **The admin UI must manage observer passwords** (set or reset them; S4 shows this works over XMPP), and observers must not be able to change their own password, or the admin can't re-apply R-B. Otherwise any membership change for an observer leaves it able to post until it is fixed.
+
 ## Contract-suite follow-ups (for ARC-10)
 - Make grant/revoke affiliations come from the server profile if non-XEP-0060 servers (OpenFire) are ever targeted again.
 - `setSubscription` should pass `subid` when a JID has several subscriptions.
 - Set `pubsub#max_items` explicitly in provisioning (OpenFire defaults to 1).
-- Checks S02, S06 and S12 mutate the fixture; isolate them in their own nodes and rooms to remove order dependence.
+- Checks S02, S06 and S12 mutate the fixture; isolate them in their own nodes and rooms to remove order dependence (C01 already does this).
