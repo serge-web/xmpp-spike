@@ -82,12 +82,19 @@ describe('S10 anonymous cannot', () => {
     expect(r.ok).toBe(false);
   });
 
-  it('list nodes beyond the welcome page (disco#items on the PubSub service)', async () => {
+  // Human decision 2026-10-24: node NAMES being listable by anonymous users is accepted (real names are
+  // convenient; the admin page warns that names may be visible and suggests obfuscated names if that
+  // matters). Recorded here; what must hold is that no listed protected node is readable.
+  it('read any protected node it can discover (names may be listed: accepted)', async () => {
     const r = await outcome(anon.getDiscoItems(cfg().pubsubDomain));
     const names = r.ok ? ((r.value as { items?: Array<{ node?: string }> }).items ?? []).map((i) => i.node ?? '') : [];
     await observe('S10', 'disco#items pubsub service', r.ok ? names : r);
     const allowed = new Set([nodes.gameSetup, nodes.assets('theme')]);
-    expect(names.filter((n) => !allowed.has(n))).toEqual([]);
+    const readable: string[] = [];
+    for (const n of names.filter((x) => !allowed.has(x))) {
+      if ((await outcome(anon.getItems(cfg().pubsubDomain, n))).ok) readable.push(n);
+    }
+    expect(readable).toEqual([]);
   });
 
   it('list rooms (disco#items on the MUC service)', async () => {

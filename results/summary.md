@@ -17,7 +17,7 @@ Spike run 2026-10-24 per `SPIKE-BRIEF.md`. The same contract suite (`spike/tests
 | **S3** ~100 KB item | PASS (node cap 250 000 B, no ws stanza cap seen) | PASS (stanza cap ~256 KiB, stream closed above it) | PASS (1 MiB ws frame cap, socket closed above it) |
 | **S4** admin ops without a secret | PASS, all over XMPP | PASS, all over XMPP | PASS, all over XMPP |
 | **S5** MAM paging over 10 000 messages | PASS (2.2 s / 200 pages) | PASS (5.1 s / 200 pages) | **FAIL**: duplicates and gaps |
-| **S10** anonymous limits | **FAIL (strict)**: node *names* listed; all content and actions denied | **PASS** (separate anon vhost, filtered disco) | **FAIL**: node names listed |
+| **S10** anonymous limits | **PASS** (node *names* listed: accepted by human decision) | **PASS** (separate anon vhost, filtered disco) | **FAIL**: node names listed |
 | S6 publisher notifications | own event yes, payload yes, ordered | same | recorded |
 | S7 groups needed? | no | no | no |
 | S8 offline / TLS / backup | PASS (air-gap host pending) | PASS (air-gap host pending) | PASS (air-gap host pending) |
@@ -28,10 +28,10 @@ Spike run 2026-10-24 per `SPIKE-BRIEF.md`. The same contract suite (`spike/tests
 
 ## Recommendation
 
-**Choose ejabberd**, subject to one human decision on S10.
+**Decision (2026-10-24): ejabberd selected.** Node-name listing (S10) is accepted.
 
 Under §7 as written, **no server passes every mandatory check**:
-- ejabberd fails only S10, and only on a strict reading: an anonymous user can *list* PubSub node names but cannot read, subscribe, join, query MAM or publish.
+- ejabberd failed only S10, and only on a strict reading (since accepted by human decision): an anonymous user can *list* PubSub node names but cannot read, subscribe, join, query MAM or publish.
 - Prosody fails S1, the hard requirement (R1).
 - OpenFire fails S1, S5 and S10.
 
@@ -43,10 +43,10 @@ Reasoning:
 3. All three have 0 REST dependencies, so the first tie-break doesn't separate them. On operations, ejabberd and Prosody are both one-container, one-file setups; OpenFire needs a plugin for MAM, database-only settings done via the admin console, and an entrypoint fix for its embedded database.
 4. **Fallback: Prosody plus a ~45-line custom read-only MUC module** (S9). Prosody is the cleanest server on S10 and very simple to run, but this breaks ground rule 2 (stock only) and SRD D2. That needs a human decision.
 
-### Human decisions needed
-1. **S10 on ejabberd:** accept node-name enumeration, adopt opaque node ids, or treat it as a fail. If it's a fail, no server passes, and the choice is between ejabberd + opaque ids and Prosody + module.
-2. **Prosody image age:** the CI image digest is 3 days old (the release is 30 days old); there are no release tags. Only relevant if Prosody is chosen.
-3. **S8:** the real air-gapped host install must be verified by the team (all three are marked pending).
+### Human decisions
+1. **ejabberd selected** (2026-10-24).
+2. **S10 node names:** accepted. Keep real node names. **Requirement for the WRX1 admin page:** show a note that PubSub node names (e.g. `objectives:blue`, `roles:<id>`) may be visible to a capable user, including anonymous visitors, though their contents are not, and that admins should use obfuscated names if names are sensitive.
+3. **S8:** the real air-gapped host install must still be verified by the team.
 
 ## Open issues closed or left open
 
@@ -55,7 +55,7 @@ Reasoning:
 | **R1** read-only members | **Closed for ejabberd** (persisted voice revocation, set once at provisioning). Open for Prosody/OpenFire without a module. Caveat: any affiliation change clears it, so admin tooling must re-apply it. |
 | **R5** admin without a bundled secret | **Closed**: all S4 operations work over XMPP with the admin's own login on all three servers. No REST, no shared secret. |
 | **R6** groups | **Closed**: no groups needed; everything is per-JID affiliations and whitelists. |
-| **D16** server choice | **Proposed: ejabberd**, pending decision 1 above. |
+| **D16** server choice | **Closed: ejabberd** (2026-10-24). |
 | New: R3/R10 revocation | On ejabberd a subscribed reader keeps access after leaving the whitelist until its subscription is removed. Admin tooling must do both. |
 | New: stanza size limits | ejabberd showed no WebSocket stanza cap (32 MB accepted); the reference deployment needs one. |
 

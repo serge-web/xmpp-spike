@@ -223,3 +223,16 @@
 {"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:59:01.127Z"}
 {"check":"S2","key":"subscribed reader after affiliation=none only: can still read","value":true,"at":"2026-10-24T14:59:01.226Z"}
 {"check":"S2","key":"subscribed reader after affiliation=none + subscription removed: can read","value":false,"at":"2026-10-24T14:59:01.235Z"}
+{"check":"S10","key":"anonymous JID","value":"1329979104235348183621730@localhost/1499989568926191954021762","at":"2026-10-24T15:05:56.926Z"}
+{"check":"S10","key":"getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T15:05:57.007Z"}
+{"check":"S10","key":"getItems objectives:red","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T15:05:57.010Z"}
+{"check":"S10","key":"join blue-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T15:05:57.024Z"}
+{"check":"S10","key":"join red-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T15:05:57.027Z"}
+{"check":"S10","key":"join negotiation","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T15:05:57.030Z"}
+{"check":"S10","key":"MAM blue-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T15:05:57.033Z"}
+{"check":"S10","key":"MAM red-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T15:05:57.036Z"}
+{"check":"S10","key":"MAM negotiation","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T15:05:57.039Z"}
+{"check":"S10","key":"create room","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Room creation is denied by service policy"},"at":"2026-10-24T15:05:57.043Z"}
+{"check":"S10","key":"disco#items pubsub service","value":["announcements","assets:theme","forces:blue","forces:red","forces:umpire","game-setup","game-state","objectives:blue","objectives:red","roles:blue-co","roles:blue-obs","roles:red-co","roles:umpire-1","rooms:blue-hq","rooms:negotiation","rooms:red-hq"],"at":"2026-10-24T15:05:57.053Z"}
+{"check":"S10","key":"disco#items muc service","value":[],"at":"2026-10-24T15:05:57.079Z"}
+{"check":"S10","key":"disco#items server","value":["conference.localhost ","pubsub.localhost ","localhost API Commands"],"at":"2026-10-24T15:05:57.084Z"}

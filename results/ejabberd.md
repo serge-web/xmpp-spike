@@ -4,8 +4,8 @@ Released 2026-09-30, 24 days before the spike. Erlang/OTP 27, Elixir 1.19. Stack
 
 ## Summary
 
-**Mandatory checks:** S0 PASS, S1 PASS (quirky mechanism), S2 PASS (revocation needs subscription removal), S3 PASS, S4 PASS, S5 PASS (SQLite backend), **S10 FAIL on a strict reading** (anonymous users can list PubSub node *names*; all content and actions are denied).
-**Verdict:** a strong candidate if S10 node-name enumeration is accepted, or avoided with opaque node ids. Every admin operation works over XMPP with the admin's own credentials.
+**Mandatory checks:** S0 PASS, S1 PASS (quirky mechanism), S2 PASS (revocation needs subscription removal), S3 PASS, S4 PASS, S5 PASS (SQLite backend), S10 PASS (node-name listing accepted by human decision; admin page warning required).
+**Verdict: selected** (human decision 2026-10-24). Every admin operation works over XMPP with the admin's own credentials.
 **REST dependencies: 0.**
 
 ## Checks
@@ -128,7 +128,7 @@ Effort: about 20 minutes to a working hello world. One gotcha: the source direct
 Not used in any other check.
 
 ### S10 Anonymous access limits (D20, NFR-21)
-Result: **FAIL on a strict reading (node-name enumeration). Every content and action limit holds.** Needs a human decision (see Risks).
+Result: **PASS (by human decision 2026-10-24).** Every content and action limit holds. Anonymous users can list PubSub node *names*; this is **accepted**. Real names are kept for convenience, and the WRX1 admin page must warn that node names may be visible to a capable user and that admins should use obfuscated names if that matters. The S10 check now records the listing and asserts that no listed protected node is readable.
 | Attempt as SASL ANONYMOUS (`<random>@localhost`) | Outcome |
 |---|---|
 | read `game-setup`, `assets:theme` | allowed |
@@ -179,7 +179,7 @@ Evidence: `S12-live-changes.test.ts`, `S12-move-force.xml`, `S12-deleted-user.xm
 
 ## Risks and surprises
 1. **S1 relies on persisted voice revocation**, an ejabberd behaviour that isn't in XEP-0045. It needs the observer to be online once during provisioning (done with the admin-set password), and it is **silently cleared by any affiliation change** (e.g. none→member). Admin tooling must re-apply it. A server upgrade could change it, so keep S1 in CI.
-2. **S10 node-name enumeration** (above). Human decision: accept, rename nodes opaquely, or fail.
+2. **S10 node-name enumeration**: accepted by human decision. Admin page warning required (see S10).
 3. **PubSub revocation needs subscription removal as well as the affiliation change.** If admin tooling forgets this, a player moved off a force keeps receiving that force's objectives.
 4. **No WebSocket stanza size limit** (32 MB accepted). Find and set a limit for the reference deployment (e.g. a reverse proxy frame limit, or `ejabberd_http` options), or accept the risk.
 5. **The stock Mnesia backend is unsuitable for MAM at 10k messages.** SQLite is required.

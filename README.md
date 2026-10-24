@@ -27,10 +27,10 @@ The spike also records exactly how each server behaves, including error conditio
 | Server | Version | Mandatory checks | Verdict |
 |---|---|---|---|
 | OpenFire | 5.1.2 | fails S1, S5, S10 (S2 as written) | out |
-| ejabberd | 26.09 | all pass except S10 strict (node names listable by anonymous) | **recommended**, pending S10 decision |
+| ejabberd | 26.09 | all pass (S10 node-name listing accepted) | **selected** |
 | Prosody | 13.0.7 | fails S1 (stock); all others pass | fallback, with custom module |
 
-**Recommendation:** ejabberd. See [`results/summary.md`](results/summary.md).
+**Decision:** ejabberd (2026-10-24). See [`results/summary.md`](results/summary.md).
 
 ## Checks
 
