@@ -65,7 +65,7 @@ describe('S5 MAM paging', () => {
       before = fin.paging?.first ?? items[0]?.id ?? '';
       if (!before) break;
     }
-    const seeded = bodies.filter((b) => b.startsWith('s5-'));
+    const seeded = bodies.filter((b) => /^s5-\d{5}$/.test(b));
     const expected = Array.from({ length: TOTAL }, (_, i) => label(i));
     const summary = {
       max,

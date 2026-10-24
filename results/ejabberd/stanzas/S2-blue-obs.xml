@@ -2,58 +2,58 @@
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='17151923117534836661' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='10448326880019655562' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
 <stream:features xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism><mechanism>PLAIN</mechanism><mechanism>SCRAM-SHA-1</mechanism><mechanism>X-OAUTH2</mechanism></mechanisms></stream:features>
 
 <!-- out -->
-<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1ibHVlLW9icyxyPTZhMTAxYzkwNjk0ZTdlNjA1NTUxNTBiNDZkZTM4YmNlODI3OWE1ZTMyZmJmMmQ5NDhhZDViMTRhNmRhMmU2YjA=</auth>
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1ibHVlLW9icyxyPWIzMWQwNGNkMjVmOTEwZmNlMzRkZTlkY2ZmNzIzYWNlMjRmMGQ4YjI4NWJiN2QyMzU0ZjE5YjQ2YTk3OGNkNjQ=</auth>
 
 <!-- in -->
-<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj02YTEwMWM5MDY5NGU3ZTYwNTU1MTUwYjQ2ZGUzOGJjZTgyNzlhNWUzMmZiZjJkOTQ4YWQ1YjE0YTZkYTJlNmIwUlJoVHhqS296ZjRaV2djcWhueGxuQT09LHM9T1lEakFVQzA3cC8zRHcrT1djOUdSUT09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
+<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj1iMzFkMDRjZDI1ZjkxMGZjZTM0ZGU5ZGNmZjcyM2FjZTI0ZjBkOGIyODViYjdkMjM1NGYxOWI0NmE5NzhjZDY0ZjhTOEQ4Q2VHQkhkaTNscFQ3NzNCZz09LHM9a0VXODcvZUZFWTNmYWVtSzFZMkhrQT09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
 
 <!-- out -->
-<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9NmExMDFjOTA2OTRlN2U2MDU1NTE1MGI0NmRlMzhiY2U4Mjc5YTVlMzJmYmYyZDk0OGFkNWIxNGE2ZGEyZTZiMFJSaFR4aktvemY0WldnY3FobnhsbkE9PSxwPXZ0WXhyV2JIdjBCWDQ3RnlZY1RVaHNTekhzST0=</response>
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9YjMxZDA0Y2QyNWY5MTBmY2UzNGRlOWRjZmY3MjNhY2UyNGYwZDhiMjg1YmI3ZDIzNTRmMTliNDZhOTc4Y2Q2NGY4UzhEOENlR0JIZGkzbHBUNzczQmc9PSxwPUJYVzZ2b0tiSjNNdDBsVStrdWJkRVhlNW5WVT0=</response>
 
 <!-- in -->
-<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1icG5lY2NYYTdKbWhLOVFrRmlEYmgyVjdkYU09</success>
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1LVjZNL0l6ZlZia1RkR05Cc0F3UVJIaW4vTUU9</success>
 
 <!-- out -->
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='11592034037198967602' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='7201032756664697549' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
 <stream:features xmlns:stream='http://etherx.jabber.org/streams'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'/><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><c ver='+xm1sE9Oi3aRBvAQ4ZiPqWHMC9s=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><sub xmlns='urn:xmpp:features:pre-approval'/><ver xmlns='urn:xmpp:features:rosterver'/></stream:features>
 
 <!-- out -->
-<iq xmlns="jabber:client" id="00a60137-0158-4dd2-a566-cc59c442e96b" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>s2-1792855103916-x8mt7</resource></bind></iq>
+<iq xmlns="jabber:client" id="c64c6587-d13e-46a8-a2f2-921aabb46856" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>s2-1792855201464-8reel</resource></bind></iq>
 
 <!-- in -->
-<iq xmlns='jabber:client' type='result' id='00a60137-0158-4dd2-a566-cc59c442e96b'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>blue-obs@localhost/s2-1792855103916-x8mt7</jid></bind></iq>
+<iq xmlns='jabber:client' type='result' id='c64c6587-d13e-46a8-a2f2-921aabb46856'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>blue-obs@localhost/s2-1792855201464-8reel</jid></bind></iq>
 
 <!-- out -->
-<presence xmlns="jabber:client" id="52fe01ab-38b5-46f6-8d1d-0867ca41dd9f"/>
+<presence xmlns="jabber:client" id="d135f95b-8dcd-4d9b-b3a9-8428257ff702"/>
 
 <!-- out -->
 <enable xmlns="urn:xmpp:sm:3" resume="0"/>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-obs@localhost/s2-1792855103916-x8mt7' from='blue-obs@localhost/s2-1792855103916-x8mt7' id='52fe01ab-38b5-46f6-8d1d-0867ca41dd9f'/>
+<presence xmlns='jabber:client' xml:lang='en' to='blue-obs@localhost/s2-1792855201464-8reel' from='blue-obs@localhost/s2-1792855201464-8reel' id='d135f95b-8dcd-4d9b-b3a9-8428257ff702'/>
 
 <!-- in -->
 <enabled xmlns='urn:xmpp:sm:3'/>
 
 <!-- out -->
-<iq xmlns="jabber:client" id="97ddb81a-4104-45fc-8a7a-8c82e8c5f08a" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="announcements"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+<iq xmlns="jabber:client" id="429c38a7-8d42-44dc-9bcf-299b66f2e0e0" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="announcements"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
 
 <!-- out -->
 <r xmlns="urn:xmpp:sm:3"/>
 
 <!-- in -->
-<iq xmlns='jabber:client' xml:lang='en' to='blue-obs@localhost/s2-1792855103916-x8mt7' from='pubsub.localhost' type='result' id='97ddb81a-4104-45fc-8a7a-8c82e8c5f08a'><pubsub xmlns='http://jabber.org/protocol/pubsub'><items node='announcements'><item id='seed'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;welcome&quot;}</json></item><item id='700D008D434EF'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D00D9AA95F'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D017672F9A'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D07B52DDDD'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D0A0E826F7'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D0A89F1374'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item></items><set xmlns='http://jabber.org/protocol/rsm'><count>7</count><first index='0'>2026-10-24T14:28:29.212615Z</first><last>2026-10-24T15:11:05.988626Z</last></set></pubsub></iq>
+<iq xmlns='jabber:client' xml:lang='en' to='blue-obs@localhost/s2-1792855201464-8reel' from='pubsub.localhost' type='result' id='429c38a7-8d42-44dc-9bcf-299b66f2e0e0'><pubsub xmlns='http://jabber.org/protocol/pubsub'><items node='announcements'><item id='seed'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;welcome&quot;}</json></item><item id='700D008D434EF'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D00D9AA95F'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D017672F9A'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D07B52DDDD'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D0A0E826F7'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D0A89F1374'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item><item id='700D0C4020AE'><json xmlns='urn:xmpp:json:0'>{&quot;text&quot;:&quot;admin says&quot;}</json></item></items><set xmlns='http://jabber.org/protocol/rsm'><count>8</count><first index='0'>2026-10-24T14:28:29.212615Z</first><last>2026-10-24T15:18:24.008907Z</last></set></pubsub></iq>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
