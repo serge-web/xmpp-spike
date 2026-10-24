@@ -14,7 +14,7 @@ Released 2026-09-30, 24 days before the spike. Erlang/OTP 27, Elixir 1.19. Stack
 Result: PASS
 Mechanism / config: `ejabberd_http` listener on 5280 with `/ws: ejabberd_http_ws` (RFC 7395). `auth_method: [internal, anonymous]`, `auth_password_format: scram`, `anonymous_protocol: sasl_anon`.
 Evidence: `S0-connectivity.test.ts` – admin and all four roles log in over `ws://`. `results/ejabberd/stanzas/S0-admin-login.xml`.
-For the mock: the negotiated mechanism is **SCRAM-SHA-1**. SCRAM-SHA-256 is only offered if `auth_scram_hash: sha256` is set before accounts are created, because stored SCRAM hashes are per-algorithm. The HTTP API (`mod_http_api`) is not needed (see S4). CORS was not exercised because no REST is used.
+For the mock: with the hardened config (`auth_scram_hash: sha256`, set before accounts exist) the negotiated mechanism is **SCRAM-SHA-256**. The stock default is SCRAM-SHA-1. Stored SCRAM hashes are per-algorithm, so switching later needs every password reset. The HTTP API (`mod_http_api`) is not needed (see S4). CORS was not exercised because no REST is used.
 REST / secret needed: no.
 
 ### S1 Read-only members (R1)
@@ -83,7 +83,11 @@ Evidence: `S3-item-size.test.ts`. Largest round-trip on a default node is betwee
 For the mock / ops:
 - **A node owner cannot raise `pubsub#max_payload_size` above the server default.** Any value > 250000 gets `<resource-constraint/>` "Bad value of field 'pubsub#max_payload_size'".
 - The operator can raise it server-wide with `mod_pubsub: default_node_config: {max_payload_size: N}`. Verified at 2 MB and 64 MB, with 32 MB items published over WebSocket.
-- **No WebSocket stanza size limit was hit up to 32 MB.** `max_stanza_size` applies to the c2s listener, not `ejabberd_http_ws`. This is a resource-exhaustion risk to address in the reference deployment.
+- **No configurable WebSocket stanza cap.** `ejabberd_http_ws` copies the c2s listener's `max_stanza_size` (262144 here), but it is enforced by the XML stream parser, which WebSocket frames bypass:
+  - A 300 KB room message is delivered.
+  - PubSub items up to 32 MB were accepted when the node cap was raised.
+  - Room messages above about **885 KB** close the sender's session ("Connection failed: connection closed") without a stanza error; the cause wasn't pinned down.
+  - Mitigations: the stock 250 KB PubSub cap, the c2s shaper (rate, not size) and client-side limits. A proxy can't easily cap WebSocket message size. Residual risk is accepted for an internal deployment.
 REST / secret needed: no.
 
 ### S4 Admin provisioning without a bundled secret (R5)
@@ -190,6 +194,22 @@ Move online blue-co from blue to red:
 3. **PubSub revocation needs two steps.** Setting the `objectives:blue` affiliation to none is not enough for a subscribed user, who keeps reading items and receiving events. The subscription must also be removed (owner `pubsub#owner` subscriptions, state none). After that, reads give `<not-allowed/>` and re-subscribe gives `<not-allowed/>`. The provisioning helper `revokeNodeAccess` does both.
 Delete an online user: the session gets `<stream:error><conflict/><text>User removed</text>`. Other occupants see the user's room presence go unavailable. The user's room affiliation is removed automatically.
 Evidence: `S12-live-changes.test.ts`, `S12-move-force.xml`, `S12-deleted-user.xml`.
+
+## Hardening applied (de-risking, 2026-10-24)
+The reference config now removes everything WRX1 doesn't use. The full suite (83 tests incl. S01b and C01) passes on a fresh database with it.
+- **Authentication:** `auth_scram_hash: sha256` (SCRAM-SHA-256).
+- **HTTP:** `/api` and `/admin` are removed from the HTTP listener (both return 404); `api_permissions` keeps only `ejabberdctl`.
+- **Modules removed:**
+  - `mod_adhoc_api`, which exposed the *entire* admin API as ad-hoc commands to the admin JID;
+  - `mod_http_api`, `mod_announce` (announcements are a PubSub node), `mod_vcard` (user directory), `mod_last`, `mod_version`, `mod_privacy`, `mod_private`, `mod_shared_roster` (S7);
+  - plus the image-default extras removed at setup (bosh, mqtt, proxy65, push, register, sip, stun, upload, fail2ban).
+  Admin over XMPP is now XEP-0133 (`mod_configure`) plus MUC and PubSub owner only.
+- **Rooms:** the S1b settings (`allow_private_messages_from_visitors: nobody`, `allow_visitor_status: false`, `allow_visitor_nickchange: false`, `allow_voice_requests: false`), moderated and members-only.
+- **Still to decide for production:**
+  - serve only `wss://` (drop the plain 5280 listener);
+  - a c2s shaper value (currently `fast`, 100 kB/s, for S5 seeding);
+  - MAM retention (`ejabberdctl delete_old_mam_messages` from cron, if games are archived elsewhere);
+  - `max_user_sessions` (10).
 
 ## Operational notes
 - **Install:** one container, official image, one YAML file. Admin bootstrap is a single `ejabberdctl register`; everything else is over XMPP.

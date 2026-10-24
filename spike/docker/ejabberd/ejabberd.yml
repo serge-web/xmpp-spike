@@ -21,6 +21,8 @@ ca_file: /home/ejabberd/conf/cacert.pem
 # Named accounts (SCRAM) plus SASL ANONYMOUS on the same host, for S10.
 auth_method: [internal, anonymous]
 auth_password_format: scram
+# Hardening: SCRAM-SHA-256 instead of the default SHA-1. Applies to passwords set after the change.
+auth_scram_hash: sha256
 anonymous_protocol: sasl_anon
 allow_multiple_connections: true
 
@@ -40,8 +42,7 @@ listen:
     module: ejabberd_http
     request_handlers:
       /ws: ejabberd_http_ws
-      /admin: ejabberd_web_admin
-      /api: mod_http_api
+      # Hardening: no /api (REST isn't needed, S4) and no public web admin; use `ejabberdctl`.
   -
     # S8: TLS WebSocket (wss://localhost:5443/ws). Cert comes from certfiles above; compose.tls.yaml
     # swaps in a server cert issued by the spike's internal test CA (spike/docker/tls).
@@ -79,30 +80,12 @@ access_rules:
   pubsub_createnode:
     allow: admin
 
+# Hardening: only ejabberdctl (console) and nothing over HTTP or ad-hoc API commands.
 api_permissions:
   "console commands":
     from: ejabberd_ctl
     who: all
     what: "*"
-  "webadmin commands":
-    from: ejabberd_web_admin
-    who: admin
-    what: "*"
-  "adhoc commands":
-    from: mod_adhoc_api
-    who: admin
-    what: "*"
-  "http access":
-    from: mod_http_api
-    who:
-      access:
-        allow:
-          - acl: admin
-    what:
-      - "*"
-      - "!stop"
-      - "!start"
-
 shaper:
   normal:
     rate: 3000
@@ -116,18 +99,17 @@ shaper_rules:
     # Tests seed 10k MAM messages (S5); the stock 3000 B/s shaper would throttle that.
     fast: all
 
+# Hardening: only what WRX1 uses. Removed vs the image default: adhoc_api (whole admin API over
+# XMPP), http_api, last, privacy, private, shared_roster (S7: groups not needed), vcard (user
+# directory), version, announce (WRX1 announcements are a PubSub node), plus the earlier-removed avatar/blocking/bosh/mqtt/proxy65/push/register/sip/
+# stun/http_upload/fail2ban.
 modules:
   mod_adhoc: {}
-  mod_adhoc_api: {}
   mod_admin_extra: {}
-  mod_announce:
-    access: announce
   mod_caps: {}
   mod_carboncopy: {}
   mod_configure: {}
   mod_disco: {}
-  mod_http_api: {}
-  mod_last: {}
   mod_mam:
     assume_mam_usage: true
     default: always
@@ -146,8 +128,6 @@ modules:
       members_only: true
   mod_muc_admin: {}
   mod_ping: {}
-  mod_privacy: {}
-  mod_private: {}
   mod_pubsub:
     access_createnode: pubsub_createnode
     plugins:
@@ -161,9 +141,5 @@ modules:
     # default_node_config: {max_payload_size: 2000000}. Left stock: 100 KB items fit.
   mod_roster:
     versioning: true
-  mod_shared_roster: {}
   mod_stream_mgmt:
     resend_on_timeout: if_offline
-  mod_vcard: {}
-  mod_version:
-    show_os: false

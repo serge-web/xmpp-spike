@@ -2,52 +2,52 @@
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='16078025429285971200' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='5712603162796586873' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
-<stream:features xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism><mechanism>PLAIN</mechanism><mechanism>SCRAM-SHA-1</mechanism><mechanism>X-OAUTH2</mechanism></mechanisms></stream:features>
+<stream:features xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism><mechanism>PLAIN</mechanism><mechanism>SCRAM-SHA-256</mechanism><mechanism>X-OAUTH2</mechanism></mechanisms></stream:features>
 
 <!-- out -->
-<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1ibHVlLWNvLHI9MmM3NmY2MDAwN2M4NDk2YjU3YjhiNWI0NzNhYTNjNTRlOTc5NGYwOTFmYWY4ZDFhYThmMzMzOGVmNDg3NjI3OQ==</auth>
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-256">biwsbj1ibHVlLWNvLHI9YTk5MjlkNzBlMTFjYjI1MDc1ZjEzNWVmNzAxNTliM2MyODFlYWRhZWQwOTAwY2NhMTI1ODU2OTA3YTJiNDc1Yw==</auth>
 
 <!-- in -->
-<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj0yYzc2ZjYwMDA3Yzg0OTZiNTdiOGI1YjQ3M2FhM2M1NGU5Nzk0ZjA5MWZhZjhkMWFhOGYzMzM4ZWY0ODc2Mjc5RCswbXQwSHl3YndHNVpJU1pxckcyQT09LHM9Z0E5VUtYaE4xMjN5YStYb3Vaa3pvQT09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
+<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj1hOTkyOWQ3MGUxMWNiMjUwNzVmMTM1ZWY3MDE1OWIzYzI4MWVhZGFlZDA5MDBjY2ExMjU4NTY5MDdhMmI0NzVjd2pTQURLQUhHbGc0ODJUNWg3K0xxUT09LHM9ZDJlVm5EUWRhVnJBbXFoaG9ndjFhZz09LGk9NDA5NixoPTE0bzF5QWVGUGFNUGoyVXIwa1VNZGpvYkhlaXJsZDlmMzlqVk1oaUJUVFk9</challenge>
 
 <!-- out -->
-<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9MmM3NmY2MDAwN2M4NDk2YjU3YjhiNWI0NzNhYTNjNTRlOTc5NGYwOTFmYWY4ZDFhYThmMzMzOGVmNDg3NjI3OUQrMG10MEh5d2J3RzVaSVNacXJHMkE9PSxwPVdHZzU2akpGS1dROUJVK1pLd0E5TjkzK2NpND0=</response>
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9YTk5MjlkNzBlMTFjYjI1MDc1ZjEzNWVmNzAxNTliM2MyODFlYWRhZWQwOTAwY2NhMTI1ODU2OTA3YTJiNDc1Y3dqU0FES0FIR2xnNDgyVDVoNytMcVE9PSxwPUgvUFF2cmRDN2ROUm9nVWtCemVVbU8rOU5WZmZSUUJPMXlMOU5lbW5uRWc9</response>
 
 <!-- in -->
-<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj13N2NhNDVWeTYxUWFpNmJSeUpXUnJUdG54ZDQ9</success>
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1BZi95K2xhY0M2dm9YUjhXaDByeUo4Uk9CUWdXYVBGRDlZNUpzTmJYNitnPQ==</success>
 
 <!-- out -->
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='2527386992892768031' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='5440993294967988240' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
-<stream:features xmlns:stream='http://etherx.jabber.org/streams'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'/><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><c ver='+xm1sE9Oi3aRBvAQ4ZiPqWHMC9s=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><sub xmlns='urn:xmpp:features:pre-approval'/><ver xmlns='urn:xmpp:features:rosterver'/></stream:features>
+<stream:features xmlns:stream='http://etherx.jabber.org/streams'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'/><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><c ver='Yw9uXBrncnBAuO8l5Cjkg9+mGRI=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><sub xmlns='urn:xmpp:features:pre-approval'/><ver xmlns='urn:xmpp:features:rosterver'/></stream:features>
 
 <!-- out -->
-<iq xmlns="jabber:client" id="17712700-6cf0-427a-adf5-8a2196508a64" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>tab1-1792855176000-18two</resource></bind></iq>
+<iq xmlns="jabber:client" id="f4cc8b1f-da07-4766-8497-0c9dc963af12" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>tab1-1792855627034-so88f</resource></bind></iq>
 
 <!-- in -->
-<iq xmlns='jabber:client' type='result' id='17712700-6cf0-427a-adf5-8a2196508a64'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>blue-co@localhost/tab1-1792855176000-18two</jid></bind></iq>
+<iq xmlns='jabber:client' type='result' id='f4cc8b1f-da07-4766-8497-0c9dc963af12'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>blue-co@localhost/tab1-1792855627034-so88f</jid></bind></iq>
 
 <!-- out -->
-<presence xmlns="jabber:client" id="14c63a5a-7ca5-4b27-9d31-0e40e4367a11"/>
+<presence xmlns="jabber:client" id="870a656c-fd6c-4695-831b-7084c16e5f5f"/>
 
 <!-- out -->
 <enable xmlns="urn:xmpp:sm:3" resume="0"/>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-co@localhost/tab1-1792855176000-18two' id='14c63a5a-7ca5-4b27-9d31-0e40e4367a11'/>
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-co@localhost/tab1-1792855627034-so88f' id='870a656c-fd6c-4695-831b-7084c16e5f5f'/>
 
 <!-- in -->
 <enabled xmlns='urn:xmpp:sm:3'/>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-co@localhost/tab2-1792855176083-3fjtb' id='6c89e4b4-b482-4d17-a145-42699eec91fb'/>
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-co@localhost/tab2-1792855627116-7rd9p' id='d33ff685-4621-48d1-bd21-ef6553a37c39'/>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
@@ -56,7 +56,7 @@
 <a xmlns="urn:xmpp:sm:3" h="1"/>
 
 <!-- out -->
-<presence xmlns="jabber:client" id="979d8808-4e63-4394-8a22-17812107d312" to="blue-hq@conference.localhost/blue-co"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+<presence xmlns="jabber:client" id="b555c7bc-9ead-43a6-85f4-a76c71837121" to="blue-hq@conference.localhost/blue-co"><x xmlns="http://jabber.org/protocol/muc"/></presence>
 
 <!-- out -->
 <r xmlns="urn:xmpp:sm:3"/>
@@ -65,103 +65,73 @@
 <a h='1' xmlns='urn:xmpp:sm:3'/>
 
 <!-- in -->
-<presence xmlns='jabber:client' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost' id='16298234280583420202'><c ver='50sinYkHbjy4R9ZIJTFYLFhpyDA=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/></presence>
+<presence xmlns='jabber:client' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost' id='17005841906660661745'><c ver='50sinYkHbjy4R9ZIJTFYLFhpyDA=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/></presence>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' id='f309d1c2-2ce4-4cd2-bae0-7ac540e63fc9'><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item role='participant' affiliation='member'/></x></presence>
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/umpire-1' id='61100c0d-6c53-40bf-b88c-78f3c96b57f4'><occupant-id id='g20AAAAgLjZWtqzP0pKdBPPIj9NYVJmMRQWLg8QNv6e4Ny6FYmc=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item role='participant' affiliation='member'/></x></presence>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' id='979d8808-4e63-4394-8a22-17812107d312'><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item jid='blue-co@localhost/tab1-1792855176000-18two' role='participant' affiliation='member'/><status code='110'/></x></presence>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='c9a4855f-ce1c-4c63-97da-34d9d169bc5d'><archived by='blue-hq@conference.localhost' id='1792854649105029' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792854649105029' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='c9a4855f-ce1c-4c63-97da-34d9d169bc5d'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:10:49.105029Z' xmlns='urn:xmpp:delay'/><body>history-1792854649104-3bsjm</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='c89c2e96-a01a-4745-a222-6b360ee4ba94'><archived by='blue-hq@conference.localhost' id='1792854649140396' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792854649140396' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='c89c2e96-a01a-4745-a222-6b360ee4ba94'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:10:49.140396Z' xmlns='urn:xmpp:delay'/><body>live-1792854649139-3oovh</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='d9018dce-189e-4b86-bf3e-cdc85ee80c73'><archived by='blue-hq@conference.localhost' id='1792854651634599' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792854651634599' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='d9018dce-189e-4b86-bf3e-cdc85ee80c73'/><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:10:51.634599Z' xmlns='urn:xmpp:delay'/><body>from-umpire-1792854651633-745dy</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='c63b2d9d-7cf2-43da-945d-f22e2c99d1b5'><archived by='blue-hq@conference.localhost' id='1792854651638693' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792854651638693' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='c63b2d9d-7cf2-43da-945d-f22e2c99d1b5'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:10:51.638693Z' xmlns='urn:xmpp:delay'/><body>from-s1-1792854651638-gudko</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='a52e794c-5c57-4fb4-a30d-17ce6c880079'><archived by='blue-hq@conference.localhost' id='1792854654646624' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792854654646624' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='a52e794c-5c57-4fb4-a30d-17ce6c880079'/><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:10:54.646624Z' xmlns='urn:xmpp:delay'/><body>still-1792854654645-tuf3q</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='227d0e93-905e-4a0a-bce1-fef665d3f67d'><archived by='blue-hq@conference.localhost' id='1792855078891145' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855078891145' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='227d0e93-905e-4a0a-bce1-fef665d3f67d'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:17:58.891145Z' xmlns='urn:xmpp:delay'/><body>history-1792855078890-r51g0</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='c8f63100-fbed-409a-ac78-df3f5eb815da'><archived by='blue-hq@conference.localhost' id='1792855078927997' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855078927997' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='c8f63100-fbed-409a-ac78-df3f5eb815da'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:17:58.927997Z' xmlns='urn:xmpp:delay'/><body>live-1792855078927-v14aj</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='4dd4a03a-e574-4fb6-9c1e-e2e45b208e8c'><archived by='blue-hq@conference.localhost' id='1792855081428485' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855081428485' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='4dd4a03a-e574-4fb6-9c1e-e2e45b208e8c'/><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:18:01.428485Z' xmlns='urn:xmpp:delay'/><body>from-umpire-1792855081427-8u2tk</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='7232e417-9cfa-4623-b5be-084188f45ab5'><archived by='blue-hq@conference.localhost' id='1792855081432514' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855081432514' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='7232e417-9cfa-4623-b5be-084188f45ab5'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:18:01.432514Z' xmlns='urn:xmpp:delay'/><body>from-s1-1792855081432-ex4cd</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='eee36e81-2768-49dd-9afa-1624a07ab3ca'><archived by='blue-hq@conference.localhost' id='1792855084439078' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855084439078' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='eee36e81-2768-49dd-9afa-1624a07ab3ca'/><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:18:04.439078Z' xmlns='urn:xmpp:delay'/><body>still-1792855084437-cg410</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='b85b46d6-9bd3-4689-a608-5ecd0b9f761c'><archived by='blue-hq@conference.localhost' id='1792855175663125' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855175663125' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='b85b46d6-9bd3-4689-a608-5ecd0b9f761c'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:19:35.663125Z' xmlns='urn:xmpp:delay'/><body>history-1792855175662-6vi1g</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='177107cc-0597-4317-8029-1a34998dd8ea'><archived by='blue-hq@conference.localhost' id='1792855175700535' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855175700535' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='177107cc-0597-4317-8029-1a34998dd8ea'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:19:35.700535Z' xmlns='urn:xmpp:delay'/><body>live-1792855175699-9815x</body></message>
-
-<!-- in -->
-<message xmlns='jabber:client' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost' type='groupchat'><occupant-id id='g20AAAAgtTgs6HcAsy9N9pahAYJY0wBCsoNKNpOpp6D+AKlB0Qs=' xmlns='urn:xmpp:occupant-id:0'/><subject/></message>
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' id='b555c7bc-9ead-43a6-85f4-a76c71837121'><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item jid='blue-co@localhost/tab1-1792855627034-so88f' role='participant' affiliation='member'/><status code='110'/></x></presence>
 
 <!-- out -->
 <a xmlns="urn:xmpp:sm:3" h="2"/>
 
 <!-- in -->
-<r xmlns='urn:xmpp:sm:3'/>
-
-<!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="17"/>
+<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='dbca89ee-d1ff-4d4c-a827-534987dd54fd'><archived by='blue-hq@conference.localhost' id='1792855534960824' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855534960824' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='dbca89ee-d1ff-4d4c-a827-534987dd54fd'/><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:25:34.960824Z' xmlns='urn:xmpp:delay'/><body>history-1792855534960-gea8s</body></message>
 
 <!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' id='7438fdf0-10ba-4425-a3ca-a2c5479d4663'><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item role='participant' affiliation='member'/></x></presence>
+<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='de43f1f1-3840-4bba-a801-abacf1403788'><archived by='blue-hq@conference.localhost' id='1792855534996217' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855534996217' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='de43f1f1-3840-4bba-a801-abacf1403788'/><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><delay from='blue-hq@conference.localhost' stamp='2026-10-24T15:25:34.996217Z' xmlns='urn:xmpp:delay'/><body>live-1792855534995-1blb5</body></message>
 
 <!-- in -->
-<r xmlns='urn:xmpp:sm:3'/>
-
-<!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="18"/>
-
-<!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='50f3a590-942b-4cb7-b1b4-5e29e9cc8cc4'><archived by='blue-hq@conference.localhost' id='1792855178183469' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855178183469' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='50f3a590-942b-4cb7-b1b4-5e29e9cc8cc4'/><occupant-id id='g20AAAAgx2PEqt8BOY7Uz27DCMzIT5U7cJNYR3SgVzCK/XXHGdA=' xmlns='urn:xmpp:occupant-id:0'/><body>from-umpire-1792855178182-ypy4w</body></message>
+<message xmlns='jabber:client' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost' type='groupchat'><occupant-id id='g20AAAAg+zzRauo8jtgxnSVv6BKXe4xtWkC5kT7oCLwhGAshd74=' xmlns='urn:xmpp:occupant-id:0'/><subject/></message>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
 
 <!-- out -->
-<message xmlns="jabber:client" id="1300d878-68b8-4a3c-a735-a7135b4c8a69" to="blue-hq@conference.localhost" type="groupchat"><origin-id xmlns="urn:xmpp:sid:0" id="1300d878-68b8-4a3c-a735-a7135b4c8a69"/><body>from-s1-1792855178191-fn4fh</body></message>
+<a xmlns="urn:xmpp:sm:3" h="7"/>
+
+<!-- in -->
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' id='872a4f18-cee5-420f-821e-76de66b2888e'><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item role='participant' affiliation='member'/></x></presence>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3'/>
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="8"/>
+
+<!-- in -->
+<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/umpire-1' type='groupchat' id='ffdf31e2-0fcf-4df2-a135-9fd2f2f90c89'><archived by='blue-hq@conference.localhost' id='1792855629237007' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855629237007' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='ffdf31e2-0fcf-4df2-a135-9fd2f2f90c89'/><occupant-id id='g20AAAAgLjZWtqzP0pKdBPPIj9NYVJmMRQWLg8QNv6e4Ny6FYmc=' xmlns='urn:xmpp:occupant-id:0'/><body>from-umpire-1792855629235-8vfw7</body></message>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3'/>
+
+<!-- out -->
+<message xmlns="jabber:client" id="a0b9b572-bf78-4f9a-8415-96501fb959f9" to="blue-hq@conference.localhost" type="groupchat"><origin-id xmlns="urn:xmpp:sid:0" id="a0b9b572-bf78-4f9a-8415-96501fb959f9"/><body>from-s1-1792855629241-eaqwg</body></message>
 
 <!-- out -->
 <r xmlns="urn:xmpp:sm:3"/>
 
 <!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="19"/>
+<a xmlns="urn:xmpp:sm:3" h="9"/>
 
 <!-- in -->
 <a h='2' xmlns='urn:xmpp:sm:3'/>
 
 <!-- in -->
-<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='1300d878-68b8-4a3c-a735-a7135b4c8a69'><archived by='blue-hq@conference.localhost' id='1792855178192551' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855178192551' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='1300d878-68b8-4a3c-a735-a7135b4c8a69'/><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><body>from-s1-1792855178191-fn4fh</body></message>
+<message xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' type='groupchat' id='a0b9b572-bf78-4f9a-8415-96501fb959f9'><archived by='blue-hq@conference.localhost' id='1792855629241608' xmlns='urn:xmpp:mam:tmp'/><stanza-id by='blue-hq@conference.localhost' id='1792855629241608' xmlns='urn:xmpp:sid:0'/><origin-id xmlns='urn:xmpp:sid:0' id='a0b9b572-bf78-4f9a-8415-96501fb959f9'/><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><body>from-s1-1792855629241-eaqwg</body></message>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
 
 <!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="20"/>
+<a xmlns="urn:xmpp:sm:3" h="10"/>
 
 <!-- out -->
-<presence xmlns="jabber:client" id="480f61b5-4d03-4ec8-9d8c-002898ca6665" to="blue-hq@conference.localhost/blue-co" type="unavailable"/>
+<presence xmlns="jabber:client" id="767a4c34-cdf5-4c8c-9d31-8e3c1764d9df" to="blue-hq@conference.localhost/blue-co" type="unavailable"/>
 
 <!-- out -->
 <r xmlns="urn:xmpp:sm:3"/>
@@ -170,19 +140,19 @@
 <a h='3' xmlns='urn:xmpp:sm:3'/>
 
 <!-- in -->
-<presence xmlns='jabber:client' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost' type='unavailable' id='5142879397865329765'/>
+<presence xmlns='jabber:client' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost' type='unavailable' id='16876027784049359438'/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3'/>
+
+<!-- in -->
+<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855627034-so88f' from='blue-hq@conference.localhost/blue-co' type='unavailable' id='767a4c34-cdf5-4c8c-9d31-8e3c1764d9df'><occupant-id id='g20AAAAghhiBXn4+MWYfuYFCVbIpGP+votMdPYJAR6qJuo3Okmc=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item jid='blue-co@localhost/tab1-1792855627034-so88f' role='none' affiliation='member'/><status code='110'/></x></presence>
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="11"/>
 
 <!-- in -->
 <r xmlns='urn:xmpp:sm:3'/>
 
 <!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="21"/>
-
-<!-- in -->
-<presence xmlns='jabber:client' xml:lang='en' to='blue-co@localhost/tab1-1792855176000-18two' from='blue-hq@conference.localhost/blue-co' type='unavailable' id='480f61b5-4d03-4ec8-9d8c-002898ca6665'><occupant-id id='g20AAAAgy/zrWcqU6wyHoVQDpybrpcACU0jsrESt6RQgjNNnzgM=' xmlns='urn:xmpp:occupant-id:0'/><x xmlns='http://jabber.org/protocol/muc#user'><item jid='blue-co@localhost/tab1-1792855176000-18two' role='none' affiliation='member'/><status code='110'/></x></presence>
-
-<!-- in -->
-<r xmlns='urn:xmpp:sm:3'/>
-
-<!-- out -->
-<a xmlns="urn:xmpp:sm:3" h="22"/>
+<a xmlns="urn:xmpp:sm:3" h="12"/>
