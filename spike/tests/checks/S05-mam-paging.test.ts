@@ -83,6 +83,14 @@ describe('S5 MAM paging', () => {
   }, 300_000);
 
   it('records how join history relates to MAM (stanza-id, delay, stable ids)', async () => {
+    // Join history may be in-memory only (ejabberd loses it on restart), so post fresh messages first.
+    const poster = await connect('blue-co', { resource: uniq('s5post') });
+    await joinRoom(poster, room(), uniq('poster'));
+    for (let i = 0; i < 5; i++) {
+      const body = uniq('s5-fresh');
+      poster.sendMessage({ to: room(), type: 'groupchat', body });
+      await waitFor(poster, 'message', (m) => m.body === body);
+    }
     let lines: string[] = [];
     const c = await connect('blue-co', { resource: uniq('s5join'), onCreate: (x) => (lines = captureStanzas(x).lines) });
     const history: Array<{ body?: string; stanzaIds?: unknown; delay?: unknown }> = [];

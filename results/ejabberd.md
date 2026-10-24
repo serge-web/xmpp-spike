@@ -40,6 +40,20 @@ For the mock:
 - **An affiliation change clears the stored role.** none→member gives `participant` again. Re-setting the same affiliation (member→member) keeps `visitor`. Any admin UI that re-applies affiliations must re-revoke voice.
 REST / secret needed: no.
 
+**S1b side-channel probes (de-risking, `S01b-read-only-bypass.test.ts`).** Each probe runs as `blue-obs` with `blue-co` watching.
+| Channel | Stock room options | With the hardened profile |
+|---|---|---|
+| groupchat without joining (member, non-occupant) | blocked: `<not-acceptable/>` "Only occupants are allowed to send messages to the conference" | same |
+| MUC/Sub subscribe, then groupchat | subscribe `<not-allowed/>` (`allow_subscription: false`); post `not-acceptable` | same |
+| subject change, XEP-0308 correction | `<forbidden/>` (visitor) | same |
+| `type=normal` to the room JID | silently dropped | same |
+| voice request (muc#request form) | `<forbidden/>` "Voice requests are disabled in this conference" | same |
+| admin re-saves room config | observer stays `visitor` | same |
+| **private message to an occupant** | **delivered** | blocked: `<forbidden/>` "You are not allowed to send private messages" (`allow_private_messages_from_visitors: nobody`) |
+| **presence status text** | **broadcast to the room** | not delivered (`allow_visitor_status: false`) |
+| **nickname change** | **visible to the room** | `<not-allowed/>` "Visitors are not allowed to change their nicknames in this room" (`allow_visitor_nickchange: false`) |
+The three options are now set in `provision/ejabberd.ts`, and the mock must reproduce those errors.
+
 ### S2 PubSub confidentiality and write control (R3, R10)
 Result: PASS
 Mechanism / config: `pubsub#access_model=whitelist`, with readers as `member` and publishers as `publisher` affiliations, and the admin as owner. `pubsub#publish_model=publishers`. `game-setup` and `assets:theme` are `open`.
@@ -96,6 +110,7 @@ For the mock:
 - **`<delay from>` differs**: join history uses the room JID (`s5-mam@conference.localhost`), while MAM forwarded items use the service JID (`conference.localhost`). Timestamps are identical.
 - Join history (`maxstanzas=5`) gives the same 5 latest messages as a MAM `before=''` page of 5, so a client should de-duplicate by stanza-id.
 - Page order: each page is oldest-first; RSM `<first>` is the cursor for the next `before`.
+- **Join history is in memory only: after a server restart a joining occupant gets no history, while MAM still has everything** (checked: 0 join-history messages, MAM count 26). Clients must load room history from MAM, not rely on join history.
 - **Surprise: the stock Mnesia backend is unusable at this scale.** Seeding ran at about 5 msg/s and a MAM count query (`max=0`) timed out after 15 s at ~9.5k messages. ejabberd logs a warning that Mnesia isn't recommended for MAM. Switching to SQLite is configuration only, with no extra service.
 REST / secret needed: no.
 
@@ -178,6 +193,7 @@ Evidence: `S12-live-changes.test.ts`, `S12-move-force.xml`, `S12-deleted-user.xm
 - **Resources:** ~180 MB RAM idle under test; CPU stayed low with SQLite.
 
 ## Risks and surprises
+0. **Join history isn't persisted** across restarts (S5); use MAM for history.
 1. **S1 relies on persisted voice revocation**, an ejabberd behaviour that isn't in XEP-0045. It needs the observer to be online once during provisioning (done with the admin-set password), and it is **silently cleared by any affiliation change** (e.g. none→member). Admin tooling must re-apply it. A server upgrade could change it, so keep S1 in CI.
 2. **S10 node-name enumeration**: accepted by human decision. Admin page warning required (see S10).
 3. **PubSub revocation needs subscription removal as well as the affiliation change.** If admin tooling forgets this, a player moved off a force keeps receiving that force's objectives.

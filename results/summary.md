@@ -79,6 +79,8 @@ Roles and affiliations:
 MAM and history:
 - MAM ids equal `stanza-id` (numeric µs strings). Pages are oldest-first, cursor is RSM `first`, `complete='true'` on the last page.
 - Join history `<delay from=room>`; MAM `<delay from=service>`.
+- **Join history is empty after a server restart**; MAM is the only reliable history source.
+- Observer side channels are refused: PM gets `<forbidden/>` "You are not allowed to send private messages"; nick change gets `<not-allowed/>`; status text is dropped. Posting without joining gets `<not-acceptable/>`.
 
 PubSub events:
 - Notifications are `headline` messages from the PubSub service, carry the payload, and go to the publisher too if subscribed. Publishes arrive in order.

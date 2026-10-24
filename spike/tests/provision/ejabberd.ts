@@ -8,6 +8,11 @@ export default makeAdapter({
     'muc#roomconfig_publicroom': false,
     'muc#roomconfig_whois': 'moderators',
     allow_voice_requests: false,
+    // S1b: close the observer's side channels (all on by default): PMs to occupants,
+    // presence status text, and nickname changes are otherwise visible to the room.
+    allow_private_messages_from_visitors: 'nobody',
+    allow_visitor_status: false,
+    allow_visitor_nickchange: false,
     mam: true,
   },
   observerAffiliation: 'member',
