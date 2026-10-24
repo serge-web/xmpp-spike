@@ -1,7 +1,7 @@
 import { makeAdapter } from './game.js';
 
 // OpenFire 5.1.2 room configuration. Field names are OpenFire's own (see results/openfire.md):
-// it has no per-room MAM toggle; the Monitoring plugin archives every room that logs conversations.
+// it has no per-room MAM toggle; the Monitoring plugin archives rooms that log conversations.
 export default makeAdapter({
   roomConfig: {
     'muc#roomconfig_persistentroom': true,
@@ -17,13 +17,16 @@ export default makeAdapter({
     // Core room log; the Monitoring plugin serves MUC MAM from it.
     'muc#roomconfig_enablelogging': true,
   },
+  // S1: no OpenFire mechanism passes; members-only + member gives voice (see results/openfire.md).
   observerAffiliation: 'member',
   outcastNonMembers: false,
+  // OpenFire computes the role from the affiliation on every join; a voice revocation is not kept.
   revokeObserverVoice: false,
   // OpenFire 5.1.2 never echoes the leaver's own unavailable presence (XEP-0045 7.14).
   mucLeaveSelfPresence: false,
-  // add-user on an existing account: <command status="completed"><note type="error">User already exists.</note>
-  // OpenFire whitelist = any non-outcast affiliate; 'member' is silently stored as 'outcast'.
+  // OpenFire whitelist = any non-outcast affiliate; 'member' is silently stored as 'outcast',
+  // explicit 'none' affiliates are whitelisted but omitted from the owner's affiliation list.
   nodeReaderAffiliation: 'none',
-  isUserExists: (e) => /already exists/i.test((e as { error?: { text?: string } }).error?.text ?? ''),
+  nodeRevokeAffiliation: 'outcast',
+  outcastNonReaders: true,
 });

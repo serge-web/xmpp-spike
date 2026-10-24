@@ -8,6 +8,8 @@ export interface ServerConfig {
   mucDomain: string;
   pubsubDomain: string;
   websocketUrl: string;
+  /** Host for SASL ANONYMOUS logins (S10), if not `domain`. Prosody does anonymous auth per VirtualHost. */
+  anonymousDomain?: string;
 }
 
 const configs: Record<ServerName, ServerConfig> = {
@@ -32,6 +34,7 @@ const configs: Record<ServerName, ServerConfig> = {
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
     websocketUrl: 'ws://localhost:5380/xmpp-websocket', // 5380 avoids ejabberd's 5280 so stacks can run side by side
+    anonymousDomain: 'anon.localhost', // separate VirtualHost with authentication = "anonymous"
   },
 };
 

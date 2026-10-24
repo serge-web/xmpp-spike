@@ -4,7 +4,7 @@ import type { Stanzas } from 'stanza';
 import { serverConfig } from '../config.js';
 import { connect, disconnectAll, type Client } from '../harness.js';
 import { ADMIN, PASSWORD, forces, nodes, objectivePublishers, objectiveReaders, roles, rooms } from '../fixtures/game.js';
-import { admin, ensureNode, ensureRoom, errorCondition, leaveRoom } from './xmpp-admin.js';
+import { AdhocNoteError, admin, ensureNode, ensureRoom, errorCondition, leaveRoom } from './xmpp-admin.js';
 import type { ProvisioningAdapter } from './adapter.js';
 
 type Aff = NonNullable<Stanzas.PubsubAffiliation['affiliation']>;
@@ -29,17 +29,20 @@ export interface ServerProfile {
    */
   mucLeaveSelfPresence?: boolean;
   /**
-   * Recognise "account already exists" from add-user, so provisioning converges by resetting the password.
-   * Default: IQ error <conflict/> (ejabberd). OpenFire answers status="completed" with an error note.
-   */
-  isUserExists?: (e: unknown) => boolean;
-  /**
    * PubSub affiliation that puts a reader on a whitelist node's whitelist. Default 'member' (XEP-0060).
    * OpenFire 5.1.2 has no 'member' affiliation: it silently stores any unknown value, including
    * 'member', as 'outcast', and treats every non-outcast affiliate (including explicit 'none') as
    * whitelisted.
    */
   nodeReaderAffiliation?: 'member' | 'none';
+  /** PubSub affiliation that takes a stale affiliate off the whitelist. Default 'none'; OpenFire: 'outcast'. */
+  nodeRevokeAffiliation?: 'none' | 'outcast';
+  /**
+   * Explicitly outcast every fixture role that is neither reader nor publisher of a whitelist node.
+   * Needed where stale 'none' affiliates both grant access and are hidden from the owner's
+   * affiliation list (OpenFire), so convergence cannot find them. Default false.
+   */
+  outcastNonReaders?: boolean;
 }
 
 const allRoleIds = roles.map((r) => r.id);
@@ -77,7 +80,6 @@ async function revokeVoice(adminClient: Client, roomJid: string, observer: strin
 
 export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
   const awaitLeave = profile.mucLeaveSelfPresence ?? true;
-  const userExists = profile.isUserExists ?? ((e: unknown) => errorCondition(e) === 'conflict');
   const bare = (u: string) => `${u}@${serverConfig().domain}`;
 
   async function withAdmin<T>(fn: (c: Client) => Promise<T>): Promise<T> {
@@ -95,11 +97,12 @@ export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
       withAdmin(async (c) => {
         const cfg = serverConfig();
         for (const r of roles) {
-          // add-user on an existing account fails (ejabberd: IQ error <conflict/>); reset the password to converge.
+          // add-user on an existing account fails (ejabberd: IQ error <conflict/>; Prosody: completed
+          // command with <note type="error">Account already exists</note>); reset the password to converge.
           try {
             await admin.addUser(c, cfg.domain, bare(r.id), PASSWORD);
           } catch (e) {
-            if (!userExists(e)) throw e;
+            if (errorCondition(e) !== 'conflict' && !(e instanceof AdhocNoteError)) throw e;
             await admin.changePassword(c, cfg.domain, bare(r.id), PASSWORD);
           }
         }
@@ -122,6 +125,11 @@ export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
           const affs: Array<{ jid: string; affiliation: Aff; node: string }> = [
             ...n.readers.map((u) => ({ jid: bare(u), affiliation: (profile.nodeReaderAffiliation ?? 'member') as Aff, node: n.node })),
             ...n.publishers.map((u) => ({ jid: bare(u), affiliation: 'publisher' as Aff, node: n.node })),
+            ...(profile.outcastNonReaders && n.access === 'whitelist'
+              ? allRoleIds
+                  .filter((u) => !n.readers.includes(u) && !n.publishers.includes(u))
+                  .map((u) => ({ jid: bare(u), affiliation: 'outcast' as Aff, node: n.node }))
+              : []),
           ];
           await ensureNode(
             c,
@@ -129,6 +137,7 @@ export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
             n.node,
             { 'pubsub#access_model': n.access, 'pubsub#publish_model': 'publishers', 'pubsub#persist_items': true },
             affs,
+            profile.nodeRevokeAffiliation ?? 'none',
           );
         }
       }),

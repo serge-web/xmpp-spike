@@ -1,0 +1,8 @@
+# S8 offline-start proof: no network at all (loopback only), never pull.
+#   docker load -i image/prosody-13.0.7.tar     # archive made with ops/save-image.sh
+#   docker compose -f compose.yaml -f compose.offline.yaml up -d --wait
+services:
+  prosody:
+    pull_policy: never
+    network_mode: none
+    ports: !reset []

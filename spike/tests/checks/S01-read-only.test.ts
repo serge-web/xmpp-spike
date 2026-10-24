@@ -3,7 +3,7 @@
 
 import { afterAll, describe, expect, it } from 'vitest';
 import { serverConfig } from '../config.js';
-import { captureStanzas, collect, connect, disconnectAll, joinRoom, saveStanzas, sendRaw, uniq, waitFor } from '../harness.js';
+import { captureStanzas, collect, connect, disconnectAll, joinRoom, observe, saveStanzas, sendRaw, uniq, waitFor } from '../harness.js';
 
 const room = () => `blue-hq@${serverConfig().mucDomain}`;
 const isBody = (body: string) => (s: { body?: string }) => s.body === body;
@@ -37,7 +37,7 @@ async function attemptPost(raw: boolean, tag: string) {
 describe('S1 read-only members', () => {
   it('blue-obs post (client API) is rejected by the server and not delivered', async () => {
     const r = await attemptPost(false, 'client-post');
-    console.info(`[S1] blue-obs joined as role=${r.role} affiliation=${r.affiliation}; error=${r.err?.error?.condition} (${r.err?.error?.type})`);
+    await observe('S1', 'blue-obs join + post', { role: r.role, affiliation: r.affiliation, error: r.err?.error });
     expect(r.delivered).toHaveLength(0);
     expect(r.err?.error?.condition).toBeTruthy();
     await disconnectAll();

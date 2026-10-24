@@ -1,6 +1,6 @@
 // Connection and multi-client helpers shared by every check.
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as XMPP from 'stanza';
 import { serverConfig } from './config.js';
@@ -14,6 +14,8 @@ export interface ConnectOptions {
   /** Use SASL ANONYMOUS instead of a named account (S10). */
   anonymous?: boolean;
   timeoutMs?: number;
+  /** Send initial presence after session start, as the browser client will (default true). */
+  presence?: boolean;
   /** Called before connecting, e.g. to attach captureStanzas so the login is recorded. */
   onCreate?: (client: Client) => void;
 }
@@ -24,7 +26,7 @@ const live = new Set<Client>();
 export async function connect(user: string, opts: ConnectOptions = {}): Promise<Client> {
   const cfg = serverConfig();
   const client = XMPP.createClient({
-    jid: opts.anonymous ? cfg.domain : `${user}@${cfg.domain}`,
+    jid: opts.anonymous ? (cfg.anonymousDomain ?? cfg.domain) : `${user}@${cfg.domain}`,
     password: opts.anonymous ? undefined : (opts.password ?? PASSWORD),
     ...(opts.resource ? { resource: opts.resource } : {}),
     transports: { websocket: cfg.websocketUrl, bosh: false },
@@ -56,6 +58,8 @@ export async function connect(user: string, opts: ConnectOptions = {}): Promise<
     });
     client.connect();
   });
+  // Without initial presence, servers don't deliver bare-JID messages (e.g. PubSub events).
+  if (opts.presence !== false) client.sendPresence();
   return client;
 }
 
@@ -184,4 +188,16 @@ export async function outcome(p: Promise<unknown>): Promise<Outcome> {
       ...(err.text ? { text: err.text } : {}),
     };
   }
+}
+
+/**
+ * Record a behaviour observation for the decision record and the mock team:
+ * appends {check, key, value} to results/<server>/observations.jsonl and echoes it.
+ */
+export async function observe(check: string, key: string, value: unknown): Promise<void> {
+  const dir = join('results', serverConfig().name);
+  await mkdir(dir, { recursive: true });
+  const line = JSON.stringify({ check, key, value, at: new Date().toISOString() });
+  await appendFile(join(dir, 'observations.jsonl'), line + '\n');
+  console.info(`[${check}] ${key}: ${JSON.stringify(value)}`);
 }

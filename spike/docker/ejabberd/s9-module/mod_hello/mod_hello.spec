@@ -1,0 +1,5 @@
+author: "WRX1 spike"
+category: "admin"
+summary: "Hello world probe for SPIKE-BRIEF S9"
+home: "https://example.invalid"
+url: "https://example.invalid"

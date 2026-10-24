@@ -1,0 +1,161 @@
+{"check":"S1","key":"blue-obs join + post","value":{"role":"visitor","affiliation":"member","error":{"alternateLanguageText":[{"lang":"en","value":"Visitors are not allowed to send messages to all occupants"}],"condition":"forbidden","text":"Visitors are not allowed to send messages to all occupants","type":"auth"}},"at":"2026-10-24T14:10:24.561Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:10:35.437Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:10:35.504Z"}
+{"check":"S3","key":"raised node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:10:36.520Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:10:37.225Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:10:37.230Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"items":0},"at":"2026-10-24T14:10:37.233Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:10:37.238Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:13:13.165Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:13:13.215Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.089Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.136Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851240972-hx1m4@localhost"]},"at":"2026-10-24T14:14:01.212Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851240972-hx1m4@localhost"],"at":"2026-10-24T14:14:01.282Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.334Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:01.436Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.318Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.394Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851271230-gzjyd@localhost"]},"at":"2026-10-24T14:14:31.477Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:14:31.617Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851271230-gzjyd@localhost"],"at":"2026-10-24T14:14:31.634Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.686Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:31.786Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.168Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.213Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851294052-itcl8@localhost"]},"at":"2026-10-24T14:14:54.293Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:14:54.427Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851294052-itcl8@localhost"],"at":"2026-10-24T14:14:54.445Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.487Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:54.590Z"}
+{"check":"S10","key":"anonymous JID","value":"118191183316314499195154@localhost/57426651187389896905186","at":"2026-10-24T14:18:17.132Z"}
+{"check":"S10","key":"getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:18:17.242Z"}
+{"check":"S10","key":"getItems objectives:red","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:18:17.246Z"}
+{"check":"S10","key":"join blue-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:17.259Z"}
+{"check":"S10","key":"join red-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:17.262Z"}
+{"check":"S10","key":"join negotiation","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:17.265Z"}
+{"check":"S10","key":"MAM blue-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:17.272Z"}
+{"check":"S10","key":"MAM red-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:17.274Z"}
+{"check":"S10","key":"MAM negotiation","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:17.280Z"}
+{"check":"S10","key":"create room","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Room creation is denied by service policy"},"at":"2026-10-24T14:18:17.282Z"}
+{"check":"S10","key":"disco#items pubsub service","value":["game-state","game-setup","assets:theme","rooms:blue-hq","roles:blue-co","forces:umpire","announcements","forces:blue","rooms:negotiation","objectives:blue","objectives:red","roles:umpire-1","roles:red-co","rooms:red-hq","roles:blue-obs","forces:red"],"at":"2026-10-24T14:18:17.295Z"}
+{"check":"S10","key":"disco#items muc service","value":[],"at":"2026-10-24T14:18:17.412Z"}
+{"check":"S10","key":"disco#items server","value":["conference.localhost ","pubsub.localhost ","localhost API Commands"],"at":"2026-10-24T14:18:17.423Z"}
+{"check":"S10","key":"anonymous JID","value":"4624599617528829470420@localhost/13002505983367024210452","at":"2026-10-24T14:18:39.778Z"}
+{"check":"S10","key":"getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:18:39.904Z"}
+{"check":"S10","key":"getItems objectives:red","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:18:39.909Z"}
+{"check":"S10","key":"join blue-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:39.921Z"}
+{"check":"S10","key":"join red-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:39.925Z"}
+{"check":"S10","key":"join negotiation","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:18:39.928Z"}
+{"check":"S10","key":"MAM blue-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:39.932Z"}
+{"check":"S10","key":"MAM red-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:39.940Z"}
+{"check":"S10","key":"MAM negotiation","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:18:39.950Z"}
+{"check":"S10","key":"create room","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Room creation is denied by service policy"},"at":"2026-10-24T14:18:39.960Z"}
+{"check":"S10","key":"disco#items pubsub service","value":{"ok":false,"condition":"internal-server-error","errorType":"wait","text":"Module failed to handle the query"},"at":"2026-10-24T14:18:39.974Z"}
+{"check":"S10","key":"disco#items muc service","value":[],"at":"2026-10-24T14:18:40.079Z"}
+{"check":"S10","key":"disco#items server","value":["conference.localhost ","pubsub.localhost ","localhost API Commands"],"at":"2026-10-24T14:18:40.087Z"}
+{"check":"S10","key":"anonymous JID","value":"3167140151903451703612@localhost/600061343645827404644","at":"2026-10-24T14:19:10.877Z"}
+{"check":"S10","key":"disco#items pubsub service","value":{"ok":false,"condition":"internal-server-error","errorType":"wait","text":"Module failed to handle the query"},"at":"2026-10-24T14:19:10.883Z"}
+{"check":"S5","key":"seed time (ms)","value":{"seeded":10000,"ms":86246},"at":"2026-10-24T14:27:40.956Z"}
+{"check":"S5","key":"paging max=50","value":{"max":50,"pages":200,"totalMs":2338,"avgPageMs":12,"maxPageMs":46,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:27:43.454Z"}
+{"check":"S5","key":"paging max=200","value":{"max":200,"pages":50,"totalMs":1945,"avgPageMs":39,"maxPageMs":77,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:27:45.467Z"}
+{"check":"S5","key":"join history (maxstanzas=5)","value":[{"body":"s5-09995","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000940995"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"body":"s5-09996","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000942910"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"body":"s5-09997","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000944439"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"body":"s5-09998","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000945938"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"body":"s5-09999","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000947969"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:27:46.508Z"}
+{"check":"S5","key":"MAM latest 5","value":[{"id":"1792852000940995","body":"s5-09995","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"id":"1792852000942910","body":"s5-09996","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"id":"1792852000944439","body":"s5-09997","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"id":"1792852000945938","body":"s5-09998","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"id":"1792852000947969","body":"s5-09999","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:27:46.509Z"}
+{"check":"S5","key":"join history carries stanza-id","value":true,"at":"2026-10-24T14:27:46.509Z"}
+{"check":"S5","key":"paging max=50","value":{"max":50,"pages":200,"totalMs":2260,"avgPageMs":11,"maxPageMs":30,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:28:00.988Z"}
+{"check":"S5","key":"paging max=200","value":{"max":200,"pages":50,"totalMs":1730,"avgPageMs":34,"maxPageMs":57,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:28:02.759Z"}
+{"check":"S5","key":"join history (maxstanzas=5)","value":[{"body":"s5-09995","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000940995"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"body":"s5-09996","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000942910"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"body":"s5-09997","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000944439"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"body":"s5-09998","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000945938"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"body":"s5-09999","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000947969"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:28:03.808Z"}
+{"check":"S5","key":"MAM latest 5","value":[{"id":"1792852000940995","body":"s5-09995","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"id":"1792852000942910","body":"s5-09996","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"id":"1792852000944439","body":"s5-09997","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"id":"1792852000945938","body":"s5-09998","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"id":"1792852000947969","body":"s5-09999","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:28:03.808Z"}
+{"check":"S5","key":"join history carries stanza-id","value":true,"at":"2026-10-24T14:28:03.809Z"}
+{"check":"S12","key":"after grant, before revoke: red objectives / blue objectives / join red-hq","value":{"red":true,"blue":true,"joinRed":true},"at":"2026-10-24T14:28:04.256Z"}
+{"check":"S12","key":"after revoke: blue objectives readable","value":false,"at":"2026-10-24T14:28:05.271Z"}
+{"check":"S12","key":"stanzas the online session received during the move (in order)","value":["blue-hq@conference.localhost type=groupchat","pubsub.localhost type=result pubsub-event","pubsub.localhost type=result pubsub-event","red-hq@conference.localhost type=","red-hq@conference.localhost/blue-co type= muc=member/participant codes=110","red-hq@conference.localhost type=groupchat","blue-hq@conference.localhost type=unavailable","blue-hq@conference.localhost/blue-co type=unavailable muc=none/none codes=110,321","pubsub.localhost type=error pubsub-event"],"at":"2026-10-24T14:28:05.272Z"}
+{"check":"S12","key":"deleted online user: session outcome","value":"disconnected","at":"2026-10-24T14:28:06.014Z"}
+{"check":"S12","key":"deleted online user: room presence seen by others","value":["available","unavailable"],"at":"2026-10-24T14:28:06.015Z"}
+{"check":"S12","key":"deleted user still listed as room member","value":false,"at":"2026-10-24T14:28:06.017Z"}
+{"check":"S10","key":"anonymous JID","value":"183083385704163658233075@localhost/72089262411189201141922","at":"2026-10-24T14:28:06.871Z"}
+{"check":"S10","key":"getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:28:06.889Z"}
+{"check":"S10","key":"getItems objectives:red","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:28:06.893Z"}
+{"check":"S10","key":"join blue-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:28:06.907Z"}
+{"check":"S10","key":"join red-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:28:06.909Z"}
+{"check":"S10","key":"join negotiation","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:28:06.912Z"}
+{"check":"S10","key":"MAM blue-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:28:06.917Z"}
+{"check":"S10","key":"MAM red-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:28:06.919Z"}
+{"check":"S10","key":"MAM negotiation","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:28:06.929Z"}
+{"check":"S10","key":"create room","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Room creation is denied by service policy"},"at":"2026-10-24T14:28:06.936Z"}
+{"check":"S10","key":"disco#items pubsub service","value":["announcements"],"at":"2026-10-24T14:28:06.947Z"}
+{"check":"S10","key":"disco#items muc service","value":["s5-mam@conference.localhost"],"at":"2026-10-24T14:28:06.960Z"}
+{"check":"S10","key":"disco#items server","value":["conference.localhost ","pubsub.localhost ","localhost API Commands"],"at":"2026-10-24T14:28:06.965Z"}
+{"check":"S1","key":"blue-obs join + post","value":{"role":"visitor","affiliation":"member","error":{"alternateLanguageText":[{"lang":"en","value":"Visitors are not allowed to send messages to all occupants"}],"condition":"forbidden","text":"Visitors are not allowed to send messages to all occupants","type":"auth"}},"at":"2026-10-24T14:28:10.407Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:28:21.209Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:28:21.259Z"}
+{"check":"S11","key":"second session same nick join","value":"joined","at":"2026-10-24T14:28:21.759Z"}
+{"check":"S11","key":"presences umpire saw for blue-co joins","value":2,"at":"2026-10-24T14:28:23.754Z"}
+{"check":"S11","key":"post from session 1: copies seen by umpire / by session 2","value":{"umpire":1,"session2":1},"at":"2026-10-24T14:28:25.265Z"}
+{"check":"S11","key":"presences umpire saw when session 1 left","value":[],"at":"2026-10-24T14:28:26.768Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:28:28.167Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:28:28.219Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792852108068-upybu@localhost"]},"at":"2026-10-24T14:28:28.301Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:28:28.451Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792852108068-upybu@localhost"],"at":"2026-10-24T14:28:28.474Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:28:28.533Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:28:28.635Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:28:29.219Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:28:29.229Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"items":0},"at":"2026-10-24T14:28:29.232Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:28:29.238Z"}
+{"check":"S6","key":"subscriber event order for publish 1 then 2","value":[],"at":"2026-10-24T14:28:34.251Z"}
+{"check":"S7","key":"node access models","value":{"game-setup":"open","assets:theme":"open","forces:blue":"whitelist","forces:red":"whitelist","forces:umpire":"whitelist","roles:blue-co":"whitelist","roles:blue-obs":"whitelist","roles:red-co":"whitelist","roles:umpire-1":"whitelist","rooms:blue-hq":"whitelist","rooms:red-hq":"whitelist","rooms:negotiation":"whitelist","objectives:blue":"whitelist","objectives:red":"whitelist","announcements":"whitelist","game-state":"whitelist"},"at":"2026-10-24T14:28:34.748Z"}
+{"check":"S7","key":"room member affiliations","value":{"blue-hq":["blue-co@localhost","blue-obs@localhost","umpire-1@localhost"],"red-hq":["blue-co@localhost","red-co@localhost","umpire-1@localhost"],"negotiation":["blue-co@localhost","red-co@localhost","umpire-1@localhost"]},"at":"2026-10-24T14:28:34.794Z"}
+{"check":"S6","key":"publisher (subscribed) receives own event","value":true,"at":"2026-10-24T14:29:07.300Z"}
+{"check":"S6","key":"subscriber notification carries payload","value":true,"at":"2026-10-24T14:29:07.302Z"}
+{"check":"S6","key":"notification message type","value":"headline","at":"2026-10-24T14:29:07.303Z"}
+{"check":"S6","key":"subscriber event order for publish 1 then 2","value":["s6o-1792852147305-io7fg-1","s6o-1792852147305-io7fg-2"],"at":"2026-10-24T14:29:09.807Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:29:39.013Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:29:39.063Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792852178914-olpgr@localhost"]},"at":"2026-10-24T14:29:39.135Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:29:39.281Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792852178914-olpgr@localhost"],"at":"2026-10-24T14:29:39.308Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:29:39.367Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:29:39.471Z"}
+{"check":"S5","key":"paging max=50","value":{"max":50,"pages":200,"totalMs":2197,"avgPageMs":11,"maxPageMs":29,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:29:42.330Z"}
+{"check":"S5","key":"paging max=200","value":{"max":200,"pages":50,"totalMs":1638,"avgPageMs":33,"maxPageMs":47,"items":10000,"duplicateIds":0,"completeFlagSeen":true},"at":"2026-10-24T14:29:44.004Z"}
+{"check":"S5","key":"join history (maxstanzas=5)","value":[{"body":"s5-09995","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000940995"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"body":"s5-09996","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000942910"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"body":"s5-09997","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000944439"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"body":"s5-09998","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000945938"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"body":"s5-09999","stanzaIds":[{"by":"s5-mam@conference.localhost","id":"1792852000947969"}],"delay":{"from":"s5-mam@conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:29:45.049Z"}
+{"check":"S5","key":"MAM latest 5","value":[{"id":"1792852000940995","body":"s5-09995","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.940Z"}},{"id":"1792852000942910","body":"s5-09996","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.942Z"}},{"id":"1792852000944439","body":"s5-09997","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.944Z"}},{"id":"1792852000945938","body":"s5-09998","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.945Z"}},{"id":"1792852000947969","body":"s5-09999","delay":{"from":"conference.localhost","timestamp":"2026-10-24T14:26:40.947Z"}}],"at":"2026-10-24T14:29:45.050Z"}
+{"check":"S5","key":"join history carries stanza-id","value":true,"at":"2026-10-24T14:29:45.051Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:29:45.653Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:29:45.660Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"items":0},"at":"2026-10-24T14:29:45.663Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:29:45.669Z"}
+{"check":"S10","key":"anonymous JID","value":"178257534759598412114578@localhost/95756043653830942924610","at":"2026-10-24T14:29:46.201Z"}
+{"check":"S10","key":"getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:29:46.237Z"}
+{"check":"S10","key":"getItems objectives:red","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:29:46.240Z"}
+{"check":"S10","key":"join blue-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:29:46.251Z"}
+{"check":"S10","key":"join red-hq","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:29:46.254Z"}
+{"check":"S10","key":"join negotiation","value":{"ok":false,"condition":"registration-required","errorType":"auth","text":"Membership is required to enter this room"},"at":"2026-10-24T14:29:46.257Z"}
+{"check":"S10","key":"MAM blue-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:29:46.260Z"}
+{"check":"S10","key":"MAM red-hq","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:29:46.263Z"}
+{"check":"S10","key":"MAM negotiation","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Only members may query archives of this room"},"at":"2026-10-24T14:29:46.267Z"}
+{"check":"S10","key":"create room","value":{"ok":false,"condition":"forbidden","errorType":"auth","text":"Room creation is denied by service policy"},"at":"2026-10-24T14:29:46.271Z"}
+{"check":"S10","key":"disco#items pubsub service","value":["announcements"],"at":"2026-10-24T14:29:46.279Z"}
+{"check":"S10","key":"disco#items muc service","value":[],"at":"2026-10-24T14:29:46.288Z"}
+{"check":"S10","key":"disco#items server","value":["conference.localhost ","pubsub.localhost ","localhost API Commands"],"at":"2026-10-24T14:29:46.290Z"}
+{"check":"S12","key":"after grant, before revoke: red objectives / blue objectives / join red-hq","value":{"red":true,"blue":true,"joinRed":true},"at":"2026-10-24T14:29:46.738Z"}
+{"check":"S12","key":"after revoke: blue objectives readable","value":true,"at":"2026-10-24T14:29:47.754Z"}
+{"check":"S12","key":"stanzas the online session received during the move (in order)","value":["blue-hq@conference.localhost/blue-co type=groupchat","blue-hq@conference.localhost/blue-co type=groupchat","blue-hq@conference.localhost/umpire-1 type=groupchat","blue-hq@conference.localhost/blue-co type=groupchat","blue-hq@conference.localhost/umpire-1 type=groupchat","blue-hq@conference.localhost type=groupchat","pubsub.localhost type=result pubsub-event","pubsub.localhost type=result pubsub-event","red-hq@conference.localhost type=","red-hq@conference.localhost/blue-co type= muc=member/participant codes=110","red-hq@conference.localhost type=groupchat","blue-hq@conference.localhost type=unavailable","blue-hq@conference.localhost/blue-co type=unavailable muc=none/none codes=110,321","pubsub.localhost type=result pubsub-event"],"at":"2026-10-24T14:29:47.755Z"}
+{"check":"S12","key":"deleted online user: session outcome","value":"disconnected","at":"2026-10-24T14:29:48.512Z"}
+{"check":"S12","key":"deleted online user: room presence seen by others","value":["available","unavailable"],"at":"2026-10-24T14:29:48.513Z"}
+{"check":"S12","key":"deleted user still listed as room member","value":false,"at":"2026-10-24T14:29:48.516Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:29:50.025Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:29:50.086Z"}
+{"check":"S1","key":"blue-obs join + post","value":{"role":"visitor","affiliation":"member","error":{"alternateLanguageText":[{"lang":"en","value":"Visitors are not allowed to send messages to all occupants"}],"condition":"forbidden","text":"Visitors are not allowed to send messages to all occupants","type":"auth"}},"at":"2026-10-24T14:29:53.519Z"}
+{"check":"S6","key":"publisher (subscribed) receives own event","value":true,"at":"2026-10-24T14:30:05.776Z"}
+{"check":"S6","key":"subscriber notification carries payload","value":true,"at":"2026-10-24T14:30:05.777Z"}
+{"check":"S6","key":"notification message type","value":"headline","at":"2026-10-24T14:30:05.778Z"}
+{"check":"S6","key":"subscriber event order for publish 1 then 2","value":["s6o-1792852205779-6fzvp-1","s6o-1792852205779-6fzvp-2"],"at":"2026-10-24T14:30:08.283Z"}
+{"check":"S11","key":"second session same nick join","value":"joined","at":"2026-10-24T14:30:08.805Z"}
+{"check":"S11","key":"presences umpire saw for blue-co joins","value":2,"at":"2026-10-24T14:30:10.798Z"}
+{"check":"S11","key":"post from session 1: copies seen by umpire / by session 2","value":{"umpire":1,"session2":1},"at":"2026-10-24T14:30:12.306Z"}
+{"check":"S11","key":"presences umpire saw when session 1 left","value":[],"at":"2026-10-24T14:30:13.810Z"}
+{"check":"S7","key":"node access models","value":{"game-setup":"open","assets:theme":"open","forces:blue":"whitelist","forces:red":"whitelist","forces:umpire":"whitelist","roles:blue-co":"whitelist","roles:blue-obs":"whitelist","roles:red-co":"whitelist","roles:umpire-1":"whitelist","rooms:blue-hq":"whitelist","rooms:red-hq":"whitelist","rooms:negotiation":"whitelist","objectives:blue":"whitelist","objectives:red":"whitelist","announcements":"whitelist","game-state":"whitelist"},"at":"2026-10-24T14:30:14.236Z"}
+{"check":"S7","key":"room member affiliations","value":{"blue-hq":["blue-co@localhost","blue-obs@localhost","umpire-1@localhost"],"red-hq":["red-co@localhost","umpire-1@localhost"],"negotiation":["blue-co@localhost","red-co@localhost","umpire-1@localhost"]},"at":"2026-10-24T14:30:14.283Z"}
