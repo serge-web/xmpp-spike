@@ -21,7 +21,7 @@ export async function adhoc(client: Client, to: string, node: string, values: Re
   const first = await client.sendIQ({ to, type: 'set', command: { node, action: 'execute' } });
   const cmd = first.command;
   if (!cmd) throw new Error(`${node}: no command payload`);
-  if (cmd.status === 'completed') return cmd;
+  if (cmd.status === 'completed') return failOnErrorNote(node, cmd);
   const fields: DataFormField[] = [
     { name: 'FORM_TYPE', type: 'hidden', value: ADMIN_NS },
     ...Object.entries(values).map(([name, value]) => ({ name, value }) as DataFormField),
@@ -31,7 +31,36 @@ export async function adhoc(client: Client, to: string, node: string, values: Re
     type: 'set',
     command: { node, ...(cmd.sid ? { sid: cmd.sid } : {}), action: 'complete', form: { type: 'submit', fields } },
   });
-  return res.command;
+  return failOnErrorNote(node, res.command);
+}
+
+/**
+ * XEP-0050 lets a server finish a command with status="completed" and <note type="error"/> instead of an
+ * IQ error (OpenFire does this, e.g. "User already exists."). Surface that as a thrown error so a failed
+ * admin operation is never mistaken for success. The note text is in error.text.
+ */
+function failOnErrorNote<T extends { notes?: Array<{ type?: string; value?: string }> } | undefined>(node: string, cmd: T): T {
+  const note = cmd?.notes?.find((n) => n.type === 'error');
+  if (note) {
+    throw Object.assign(new Error(`${node}: ${note.value ?? 'error note'}`), {
+      error: { condition: 'undefined-condition', text: note.value ?? '' },
+      adhocNote: true,
+    });
+  }
+  return cmd;
+}
+
+/**
+ * Leave a room. With awaitSelfPresence=false, send the unavailable presence without waiting for the
+ * service to echo it back (OpenFire 5.1.2 does not send the leaver its own unavailable presence).
+ */
+export async function leaveRoom(c: Client, roomJid: string, nick: string, awaitSelfPresence = true): Promise<void> {
+  if (awaitSelfPresence) {
+    await c.leaveRoom(roomJid, nick);
+    return;
+  }
+  c.sendPresence({ to: `${roomJid}/${nick}`, type: 'unavailable' });
+  await new Promise((r) => setTimeout(r, 200));
 }
 
 export const admin = {
@@ -59,6 +88,7 @@ export async function ensureRoom(
   roomJid: string,
   config: Record<string, string | boolean | string[]>,
   affiliations: Record<string, MUCAffiliation>,
+  awaitLeave = true,
 ): Promise<void> {
   await c.joinRoom(roomJid, 'admin');
   const current = await c.getRoomConfig(roomJid);
@@ -75,7 +105,7 @@ export async function ensureRoom(
   for (const [jid, aff] of Object.entries(affiliations)) {
     await c.setRoomAffiliation(roomJid, jid, aff);
   }
-  await c.leaveRoom(roomJid, 'admin');
+  await leaveRoom(c, roomJid, 'admin', awaitLeave);
 }
 
 export function nodeConfigForm(config: Record<string, string | boolean | string[]>): DataForm {
