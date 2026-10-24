@@ -31,6 +31,12 @@ export async function connect(user: string, opts: ConnectOptions = {}): Promise<
     allowResumption: false,
   } as XMPP.AgentConfig);
   live.add(client);
+  if (opts.anonymous) {
+    // StanzaJS ranks ANONYMOUS lowest; disable the rest so the anonymous path is actually exercised.
+    for (const m of ['EXTERNAL', 'SCRAM-SHA-256-PLUS', 'SCRAM-SHA-256', 'SCRAM-SHA-1-PLUS', 'SCRAM-SHA-1', 'DIGEST-MD5', 'OAUTHBEARER', 'X-OAUTH2', 'PLAIN']) {
+      client.sasl.disable(m);
+    }
+  }
   opts.onCreate?.(client);
 
   const timeoutMs = opts.timeoutMs ?? 10_000;
@@ -90,3 +96,60 @@ export async function saveStanzas(name: string, lines: string[]): Promise<void> 
   await mkdir(dir, { recursive: true });
   await writeFile(join(dir, `${name}.xml`), lines.join('\n\n') + '\n');
 }
+
+/** Send raw XML on the WebSocket, bypassing StanzaJS serialisation and any client-side checks. */
+export function sendRaw(client: Client, xml: string): void {
+  const socket = (client.transport as unknown as { socket?: { send(data: string): void } }).socket;
+  if (!socket) throw new Error('no WebSocket transport');
+  socket.send(xml);
+}
+
+// Loose union: Message and Presence declare `muc` differently, so an intersection collapses to never.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyStanza = { from?: string; to?: string; type?: string; id?: string; body?: string; [k: string]: any };
+
+/** Resolve with the first stanza of `kind` matching `pred`, or reject after `ms`. */
+export function waitFor<T = AnyStanza>(
+  client: Client,
+  kind: 'message' | 'presence' | 'iq' | 'stanza',
+  pred: (s: AnyStanza) => boolean,
+  ms = 5_000,
+): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const handler = (s: AnyStanza) => {
+      if (!pred(s)) return;
+      clearTimeout(timer);
+      client.off(kind as 'message', handler as never);
+      resolve(s as T);
+    };
+    const timer = setTimeout(() => {
+      client.off(kind as 'message', handler as never);
+      reject(new Error(`timeout waiting for ${kind}`));
+    }, ms);
+    client.on(kind as 'message', handler as never);
+  });
+}
+
+/** Collect every stanza of `kind` matching `pred` for `ms`; used to prove that nothing arrives. */
+export async function collect(
+  client: Client,
+  kind: 'message' | 'presence' | 'stanza',
+  pred: (s: AnyStanza) => boolean,
+  ms = 1_500,
+): Promise<AnyStanza[]> {
+  const got: AnyStanza[] = [];
+  const handler = (s: AnyStanza) => {
+    if (pred(s)) got.push(s);
+  };
+  client.on(kind as 'message', handler as never);
+  await new Promise((r) => setTimeout(r, ms));
+  client.off(kind as 'message', handler as never);
+  return got;
+}
+
+/** Join a MUC room and wait for self-presence; resolves with the self-presence. */
+export async function joinRoom(client: Client, room: string, nick: string, history?: { maxstanzas: number }) {
+  return client.joinRoom(room, nick, history ? { muc: { type: 'join', history: { maxStanzas: history.maxstanzas } } } : {});
+}
+
+export const uniq = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;

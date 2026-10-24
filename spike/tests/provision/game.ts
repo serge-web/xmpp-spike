@@ -17,6 +17,12 @@ export interface ServerProfile {
   observerAffiliation: 'member' | 'none';
   /** Explicitly outcast roles that are not in a room (needed when rooms are not members-only). */
   outcastNonMembers: boolean;
+  /**
+   * S1: revoke the observer's voice once at provisioning time. The admin knows the observer's
+   * password (it set it), logs in as the observer, joins, and revokes voice as moderator.
+   * Only meaningful on servers that persist the revocation per bare JID (ejabberd does).
+   */
+  revokeObserverVoice: boolean;
 }
 
 const allRoleIds = roles.map((r) => r.id);
@@ -39,6 +45,17 @@ export function nodePlan(): Array<{ node: string; access: 'open' | 'whitelist'; 
     { node: nodes.announcements, ...everyRole },
     { node: nodes.gameState, ...everyRole },
   ];
+}
+
+/** Have the observer join once so the admin (as moderator) can revoke its voice. */
+async function revokeVoice(adminClient: Client, roomJid: string, observer: string): Promise<void> {
+  const obs = await connect(observer, { resource: 'provision' });
+  await obs.joinRoom(roomJid, observer);
+  await adminClient.joinRoom(roomJid, 'admin');
+  await adminClient.setRoomRole(roomJid, observer, 'visitor');
+  await adminClient.leaveRoom(roomJid, 'admin');
+  await obs.leaveRoom(roomJid, observer);
+  obs.disconnect();
 }
 
 export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
@@ -74,7 +91,13 @@ export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
             if (room.members.includes(id)) affs[bare(id)] = role.observer ? profile.observerAffiliation : 'member';
             else if (profile.outcastNonMembers) affs[bare(id)] = 'outcast';
           }
-          await ensureRoom(c, `${room.id}@${cfg.mucDomain}`, profile.roomConfig, affs);
+          const roomJid = `${room.id}@${cfg.mucDomain}`;
+          await ensureRoom(c, roomJid, profile.roomConfig, affs);
+          if (profile.revokeObserverVoice) {
+            for (const obsId of room.members.filter((id) => roles.find((x) => x.id === id)?.observer)) {
+              await revokeVoice(c, roomJid, obsId);
+            }
+          }
         }
         for (const n of nodePlan()) {
           const affs: Array<{ jid: string; affiliation: Aff; node: string }> = [
