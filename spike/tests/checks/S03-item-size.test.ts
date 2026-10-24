@@ -34,7 +34,7 @@ describe('S3 item size', () => {
     const r = await search(nodes.assets('theme'));
     await observe('S3', 'default node: largest round-trip bytes (64KB granularity)', r);
     expect(r.lo).toBeGreaterThanOrEqual(100 * 1024);
-  });
+  }, 300_000);
 
   it('records whether a node owner can raise max_payload_size to 8 MB, and the limit then', async () => {
     const admin = await connect('admin', { resource: uniq('s3') });
@@ -61,7 +61,7 @@ describe('S3 item size', () => {
     const again = await connect('admin', { resource: uniq('s3') });
     await again.deleteNode(svc(), node).catch(() => undefined);
     expect(r.lo).toBeGreaterThanOrEqual(100 * 1024);
-  });
+  }, 300_000);
 });
 
 /** Binary search (64 KB granularity, 100 KB..4 MB) for the largest item that publishes and fetches intact. */

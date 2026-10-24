@@ -7,7 +7,7 @@
 
 ## Summary
 
-Results so far: S0 **PASS**, S1 **FAIL**, S2 **PASS**. S3–S5 and S10 are pending the shared checks. S1 is mandatory, so on current evidence Prosody is **out** under the §7 decision rule, unless a human accepts a custom module (S9 shows that one is small and works).
+Mandatory checks: S0 **PASS**, **S1 FAIL**, S2 **PASS**, S3 **PASS**, S4 **PASS**, S5 **PASS**, S10 **PASS** (the only server with clean anonymous isolation). S1 is mandatory, so stock Prosody is **out** under the §7 decision rule, unless a human accepts a custom module (S9 shows one of about 45 lines that works).
 
 REST dependencies: **0**. Every operation so far uses the admin's own XMPP session. Stock Prosody has no HTTP admin API; `mod_http_admin_api` is a community module and is not used.
 
@@ -54,18 +54,38 @@ For the mock: an unauthorised disco#items on a whitelist node returns an IQ erro
 REST / secret needed: no.
 
 ### S3 Item size
-Result: pending shared check. Note: `c2s_stanza_size_limit` defaults to 256 KiB (`mod_websocket` frame buffer = 2×). `mod_limits` is deliberately not loaded; the image's default config adds a 10 kb/s c2s rate limit.
+Result: PASS. A ~100 KB JSON item round-trips (`S03-item-size.test.ts`).
+- **The limit is the stanza size, not the node:** the largest round-trip is between 230,272 and 294,208 bytes. Above that, **the server closes the stream** (the client sees an IQ timeout, then a disconnect), with no error stanza.
+- `pubsub#max_payload_size` is not enforced: a node owner can set 8 MB and it is accepted, but the stanza limit still applies.
+- Raise `c2s_stanza_size_limit` to allow bigger items.
+For the mock: an oversize publish kills the session. Clients must keep items well under 256 KiB.
+Note: `c2s_stanza_size_limit` defaults to 256 KiB (`mod_websocket` frame buffer = 2×). `mod_limits` is deliberately not loaded; the image's default config adds a 10 kb/s c2s rate limit.
 
 ### S4 Admin provisioning without a bundled secret
-Result: pending shared check. Provisioning (`spike/tests/provision/prosody.ts`) already does, as the admin over XMPP: XEP-0133 add-user and change-user-password (`mod_admin_adhoc`), room create and config and affiliations (MUC owner/admin), node create and config and affiliations (PubSub owner). It is idempotent across re-runs.
+Result: PASS (`S04-admin-provisioning.test.ts`, effects verified). Every operation uses the admin's XMPP session: XEP-0133 add-user, change-user-password, delete-user, get-online-users-list and end-user-session; MUC owner for rooms; PubSub owner for nodes.
+For the mock:
+- An ended session receives **no stream error**, only `<close/>` (`S4-ended-session-user-side.xml`).
+- A deleted user's session gets `<stream:error><not-authorized/><text>Account deleted</text>`.
+Provisioning (`spike/tests/provision/prosody.ts`) already does, as the admin over XMPP: XEP-0133 add-user and change-user-password (`mod_admin_adhoc`), room create and config and affiliations (MUC owner/admin), node create and config and affiliations (PubSub owner). It is idempotent across re-runs.
 **Quirk:** Prosody reports ad-hoc failures as a *successful* IQ with `status="completed"` and `<note type="error">Account already exists</note>`, not as an IQ error (ejabberd returns IQ `<conflict/>`). The shared `adhoc()` helper now throws `AdhocNoteError` on error notes.
 Bootstrap: the only out-of-band step creates the `admin` account (image entrypoint `prosodyctl register` from `LOCAL`/`DOMAIN`/`PASSWORD`). Admin rights come from `admins = { "admin@localhost" }` in the config.
 
 ### S5 MAM paging at scale
-Result: pending shared check. Config prepared: `storage = "sql"` with SQLite. The default internal store caps each archive at **10,000 items**, and at the cap `mod_muc_mam` silently drops the oldest 1%. Also set: `muc_log_by_default = true`, `muc_log_expires_after = "never"` (default 1 week), and `max_archive_query_results = 200` (default 50, which would cap page size 200).
+Result: PASS (`S05-mam-paging.test.ts`). 10,000 messages were seeded in 79 s.
+| Page size | Pages | Total | Average / max per page | Gaps / duplicates / order |
+|---|---|---|---|---|
+| 50 | 200 | 5.1 s | 26 / 59 ms | none / none / correct |
+| 200 | 50 | 5.3 s | 107 / 148 ms | none / none / correct |
+For the mock:
+- Archive ids are **UUIDv7 strings** (ejabberd uses numeric µs timestamps). The MAM id equals the `stanza-id` on join history.
+- Join history `<delay>` has `from=room JID` and a timestamp truncated to seconds. MAM `<delay>` has **no `from`** and millisecond precision.
+Config: `storage = "sql"` with SQLite. The default internal store caps each archive at **10,000 items**, and at the cap `mod_muc_mam` silently drops the oldest 1%. Also set: `muc_log_by_default = true`, `muc_log_expires_after = "never"` (default 1 week), and `max_archive_query_results = 200` (default 50, which would cap page size 200).
 
-### S6 Publisher notifications — pending shared check
-### S7 Are groups needed? — pending shared check
+### S6 Publisher notifications
+Result: recorded. A subscribed publisher receives its own event; notifications carry the payload; they are `type='headline'`; back-to-back publishes arrive in order. These are the same as ejabberd.
+
+### S7 Are groups needed?
+Result: no groups needed. Every rule is expressed with `open`/`whitelist` access models and per-JID affiliations (`S07-groups.test.ts`).
 
 ### S8 Operations
 Result: PASS for offline install from a local archive, TLS with an internal CA, and backup/restore. **Pending human:** the real air-gapped host install.
@@ -85,11 +105,25 @@ Result: done (effort assessment).
 - **Docs quality:** good. https://prosody.im/doc/developers covers the module API and events. The bundled MUC code is small and readable, and event names such as `muc-occupant-pre-join` and `muc-get-default-role` are in the code rather than fully documented, so reading code is needed for MUC internals.
 
 ### S10 Anonymous access limits
-Result: pending shared check.
+Result: **PASS** (`S10-anonymous.test.ts`, all 21 assertions).
+- Anonymous users can read `game-setup` and `assets:theme`.
+- Every protected node gives `<forbidden/>` auth.
+- Room join gives `registration-required`; room MAM gives `forbidden`; room creation gives `not-allowed` "Room creation is restricted".
+- Publishing, creating nodes and listing users are all denied.
+- **disco#items on the PubSub service lists only the nodes the requester may access** (`assets:theme`, `game-setup`). Server disco lists services only (including `anon.localhost`).
 Config: SASL ANONYMOUS is **per VirtualHost** in Prosody (`authentication = "anonymous"` cannot be combined with SCRAM on one host). It is on `anon.localhost`, and anonymous users are `<random>@anon.localhost`. `spike/tests/config.ts` has a new `anonymousDomain` for this. Defaults kept: `allow_anonymous_storage = false`, `allow_anonymous_s2s = false`. Already observed in S1 M2: an anonymous user *can* join a non-members-only room as visitor. Members-only rooms reject it with `registration-required`.
 
-### S11 Same role, two sessions — pending shared check
-### S12 Live changes — pending shared check
+### S11 Same role, two sessions
+Result: recorded (works).
+- The second session joins with the same nick, and both sessions get all messages. A post from one reaches others once and the sibling once.
+- When one session leaves, other occupants get a presence **update (available)**, not unavailable, and the remaining session keeps receiving messages.
+
+### S12 Live changes
+Result: recorded (advisory). Grant-then-revoke has no lock-out window.
+- Revoking `blue-hq` affiliation sends self-presence unavailable with status **321**.
+- **PubSub:** removing the whitelist affiliation also cuts off a subscribed reader. Unlike ejabberd, no separate subscription removal is needed (S2 records this).
+- Deleting an online user: the session gets `<not-authorized/>` "Account deleted", and others see the user leave the room.
+- **The deleted user's room member affiliation remains**, so admin tooling must remove it.
 
 ## Operational notes
 - Stack: `spike/docker/prosody/compose.yaml` (project `wrx-prosody`; host ports 5380 HTTP/ws, 5381 HTTPS/wss, 5322 c2s). Config: `spike/docker/prosody/prosody.cfg.lua`, a full replacement of the image's env-templated config, with every change marked `CHANGE:`.
@@ -106,3 +140,5 @@ Config: SASL ANONYMOUS is **per VirtualHost** in Prosody (`authentication = "ano
 5. SASL ANONYMOUS needs a separate host domain (S10).
 6. disco#items on a forbidden node returns an IQ error, not an empty list (S2).
 7. `docker save` by digest produces an untagged archive (S8).
+8. Oversize stanzas (>~256 KiB) close the stream without an error (S3). `pubsub#max_payload_size` is not enforced.
+9. Room affiliations of deleted accounts persist (S12).
