@@ -6,6 +6,7 @@ services:
     ports:
       - "5222:5222" # c2s (not used by tests; browser path is WebSocket)
       - "5280:5280" # HTTP: /ws WebSocket, /admin web console, /api
+      - "5443:5443" # HTTPS: /ws WebSocket over TLS (S8)
     volumes:
       - ./ejabberd.yml:/home/ejabberd/conf/ejabberd.yml:ro
       - ./bootstrap.sh:/home/ejabberd/bootstrap.sh:ro

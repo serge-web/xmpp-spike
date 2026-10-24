@@ -6,6 +6,14 @@ hosts:
 
 loglevel: info
 
+# S5: store everything in the bundled SQLite backend. With the stock Mnesia backend, MAM at ~10k
+# room messages ingested ~5 msg/s and a MAM count query timed out (ejabberd itself warns that
+# Mnesia is not recommended for mod_mam). Schema is created automatically.
+sql_type: sqlite
+sql_database: /home/ejabberd/database/ejabberd.db
+default_db: sql
+update_sql_schema: true
+
 certfiles:
   - /home/ejabberd/conf/server.pem
 ca_file: /home/ejabberd/conf/cacert.pem
@@ -34,6 +42,15 @@ listen:
       /ws: ejabberd_http_ws
       /admin: ejabberd_web_admin
       /api: mod_http_api
+  -
+    # S8: TLS WebSocket (wss://localhost:5443/ws). Cert comes from certfiles above; compose.tls.yaml
+    # swaps in a server cert issued by the spike's internal test CA (spike/docker/tls).
+    port: 5443
+    ip: "0.0.0.0"
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /ws: ejabberd_http_ws
 
 acl:
   local:
@@ -136,6 +153,9 @@ modules:
     plugins:
       - flat
       - pep
+    # S10: stock disco#items on the service lists every node name to anyone, anonymous included.
+    # Clients address nodes by known name, so hide the listing entirely.
+    max_nodes_discoitems: 1
     # S3: node owners cannot set pubsub#max_payload_size above the server default (stock 250000;
     # higher values get <resource-constraint/>). Raise the server default here if needed, e.g.
     # default_node_config: {max_payload_size: 2000000}. Left stock: 100 KB items fit.
