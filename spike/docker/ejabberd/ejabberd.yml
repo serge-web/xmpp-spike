@@ -1,0 +1,146 @@
+# WRX1 spike config for ejabberd 26.09. Derived from the image's default ejabberd.yml,
+# trimmed to what the spike needs. Comments mark each deliberate change.
+
+hosts:
+  - localhost
+
+loglevel: info
+
+certfiles:
+  - /home/ejabberd/conf/server.pem
+ca_file: /home/ejabberd/conf/cacert.pem
+
+# Named accounts (SCRAM) plus SASL ANONYMOUS on the same host, for S10.
+auth_method: [internal, anonymous]
+auth_password_format: scram
+anonymous_protocol: sasl_anon
+allow_multiple_connections: true
+
+listen:
+  -
+    port: 5222
+    ip: "0.0.0.0"  # container has no IPv6
+    module: ejabberd_c2s
+    max_stanza_size: 262144
+    shaper: c2s_shaper
+    access: c2s
+    starttls_required: false
+  -
+    # Plain HTTP for dev (ws://). TLS (wss://) is covered in S8.
+    port: 5280
+    ip: "0.0.0.0"  # container has no IPv6
+    module: ejabberd_http
+    request_handlers:
+      /ws: ejabberd_http_ws
+      /admin: ejabberd_web_admin
+      /api: mod_http_api
+
+acl:
+  local:
+    user_regexp: ""
+  loopback:
+    ip:
+      - 127.0.0.0/8
+      - ::1/128
+  admin:
+    user:
+      - admin@localhost
+
+access_rules:
+  local:
+    allow: local
+  c2s:
+    deny: blocked
+    allow: all
+  announce:
+    allow: admin
+  configure:
+    allow: admin
+  # Only the admin creates rooms and nodes (stock default is any local user).
+  muc_create:
+    allow: admin
+  pubsub_createnode:
+    allow: admin
+
+api_permissions:
+  "console commands":
+    from: ejabberd_ctl
+    who: all
+    what: "*"
+  "webadmin commands":
+    from: ejabberd_web_admin
+    who: admin
+    what: "*"
+  "adhoc commands":
+    from: mod_adhoc_api
+    who: admin
+    what: "*"
+  "http access":
+    from: mod_http_api
+    who:
+      access:
+        allow:
+          - acl: admin
+    what:
+      - "*"
+      - "!stop"
+      - "!start"
+
+shaper:
+  normal:
+    rate: 3000
+    burst_size: 20000
+  fast: 100000
+
+shaper_rules:
+  max_user_sessions: 10
+  c2s_shaper:
+    none: admin
+    # Tests seed 10k MAM messages (S5); the stock 3000 B/s shaper would throttle that.
+    fast: all
+
+modules:
+  mod_adhoc: {}
+  mod_adhoc_api: {}
+  mod_admin_extra: {}
+  mod_announce:
+    access: announce
+  mod_caps: {}
+  mod_carboncopy: {}
+  mod_configure: {}
+  mod_disco: {}
+  mod_http_api: {}
+  mod_last: {}
+  mod_mam:
+    assume_mam_usage: true
+    default: always
+  mod_muc:
+    access:
+      - allow
+    access_admin:
+      - allow: admin
+    access_create: muc_create
+    access_persistent: muc_create
+    access_mam:
+      - allow
+    default_room_options:
+      mam: true
+      persistent: true
+      members_only: true
+  mod_muc_admin: {}
+  mod_ping: {}
+  mod_privacy: {}
+  mod_private: {}
+  mod_pubsub:
+    access_createnode: pubsub_createnode
+    plugins:
+      - flat
+      - pep
+  mod_roster:
+    versioning: true
+  mod_shared_roster: {}
+  mod_stream_mgmt:
+    resend_on_timeout: if_offline
+  mod_vcard: {}
+  mod_version:
+    show_os: false

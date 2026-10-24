@@ -14,6 +14,8 @@ export interface ConnectOptions {
   /** Use SASL ANONYMOUS instead of a named account (S10). */
   anonymous?: boolean;
   timeoutMs?: number;
+  /** Called before connecting, e.g. to attach captureStanzas so the login is recorded. */
+  onCreate?: (client: Client) => void;
 }
 
 const live = new Set<Client>();
@@ -29,6 +31,7 @@ export async function connect(user: string, opts: ConnectOptions = {}): Promise<
     allowResumption: false,
   } as XMPP.AgentConfig);
   live.add(client);
+  opts.onCreate?.(client);
 
   const timeoutMs = opts.timeoutMs ?? 10_000;
   await new Promise<void>((resolve, reject) => {
