@@ -84,6 +84,15 @@ export async function ensureRoom(
       ...Object.entries(config).map(([name, value]) => ({ name, value }) as DataFormField),
     ],
   });
+  // Converge: drop member/admin/outcast affiliations not in the plan (e.g. left over from S12).
+  // Same-affiliation re-sets are harmless (they keep a persisted role, see S1).
+  for (const aff of ['member', 'admin', 'outcast'] as const) {
+    const res = await c.getRoomMembers(roomJid, { affiliation: aff });
+    for (const u of res.muc?.users ?? []) {
+      const jid = String(u.jid);
+      if (!(jid in affiliations)) await c.setRoomAffiliation(roomJid, jid, 'none');
+    }
+  }
   for (const [jid, aff] of Object.entries(affiliations)) {
     await c.setRoomAffiliation(roomJid, jid, aff);
   }
@@ -114,5 +123,34 @@ export async function ensureNode(
     if (errorCondition(e) !== 'conflict') throw e;
     await c.configureNode(service, node, nodeConfigForm(config));
   }
-  if (affiliations.length) await c.updateNodeAffiliations(service, node, affiliations);
+  // Converge: reset any non-owner affiliation not in the plan.
+  const wanted = new Set(affiliations.map((a) => String(a.jid)));
+  const current = await c.getNodeAffiliations(service, node);
+  const stale = (current.items ?? [])
+    .filter((i) => i.affiliation !== 'owner' && !wanted.has(String(i.jid)))
+    .map((i) => ({ jid: String(i.jid), affiliation: 'none' as const }));
+  if (stale.length || affiliations.length) await c.updateNodeAffiliations(service, node, [...stale, ...affiliations]);
+  // Subscriptions outlive affiliation removal on some servers (ejabberd: a subscribed user keeps
+  // reading and receiving events after leaving the whitelist), so drop subscriptions of non-members.
+  if (config['pubsub#access_model'] === 'whitelist') {
+    for (const jid of await nodeSubscribers(c, service, node)) {
+      if (!wanted.has(jid)) await setSubscription(c, service, node, jid, 'none');
+    }
+  }
+}
+
+/** Bare JIDs subscribed to a node (owner view). */
+export async function nodeSubscribers(c: Client, service: string, node: string): Promise<string[]> {
+  const res = (await c.getNodeSubscribers(service, node)) as { pubsub?: { subscriptions?: { items?: Array<{ jid?: unknown }> } } };
+  return (res.pubsub?.subscriptions?.items ?? []).map((i) => String(i.jid).split('/')[0]!);
+}
+
+export function setSubscription(c: Client, service: string, node: string, jid: string, state: 'none' | 'subscribed') {
+  return c.updateNodeSubscriptions(service, node, [{ jid, state } as Stanzas.PubsubSubscription]);
+}
+
+/** Fully revoke a user's access to a whitelist node: affiliation none AND subscription removed. */
+export async function revokeNodeAccess(c: Client, service: string, node: string, jid: string): Promise<void> {
+  await c.updateNodeAffiliations(service, node, [{ jid, affiliation: 'none' }]);
+  if ((await nodeSubscribers(c, service, node)).includes(jid)) await setSubscription(c, service, node, jid, 'none');
 }

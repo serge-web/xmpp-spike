@@ -6,7 +6,7 @@ import { serverConfig } from '../config.js';
 import { captureStanzas, connect, disconnectAll, joinRoom, observe, outcome, saveStanzas, uniq, type Client } from '../harness.js';
 import { nodes, PASSWORD } from '../fixtures/game.js';
 import { adapterFor } from '../provision/index.js';
-import { admin as ops } from '../provision/xmpp-admin.js';
+import { admin as ops, revokeNodeAccess } from '../provision/xmpp-admin.js';
 
 const cfg = () => serverConfig();
 const bare = (u: string) => `${u}@${cfg().domain}`;
@@ -52,7 +52,7 @@ describe('S12 live changes', () => {
 
     // Revoke old access.
     await a.setRoomAffiliation(room('blue-hq'), bare('blue-co'), 'none');
-    await a.updateNodeAffiliations(cfg().pubsubDomain, nodes.objectives('blue'), [{ jid: bare('blue-co'), affiliation: 'none' }]);
+    await revokeNodeAccess(a, cfg().pubsubDomain, nodes.objectives('blue'), bare('blue-co'));
     await new Promise((r) => setTimeout(r, 1_000));
     const afterBlue = await outcome(co.getItems(cfg().pubsubDomain, nodes.objectives('blue')));
     await observe('S12', 'after revoke: blue objectives readable', afterBlue.ok);

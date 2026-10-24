@@ -14,6 +14,8 @@ export interface ConnectOptions {
   /** Use SASL ANONYMOUS instead of a named account (S10). */
   anonymous?: boolean;
   timeoutMs?: number;
+  /** Send initial presence after session start, as the browser client will (default true). */
+  presence?: boolean;
   /** Called before connecting, e.g. to attach captureStanzas so the login is recorded. */
   onCreate?: (client: Client) => void;
 }
@@ -56,6 +58,8 @@ export async function connect(user: string, opts: ConnectOptions = {}): Promise<
     });
     client.connect();
   });
+  // Without initial presence, servers don't deliver bare-JID messages (e.g. PubSub events).
+  if (opts.presence !== false) client.sendPresence();
   return client;
 }
 

@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { serverConfig } from '../config.js';
 import { captureStanzas, connect, disconnectAll, observe, outcome, publishJson, saveStanzas, uniq, type Client } from '../harness.js';
 import { nodes, roles } from '../fixtures/game.js';
+import { revokeNodeAccess } from '../provision/xmpp-admin.js';
 
 const svc = () => serverConfig().pubsubDomain;
 const bare = (u: string) => `${u}@${serverConfig().domain}`;
@@ -93,6 +94,20 @@ describe('S2 live ACL changes apply to online sessions', () => {
     expect((await outcome(red.getItems(svc(), node))).ok).toBe(true);
     await clients.admin!.updateNodeAffiliations(svc(), node, [{ jid: bare('red-co'), affiliation: 'none' }]);
     expect((await outcome(red.getItems(svc(), node))).ok).toBe(false);
+  });
+
+  it('revoking a SUBSCRIBED reader: records whether affiliation removal alone cuts access', async () => {
+    const node = nodes.objectives('blue');
+    const red = clients['red-co']!;
+    await clients.admin!.updateNodeAffiliations(svc(), node, [{ jid: bare('red-co'), affiliation: 'member' }]);
+    await red.subscribeToNode(svc(), { node, jid: bare('red-co') });
+    await clients.admin!.updateNodeAffiliations(svc(), node, [{ jid: bare('red-co'), affiliation: 'none' }]);
+    const afterAffOnly = await outcome(red.getItems(svc(), node));
+    await observe('S2', 'subscribed reader after affiliation=none only: can still read', afterAffOnly.ok);
+    await revokeNodeAccess(clients.admin!, svc(), node, bare('red-co'));
+    const afterFull = await outcome(red.getItems(svc(), node));
+    await observe('S2', 'subscribed reader after affiliation=none + subscription removed: can read', afterFull.ok);
+    expect(afterFull.ok).toBe(false);
   });
 
   it('granting and revoking publisher applies to an online session', async () => {

@@ -18,12 +18,12 @@ beforeAll(async () => {
   pub = await connect('umpire-1', { resource: uniq('s6pub'), onCreate: (c) => (logs.pub = captureStanzas(c).lines) });
   sub = await connect('blue-co', { resource: uniq('s6sub'), onCreate: (c) => (logs.sub = captureStanzas(c).lines) });
   for (const c of [pub, sub]) {
-    await c.unsubscribeFromNode(svc(), { node }).catch(() => undefined);
+    await c.unsubscribeFromNode(svc(), { node, jid: c.jid.split('/')[0]! }).catch(() => undefined);
     await c.subscribeToNode(svc(), node);
   }
 });
 afterAll(async () => {
-  for (const c of [pub, sub]) await c.unsubscribeFromNode(svc(), { node }).catch(() => undefined);
+  for (const c of [pub, sub]) await c.unsubscribeFromNode(svc(), { node, jid: c.jid.split('/')[0]! }).catch(() => undefined);
   await saveStanzas('S6-publisher', logs.pub ?? []);
   await saveStanzas('S6-subscriber', logs.sub ?? []);
   await disconnectAll();

@@ -19,7 +19,7 @@ async function archivedCount(c: Client): Promise<number> {
 
 beforeAll(async () => {
   const admin = await connect('admin', { resource: uniq('s5') });
-  await ensureRoom(admin, room(), { 'muc#roomconfig_persistentroom': true, 'muc#roomconfig_membersonly': true }, {
+  await ensureRoom(admin, room(), { 'muc#roomconfig_persistentroom': true, 'muc#roomconfig_membersonly': true, 'muc#roomconfig_publicroom': false }, {
     [`blue-co@${serverConfig().domain}`]: 'member',
   });
   const seeder = await connect('blue-co', { resource: uniq('s5seed') });
