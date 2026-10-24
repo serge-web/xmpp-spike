@@ -89,7 +89,7 @@ describe('S4 admin provisioning over XMPP (admin credentials only)', () => {
     await a.deleteNode(cfg().pubsubDomain, node);
   });
 
-  it('delete user (XEP-0133 delete-user) — login then fails; online session is ended', async () => {
+  it('delete user (XEP-0133 delete-user) — login then fails; records what the online session sees', async () => {
     let ulines: string[] = [];
     const u = await connect(temp, { password: 'pw-two', resource: uniq('t'), onCreate: (c) => (ulines = captureStanzas(c).lines) });
     const gone = new Promise<string>((resolve) => {

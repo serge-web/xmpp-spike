@@ -209,3 +209,17 @@
 {"check":"S2","key":"subscribed reader after affiliation=none + subscription removed: can read","value":false,"at":"2026-10-24T14:32:22.522Z"}
 {"check":"S7","key":"node access models","value":{"game-setup":"open","assets:theme":"open","forces:blue":"whitelist","forces:red":"whitelist","forces:umpire":"whitelist","roles:blue-co":"whitelist","roles:blue-obs":"whitelist","roles:red-co":"whitelist","roles:umpire-1":"whitelist","rooms:blue-hq":"whitelist","rooms:red-hq":"whitelist","rooms:negotiation":"whitelist","objectives:blue":"whitelist","objectives:red":"whitelist","announcements":"whitelist","game-state":"whitelist"},"at":"2026-10-24T14:32:22.989Z"}
 {"check":"S7","key":"room member affiliations","value":{"blue-hq":["blue-co@localhost","blue-obs@localhost","umpire-1@localhost"],"red-hq":["red-co@localhost","umpire-1@localhost"],"negotiation":["blue-co@localhost","red-co@localhost","umpire-1@localhost"]},"at":"2026-10-24T14:32:23.044Z"}
+{"check":"S1","key":"blue-obs join + post","value":{"role":"visitor","affiliation":"member","error":{"alternateLanguageText":[{"lang":"en","value":"Visitors are not allowed to send messages to all occupants"}],"condition":"forbidden","text":"Visitors are not allowed to send messages to all occupants","type":"auth"}},"at":"2026-10-24T14:58:49.925Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:59:00.058Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:59:00.099Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792853939967-i6096@localhost"]},"at":"2026-10-24T14:59:00.170Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:59:00.311Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792853939967-i6096@localhost"],"at":"2026-10-24T14:59:00.338Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:59:00.393Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:59:00.497Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:59:01.100Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:59:01.110Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"items":0},"at":"2026-10-24T14:59:01.115Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:59:01.127Z"}
+{"check":"S2","key":"subscribed reader after affiliation=none only: can still read","value":true,"at":"2026-10-24T14:59:01.226Z"}
+{"check":"S2","key":"subscribed reader after affiliation=none + subscription removed: can read","value":false,"at":"2026-10-24T14:59:01.235Z"}
