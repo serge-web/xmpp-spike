@@ -24,7 +24,7 @@ const live = new Set<Client>();
 export async function connect(user: string, opts: ConnectOptions = {}): Promise<Client> {
   const cfg = serverConfig();
   const client = XMPP.createClient({
-    jid: opts.anonymous ? cfg.domain : `${user}@${cfg.domain}`,
+    jid: opts.anonymous ? (cfg.anonymousDomain ?? cfg.domain) : `${user}@${cfg.domain}`,
     password: opts.anonymous ? undefined : (opts.password ?? PASSWORD),
     ...(opts.resource ? { resource: opts.resource } : {}),
     transports: { websocket: cfg.websocketUrl, bosh: false },

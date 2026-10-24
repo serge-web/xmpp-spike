@@ -4,7 +4,7 @@ import type { Stanzas } from 'stanza';
 import { serverConfig } from '../config.js';
 import { connect, disconnectAll, type Client } from '../harness.js';
 import { ADMIN, PASSWORD, forces, nodes, objectivePublishers, objectiveReaders, roles, rooms } from '../fixtures/game.js';
-import { admin, ensureNode, ensureRoom, errorCondition } from './xmpp-admin.js';
+import { AdhocNoteError, admin, ensureNode, ensureRoom, errorCondition } from './xmpp-admin.js';
 import type { ProvisioningAdapter } from './adapter.js';
 
 type Aff = NonNullable<Stanzas.PubsubAffiliation['affiliation']>;
@@ -76,11 +76,12 @@ export function makeAdapter(profile: ServerProfile): ProvisioningAdapter {
       withAdmin(async (c) => {
         const cfg = serverConfig();
         for (const r of roles) {
-          // add-user on an existing account fails (ejabberd: IQ error <conflict/>); reset the password to converge.
+          // add-user on an existing account fails (ejabberd: IQ error <conflict/>; Prosody: completed
+          // command with <note type="error">Account already exists</note>); reset the password to converge.
           try {
             await admin.addUser(c, cfg.domain, bare(r.id), PASSWORD);
           } catch (e) {
-            if (errorCondition(e) !== 'conflict') throw e;
+            if (errorCondition(e) !== 'conflict' && !(e instanceof AdhocNoteError)) throw e;
             await admin.changePassword(c, cfg.domain, bare(r.id), PASSWORD);
           }
         }

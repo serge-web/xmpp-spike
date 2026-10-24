@@ -16,12 +16,34 @@ export function errorCondition(e: unknown): string | undefined {
 
 const ADMIN_NS = 'http://jabber.org/protocol/admin';
 
+/**
+ * A command that completed with a <note type="error"/> instead of an IQ error. Prosody reports
+ * ad-hoc failures this way (e.g. add-user on an existing account: IQ result, status="completed",
+ * <note type="error">Account already exists</note>); ejabberd uses IQ errors.
+ */
+export class AdhocNoteError extends Error {
+  constructor(
+    readonly node: string,
+    readonly note: string,
+  ) {
+    super(`${node}: ${note}`);
+  }
+}
+
+function throwOnErrorNote(node: string, cmd: { notes?: Array<{ type?: string; value?: string }> } | undefined) {
+  const err = cmd?.notes?.find((n) => n.type === 'error');
+  if (err) throw new AdhocNoteError(node, err.value ?? '');
+}
+
 /** Run a two-step ad-hoc command: execute to get the form, then complete with our values. */
 export async function adhoc(client: Client, to: string, node: string, values: Record<string, string | string[]>) {
   const first = await client.sendIQ({ to, type: 'set', command: { node, action: 'execute' } });
   const cmd = first.command;
   if (!cmd) throw new Error(`${node}: no command payload`);
-  if (cmd.status === 'completed') return cmd;
+  if (cmd.status === 'completed') {
+    throwOnErrorNote(node, cmd);
+    return cmd;
+  }
   const fields: DataFormField[] = [
     { name: 'FORM_TYPE', type: 'hidden', value: ADMIN_NS },
     ...Object.entries(values).map(([name, value]) => ({ name, value }) as DataFormField),
@@ -31,6 +53,7 @@ export async function adhoc(client: Client, to: string, node: string, values: Re
     type: 'set',
     command: { node, ...(cmd.sid ? { sid: cmd.sid } : {}), action: 'complete', form: { type: 'submit', fields } },
   });
+  throwOnErrorNote(node, res.command);
   return res.command;
 }
 
