@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WRX1 spike: OpenFire bootstrap config. Copied into the data volume on first start (the image's
+  entrypoint copies conf_org/ -> /var/lib/openfire/conf/ once), after which OpenFire rewrites its copy:
+  it sets <setup>true</setup>, removes <autosetup> and moves system properties into the database.
+
+  Every block below that differs from the stock conf_org/openfire.xml is a deliberate change.
+-->
+<jive>
+    <adminConsole>
+        <!-- Stock values. 9090 = HTTP admin console (also hosts the REST API plugin), 9091 = HTTPS. -->
+        <port>9090</port>
+        <securePort>9091</securePort>
+    </adminConsole>
+
+    <locale>en</locale>
+
+    <!-- CHANGE: use the bundled embedded HSQLDB (no external database). This is what the setup
+         wizard's "Embedded Database" choice writes. Files live in $OPENFIRE_HOME/embedded-db, which
+         compose.yaml points at the data volume (see entrypoint-wrapper.sh). -->
+    <connectionProvider>
+        <className>org.jivesoftware.database.EmbeddedConnectionProvider</className>
+    </connectionProvider>
+
+    <!-- CHANGE: unattended setup instead of the web wizard (XMPPServer.runAutoSetup in 5.1.2).
+         Runs once, only while <setup> is absent; OpenFire deletes this block afterwards. -->
+    <autosetup>
+        <run>true</run>
+        <locale>en</locale>
+        <xmpp>
+            <!-- XMPP domain = "localhost" to match spike/tests/config.ts. -->
+            <domain>localhost</domain>
+            <fqdn>localhost</fqdn>
+            <!-- CHANGE: allow SASL ANONYMOUS (S10 welcome page). Sets xmpp.auth.anonymous=true. -->
+            <auth>
+                <anonymous>true</anonymous>
+            </auth>
+            <!-- Keep legacy direct-TLS c2s port (5223) at its default. -->
+            <socket>
+                <ssl>
+                    <active>true</active>
+                </ssl>
+            </socket>
+        </xmpp>
+        <encryption>
+            <!-- Encrypts sensitive properties in the DB. Test-only key. -->
+            <algorithm>AES</algorithm>
+            <key>wrx1-spike-not-secret</key>
+        </encryption>
+        <database>
+            <mode>embedded</mode>
+        </database>
+        <!-- Sets the password of the built-in "admin" account (an OpenFire admin by default:
+             admin.authorizedJIDs is empty, so DefaultAdminProvider uses admin@<domain>). Test-only. -->
+        <admin>
+            <email>admin@localhost</email>
+            <password>spike-password</password>
+        </admin>
+        <!-- Default (DB) auth provider; autosetup also sets user.scramHashedPasswordOnly=true. -->
+        <authprovider>
+            <mode>default</mode>
+        </authprovider>
+    </autosetup>
+
+    <!-- System properties. Autosetup's finalSetupSteps() copies every XML property into the DB. -->
+
+    <!-- CHANGE: offer only the SASL mechanisms WRX1 uses. Stock offers PLAIN, ANONYMOUS, SCRAM-SHA-1
+         and SCRAM-SHA-1-PLUS, advertising channel binding (tls-server-end-point) even on plain ws://.
+         StanzaJS then picks SCRAM-SHA-1-PLUS without binding data and the server answers
+         <not-authorized/>; a browser cannot do tls-server-end-point anyway. See results/openfire.md. -->
+    <sasl>
+        <mechs>SCRAM-SHA-1,ANONYMOUS</mechs>
+    </sasl>
+    <!-- CHANGE: no in-band registration (stock: enabled, any client can create an account). Accounts are
+         created only by the admin (XEP-0133). -->
+    <register>
+        <inband>false</inband>
+    </register>
+
+    <xmpp>
+        <pubsub>
+            <!-- CHANGE: only listed JIDs may create PubSub nodes (stock default: anyone). -->
+            <create>
+                <anyone>false</anyone>
+            </create>
+            <!-- CHANGE: admin is PubSub service admin, so it may create nodes and manage all of them. -->
+            <sysadmin>
+                <jid>admin@localhost</jid>
+            </sysadmin>
+        </pubsub>
+    </xmpp>
+
+    <!-- CHANGE: Monitoring plugin (official, Ignite plugin repo) archives MUC rooms and serves MAM
+         (XEP-0313) for them; core OpenFire 5.1.2 has no MAM. roomArchiving enables MUC archives;
+         an empty roomsArchived list means all rooms. -->
+    <conversation>
+        <messageArchiving>true</messageArchiving>
+        <roomArchiving>true</roomArchiving>
+        <metadataArchiving>true</metadataArchiving>
+    </conversation>
+</jive>

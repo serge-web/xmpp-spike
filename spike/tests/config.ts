@@ -19,7 +19,8 @@ const configs: Record<ServerName, ServerConfig> = {
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:7070/ws/',
+    // OPENFIRE_WS overrides for the S8 (wss://localhost:7443/ws/) and S9 (isolated stack) probes.
+    websocketUrl: process.env['OPENFIRE_WS'] ?? 'ws://localhost:7070/ws/',
   },
   ejabberd: {
     name: 'ejabberd',

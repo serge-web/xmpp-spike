@@ -1,0 +1,9 @@
+# S8 offline-start proof: no network at all (loopback only), never pull.
+#   docker load -i image/openfire-5.1.2.tar     # archive made with ops/save-image.sh
+#   docker compose -p wrx-openfire-offline -f compose.yaml -f compose.offline.yaml up -d --wait
+# (-p gives a fresh volume, so this also proves first-boot autosetup works with no network.)
+services:
+  openfire:
+    pull_policy: never
+    network_mode: none
+    ports: !reset []

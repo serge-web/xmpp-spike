@@ -148,9 +148,14 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 spike/scratch/
+spike/docker/openfire/plugins/
 .claude/worktrees/
 spike/docker/prosody/tls/
 spike/docker/prosody/backup/
 spike/docker/prosody/image/
 spike/docker/ejabberd/image/
 spike/docker/ejabberd/backup/
+spike/docker/openfire/tls/
+spike/docker/openfire/backup/
+spike/docker/openfire/image/
+spike/docker/openfire/s9-plugin/out/

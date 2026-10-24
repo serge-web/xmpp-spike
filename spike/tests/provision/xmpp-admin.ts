@@ -88,12 +88,26 @@ export const admin = {
   },
 };
 
+/**
+ * Leave a room. With awaitSelfPresence=false, send the unavailable presence without waiting for the
+ * service to echo it back (OpenFire 5.1.2 does not send the leaver its own unavailable presence).
+ */
+export async function leaveRoom(c: Client, roomJid: string, nick: string, awaitSelfPresence = true): Promise<void> {
+  if (awaitSelfPresence) {
+    await c.leaveRoom(roomJid, nick);
+    return;
+  }
+  c.sendPresence({ to: `${roomJid}/${nick}`, type: 'unavailable' });
+  await new Promise((r) => setTimeout(r, 200));
+}
+
 /** Create (by joining) or update a room as owner, submit config, then set affiliations. */
 export async function ensureRoom(
   c: Client,
   roomJid: string,
   config: Record<string, string | boolean | string[]>,
   affiliations: Record<string, MUCAffiliation>,
+  awaitLeave = true,
 ): Promise<void> {
   await c.joinRoom(roomJid, 'admin');
   const current = await c.getRoomConfig(roomJid);
@@ -119,7 +133,7 @@ export async function ensureRoom(
   for (const [jid, aff] of Object.entries(affiliations)) {
     await c.setRoomAffiliation(roomJid, jid, aff);
   }
-  await c.leaveRoom(roomJid, 'admin');
+  await leaveRoom(c, roomJid, 'admin', awaitLeave);
 }
 
 export function nodeConfigForm(config: Record<string, string | boolean | string[]>): DataForm {
@@ -139,6 +153,8 @@ export async function ensureNode(
   node: string,
   config: Record<string, string | boolean | string[]>,
   affiliations: PubsubAffiliation[],
+  /** Affiliation that removes a stale affiliate from the whitelist. 'none' per XEP-0060; OpenFire needs 'outcast'. */
+  revokeAffiliation: 'none' | 'outcast' = 'none',
 ): Promise<void> {
   try {
     await c.createNode(service, node, nodeConfigForm(config));
@@ -150,8 +166,8 @@ export async function ensureNode(
   const wanted = new Set(affiliations.map((a) => String(a.jid)));
   const current = await c.getNodeAffiliations(service, node);
   const stale = (current.items ?? [])
-    .filter((i) => i.affiliation !== 'owner' && !wanted.has(String(i.jid)))
-    .map((i) => ({ jid: String(i.jid), affiliation: 'none' as const }));
+    .filter((i) => i.affiliation !== 'owner' && i.affiliation !== revokeAffiliation && !wanted.has(String(i.jid)))
+    .map((i) => ({ jid: String(i.jid), affiliation: revokeAffiliation }));
   if (stale.length || affiliations.length) await c.updateNodeAffiliations(service, node, [...stale, ...affiliations]);
   // Subscriptions outlive affiliation removal on some servers (ejabberd: a subscribed user keeps
   // reading and receiving events after leaving the whitelist), so drop subscriptions of non-members.

@@ -1,0 +1,53 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="3nowqqyu0z" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1zNHVzZXItMTc5Mjg1MzYzMTY0OC1lOGMwYyxyPTdhMzRjMTk1MjJhMDQyYTJjODNmY2JhNTc4YWY3MWY4NWI1ZmRlMTY4YmEyMDQ5YjBmNjU0OGVhZGZmZTVhMzk=</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj03YTM0YzE5NTIyYTA0MmEyYzgzZmNiYTU3OGFmNzFmODViNWZkZTE2OGJhMjA0OWIwZjY1NDhlYWRmZmU1YTM5ZWY3NDlmZjAtMDNiYi00ZWY2LThkNzgtZTllODY2YmM4OGRhLHM9TC9xejA5RGxBRmlvTDNjdkh1VGhVZi9LMnpHRXkzNXAsaT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9N2EzNGMxOTUyMmEwNDJhMmM4M2ZjYmE1NzhhZjcxZjg1YjVmZGUxNjhiYTIwNDliMGY2NTQ4ZWFkZmZlNWEzOWVmNzQ5ZmYwLTAzYmItNGVmNi04ZDc4LWU5ZTg2NmJjODhkYSxwPWhTUXFRVTZoMUdwMnVnY1ZqK1F6bzZIMTJXdz0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj1IRE9vdGc3VWltbmZ3NnFJbEFkUWMyV0lRM2M9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="3nowqqyu0z" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="z0r4ed3DKnC7aYnMEVHRiK7Y0+o="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="016fdc19-8ccc-4a1a-acc4-db96530846d0" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>t-1792853631921-uju7n</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="016fdc19-8ccc-4a1a-acc4-db96530846d0" to="localhost/8740222d-ea20-4529-993d-aa05b3b870b5"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>s4user-1792853631648-e8c0c@localhost/t-1792853631921-uju7n</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="1b0e2137-fbef-4444-9842-66b1b1927d01"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="03d521d6-0913-4609-8555-e1ee0d5f2a6f" from="s4user-1792853631648-e8c0c@localhost/t-1792853631866-724q2" to="s4user-1792853631648-e8c0c@localhost/t-1792853631921-uju7n"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="1b0e2137-fbef-4444-9842-66b1b1927d01" from="s4user-1792853631648-e8c0c@localhost/t-1792853631921-uju7n" to="s4user-1792853631648-e8c0c@localhost/t-1792853631921-uju7n"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<close xmlns='urn:ietf:params:xml:ns:xmpp-framing'/>

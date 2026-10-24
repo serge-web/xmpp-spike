@@ -1,0 +1,425 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="56t65ekist" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1hZG1pbixyPWEyODA5ZWNjMzk2MGI5NTVlOGZlNDZlMTAxZjRlY2I1YThhYWM2Nzc2NDcwOTExZmI2YmE2ZTUzYzdhY2U5YjQ=</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj1hMjgwOWVjYzM5NjBiOTU1ZThmZTQ2ZTEwMWY0ZWNiNWE4YWFjNjc3NjQ3MDkxMWZiNmJhNmU1M2M3YWNlOWI0OTMyMDMyM2EtNDU1NS00NDZmLWFhODMtMTYyMjBjNzY4NzQxLHM9YkhZeE9CeUoxYUdCNUNRZnNaYUVGS2NHOU92RjNMNm8saT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9YTI4MDllY2MzOTYwYjk1NWU4ZmU0NmUxMDFmNGVjYjVhOGFhYzY3NzY0NzA5MTFmYjZiYTZlNTNjN2FjZTliNDkzMjAzMjNhLTQ1NTUtNDQ2Zi1hYTgzLTE2MjIwYzc2ODc0MSxwPWpVNU03WnIvZUxNMGVEL2RldjdCYmVxZUZEVT0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj1XWThKSE43UXlFNVpXM20zOE9SNEo4VEx5bUk9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="56t65ekist" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="z0r4ed3DKnC7aYnMEVHRiK7Y0+o="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5a0d13fb-8299-4898-bb78-ea2b673f8264" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>s4-1792853631655-ip650</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="5a0d13fb-8299-4898-bb78-ea2b673f8264" to="localhost/660c41b4-5796-41ac-a771-21913e64f710"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>admin@localhost/s4-1792853631655-ip650</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="6332ccc5-cb49-4a8d-adb9-bfa158a9cf03"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="dffb29a6-d0d3-43a4-a5b0-bb6fdf12bdf1" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#add-user" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="6332ccc5-cb49-4a8d-adb9-bfa158a9cf03" from="admin@localhost/s4-1792853631655-ip650" to="admin@localhost/s4-1792853631655-ip650"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="dffb29a6-d0d3-43a4-a5b0-bb6fdf12bdf1" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="Sgu6uLi8g1DCdeZ" node="http://jabber.org/protocol/admin#add-user" status="executing"><x xmlns="jabber:x:data" type="form"><title>Adding a user</title><instructions>Fill out this form to add a user.</instructions><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="jid-single" label="The Jabber ID for the account to be added" var="accountjid"><required/></field><field type="text-private" label="The password for this account" var="password"/><field type="text-private" label="Retype password" var="password-verify"/><field type="text-single" label="Email address" var="email"/><field type="text-single" label="Given name" var="given_name"/><field type="text-single" label="Family name" var="surname"/></x><actions execute="complete"><complete/></actions></command></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5528a8ea-4dcf-464e-9e7f-d2dc7aa20951" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#add-user" sessionid="Sgu6uLi8g1DCdeZ" action="complete"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/admin</value></field><field var="accountjid"><value>s4user-1792853631648-e8c0c@localhost</value></field><field var="password"><value>pw-one</value></field><field var="password-verify"><value>pw-one</value></field></x></command></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="5528a8ea-4dcf-464e-9e7f-d2dc7aa20951" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="Sgu6uLi8g1DCdeZ" node="http://jabber.org/protocol/admin#add-user" status="completed"><note type="info">Operation finished successfully.</note></command></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='2' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="ab324340-d18f-4ccc-8674-33b73c163d95" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#change-user-password" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="ab324340-d18f-4ccc-8674-33b73c163d95" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="65nNLemoY3bEXl5" node="http://jabber.org/protocol/admin#change-user-password" status="executing"><x xmlns="jabber:x:data" type="form"><title>Changing a User Password</title><instructions>Fill out this form to change a user's password.</instructions><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="jid-single" label="The Jabber ID for this account" var="accountjid"><required/></field><field type="text-private" label="The new password" var="password"><required/></field></x><actions execute="complete"><complete/></actions></command></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="c519a9c3-b940-4a76-baa0-decd229c86d8" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#change-user-password" sessionid="65nNLemoY3bEXl5" action="complete"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/admin</value></field><field var="accountjid"><value>s4user-1792853631648-e8c0c@localhost</value></field><field var="password"><value>pw-two</value></field></x></command></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='3' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="c519a9c3-b940-4a76-baa0-decd229c86d8" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="65nNLemoY3bEXl5" node="http://jabber.org/protocol/admin#change-user-password" status="completed"><note type="info">Operation finished successfully.</note></command></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='4' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="abcad7f2-9a57-43e7-80a7-22cd52d4f0b8" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#get-online-users-list" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="abcad7f2-9a57-43e7-80a7-22cd52d4f0b8" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="xyvLWNcKIhUoWge" node="http://jabber.org/protocol/admin#get-online-users-list" status="executing"><x xmlns="jabber:x:data" type="form"><title>Requesting List of Online Users</title><instructions>Fill out this form to request the online users of this service.</instructions><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="list-single" label="Maximum number of items to show" var="max_items"><option label="25"><value>25</value></option><option label="50"><value>50</value></option><option label="75"><value>75</value></option><option label="100"><value>100</value></option><option label="150"><value>150</value></option><option label="200"><value>200</value></option><option label="None"><value>none</value></option></field></x><actions execute="complete"><complete/></actions></command></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="89aff454-ff7c-435c-9096-f33e483d6a72" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#get-online-users-list" sessionid="xyvLWNcKIhUoWge" action="complete"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/admin</value></field><field var="max_items"><value>100</value></field></x></command></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="5"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='5' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="89aff454-ff7c-435c-9096-f33e483d6a72" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="xyvLWNcKIhUoWge" node="http://jabber.org/protocol/admin#get-online-users-list" status="completed"><x xmlns="jabber:x:data" type="result"><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="jid-multi" label="The list of all online users" var="onlineuserjids"><value>admin@localhost</value><value>s4user-1792853631648-e8c0c@localhost</value></field></x></command></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='6' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="ec0c1f2f-7a12-49e7-9e79-2688d4b69d53" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#end-user-session" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="ec0c1f2f-7a12-49e7-9e79-2688d4b69d53" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="M6bre8ABhE1URs1" node="http://jabber.org/protocol/admin#end-user-session" status="executing"><x xmlns="jabber:x:data" type="form"><title>Ending a User Session</title><instructions>Fill out this form to end a user's session.</instructions><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="jid-multi" label="The Jabber ID(s) for which to end sessions" var="accountjids"><required/></field></x><actions execute="complete"><complete/></actions></command></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="8415155f-d429-4f45-8118-b3c3c1b14756" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#end-user-session" sessionid="M6bre8ABhE1URs1" action="complete"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/admin</value></field><field var="accountjids"><value>s4user-1792853631648-e8c0c@localhost</value></field></x></command></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='7' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="8415155f-d429-4f45-8118-b3c3c1b14756" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="M6bre8ABhE1URs1" node="http://jabber.org/protocol/admin#end-user-session" status="completed"><note type="info">Operation finished successfully. 2 user session(s) have been ended.</note></command></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='8' />
+
+<!-- out -->
+<presence xmlns="jabber:client" id="56a25bab-815f-448c-bc8b-4f68568589cf" to="s4room-1792853632968-6dsjq@conference.localhost/admin"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="56a25bab-815f-448c-bc8b-4f68568589cf" to="admin@localhost/s4-1792853631655-ip650" from="s4room-1792853632968-6dsjq@conference.localhost/admin"><x xmlns="vcard-temp:x:update"><photo/></x><occupant-id xmlns="urn:xmpp:occupant-id:0" id="36b20da122aec420d3854f4414cdf59985162137"/><x xmlns="http://jabber.org/protocol/muc#user"><item jid="admin@localhost/s4-1792853631655-ip650" affiliation="owner" role="moderator"/><status code="110"/><status code="100"/><status code="170"/><status code="201"/></x></presence>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="ac25408c-5ff8-4b6e-8567-40b669143457" to="s4room-1792853632968-6dsjq@conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/muc#owner"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<message xmlns="jabber:client" from="s4room-1792853632968-6dsjq@conference.localhost" type="groupchat" id="cfd4795f-4946-4264-8950-0b33b50be01b" to="admin@localhost/s4-1792853631655-ip650"><subject/></message>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="10"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='9' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="ac25408c-5ff8-4b6e-8567-40b669143457" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"><query xmlns="http://jabber.org/protocol/muc#owner"><x xmlns="jabber:x:data" type="form"><title>Room configuration</title><instructions>The room "s4room-1792853632968-6dsjq" has been created. To accept the default configuration, click the "OK" button. Or, modify the settings by completing the following form:</instructions><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/muc#roomconfig</value></field><field var="muc#roomconfig_roomname" type="text-single" label="Room Name"><value>s4room-1792853632968-6dsjq</value></field><field var="muc#roomconfig_roomdesc" type="text-single" label="Description"><value>s4room-1792853632968-6dsjq</value></field><field var="muc#roomconfig_changesubject" type="boolean" label="Allow Occupants to Change Subject"><value>0</value></field><field var="muc#roomconfig_maxusers" type="list-single" label="Maximum Room Occupants"><option label="10"><value>10</value></option><option label="20"><value>20</value></option><option label="30"><value>30</value></option><option label="40"><value>40</value></option><option label="50"><value>50</value></option><option label="None"><value>0</value></option><value>30</value></field><field var="muc#roomconfig_presencebroadcast" type="list-multi" label="Roles for Which Presence is Broadcast"><option label="Moderator"><value>moderator</value></option><option label="Participant"><value>participant</value></option><option label="Visitor"><value>visitor</value></option><value>moderator</value><value>participant</value><value>visitor</value></field><field var="muc#roomconfig_publicroom" type="boolean" label="List Room in Directory"><value>1</value></field><field var="muc#roomconfig_persistentroom" type="boolean" label="Room is Persistent"><value>0</value></field><field var="{http://igniterealtime.org}muc#roomconfig_retireondel" type="boolean" label="Retire room name on deletion to prevent reuse"><value>0</value></field><field var="muc#roomconfig_moderatedroom" type="boolean" label="Room is Moderated"><value>0</value></field><field var="muc#roomconfig_membersonly" type="boolean" label="Room is Members-only"><value>0</value></field><field type="fixed"><value>Note: by default, only admins can send invitations in a members-only room.</value></field><field var="muc#roomconfig_allowinvites" type="boolean" label="Allow Occupants to Invite Others"><value>0</value></field><field var="muc#roomconfig_passwordprotectedroom" type="boolean" label="Password Required to Enter Room"><value>0</value></field><field type="fixed"><value>If a password is required to enter this room, you must specify the password below.</value></field><field var="muc#roomconfig_roomsecret" type="text-private" label="Password"/><field var="muc#roomconfig_whois" type="list-single" label="Role that May Discover Real JIDs of Occupants"><option label="Moderator"><value>moderators</value></option><option label="Anyone"><value>anyone</value></option><value>anyone</value></field><field var="muc#roomconfig_allowpm" type="list-single" label="Allowed to Send Private Messages"><option label="Anyone"><value>anyone</value></option><option label="Moderator"><value>moderators</value></option><option label="Participant"><value>participants</value></option><option label="None"><value>none</value></option><value>anyone</value></field><field var="muc#roomconfig_enablelogging" type="boolean" label="Log Room Conversations"><value>1</value></field><field var="{http://igniterealtime.org}muc#roomconfig_preservehistondel" type="boolean" label="Preserve Chat History on Room Deletion"><value>1</value></field><field var="x-muc#roomconfig_reservednick" type="boolean" label="Only login with registered nickname"><value>0</value></field><field var="x-muc#roomconfig_canchangenick" type="boolean" label="Allow Occupants to change nicknames"><value>1</value></field><field type="fixed"><value>Allow Users to register with the room</value></field><field var="x-muc#roomconfig_registration" type="boolean" label="Allow Users to register with the room"><value>1</value></field><field type="fixed"><value>You may specify administrators of this room. Please provide one JID per line.</value></field><field var="muc#roomconfig_roomadmins" type="jid-multi" label="Room Admins"/><field type="fixed"><value>You may specify additional owners for this room. Please provide one JID per line.</value></field><field var="muc#roomconfig_roomowners" type="jid-multi" label="Room Owners"><value>admin@localhost</value></field></x></query></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="01e117d1-7e3e-497e-9cb9-bcff7719eff5" to="s4room-1792853632968-6dsjq@conference.localhost" type="set"><query xmlns="http://jabber.org/protocol/muc#owner"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/muc#roomconfig</value></field><field var="muc#roomconfig_persistentroom"><value>1</value></field><field var="muc#roomconfig_membersonly"><value>1</value></field></x></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='10' />
+
+<!-- in -->
+<message xmlns="jabber:client" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650" type="groupchat"><x xmlns="http://jabber.org/protocol/muc#user"><status code="104"/></x></message>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="01e117d1-7e3e-497e-9cb9-bcff7719eff5" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="83d93869-63ee-494b-ba8f-f090135137c7" to="s4room-1792853632968-6dsjq@conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="member"/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='11' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="83d93869-63ee-494b-ba8f-f090135137c7" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"><query xmlns="http://jabber.org/protocol/muc#admin"/></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="2fe3e952-6b02-499f-9909-79effd65c859" to="s4room-1792853632968-6dsjq@conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="admin"/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='12' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="2fe3e952-6b02-499f-9909-79effd65c859" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"><query xmlns="http://jabber.org/protocol/muc#admin"/></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="bc189783-8d93-4917-9a2a-1a6d3be66092" to="s4room-1792853632968-6dsjq@conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="outcast"/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="15"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='13' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="bc189783-8d93-4917-9a2a-1a6d3be66092" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"><query xmlns="http://jabber.org/protocol/muc#admin"/></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="88a94fc4-f204-440a-a99d-9833f8ccfd5b" to="s4room-1792853632968-6dsjq@conference.localhost" type="set"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="member" jid="s4user-1792853631648-e8c0c@localhost"/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='14' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="88a94fc4-f204-440a-a99d-9833f8ccfd5b" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="4c8f53f1-95e4-4f41-b7a5-42279b5762e0" to="s4room-1792853632968-6dsjq@conference.localhost/admin" type="unavailable"/>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='15' />
+
+<!-- in -->
+<presence xmlns="jabber:client" id="4c8f53f1-95e4-4f41-b7a5-42279b5762e0" to="admin@localhost/s4-1792853631655-ip650" type="unavailable" from="s4room-1792853632968-6dsjq@conference.localhost/admin"><occupant-id xmlns="urn:xmpp:occupant-id:0" id="36b20da122aec420d3854f4414cdf59985162137"/><x xmlns="http://jabber.org/protocol/muc#user"><item jid="admin@localhost/s4-1792853631655-ip650" affiliation="owner" role="none"/><status code="110"/></x></presence>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="ba79cdd2-65be-4741-8941-4ebe71a59f7e" to="s4room-1792853632968-6dsjq@conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="member"/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='16' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="ba79cdd2-65be-4741-8941-4ebe71a59f7e" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"><query xmlns="http://jabber.org/protocol/muc#admin"><item affiliation="member" jid="s4user-1792853631648-e8c0c@localhost"/></query></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='17' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="b39de33f-5f67-46b0-8249-486129969c42" to="s4room-1792853632968-6dsjq@conference.localhost" type="set"><query xmlns="http://jabber.org/protocol/muc#owner"><destroy/></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="b39de33f-5f67-46b0-8249-486129969c42" from="s4room-1792853632968-6dsjq@conference.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="2eaa60cc-1f08-41bc-8e0d-bef8d2391dc8" to="pubsub.localhost" type="set"><pubsub xmlns="http://jabber.org/protocol/pubsub"><create node="s4node-1792853633010-gqd3z"/><configure><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/pubsub#node_config</value></field><field var="pubsub#access_model"><value>whitelist</value></field><field var="pubsub#publish_model"><value>publishers</value></field></x></configure></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="20"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='18' />
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='19' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="2eaa60cc-1f08-41bc-8e0d-bef8d2391dc8" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="f42f436b-3704-4bd1-aad9-c1525188eca6" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><affiliations node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="f42f436b-3704-4bd1-aad9-c1525188eca6" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><affiliations node="s4node-1792853633010-gqd3z"><affiliation jid="admin@localhost" affiliation="owner"/></affiliations></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="092717d4-8da0-4708-953c-c161edc20eb2" to="pubsub.localhost" type="set"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><affiliations node="s4node-1792853633010-gqd3z"><affiliation jid="s4user-1792853631648-e8c0c@localhost" affiliation="publisher"/></affiliations></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='20' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="092717d4-8da0-4708-953c-c161edc20eb2" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="05b07e66-df34-42e7-9f0e-2966fbc5fe5c" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><subscriptions node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='21' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="05b07e66-df34-42e7-9f0e-2966fbc5fe5c" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><subscriptions node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="2bb94541-eab2-4e28-9b15-2b573607d825" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><configure node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='22' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="2bb94541-eab2-4e28-9b15-2b573607d825" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><configure node="s4node-1792853633010-gqd3z"><x xmlns="jabber:x:data" type="form"><title>Node configuration</title><instructions>Please provide the configuration for node "s4node-1792853633010-gqd3z".</instructions><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/pubsub#node_config</value></field><field var="pubsub#title" type="text-single" label="Short name for the node"><value></value></field><field var="pubsub#description" type="text-single" label="Description of the node"><value></value></field><field var="pubsub#node_type" type="text-single" label="Whether the node is a leaf (default) or a collection"><value>leaf</value></field><field var="pubsub#collection" type="text-single" label="The collection with which a node is affiliated."/><field var="pubsub#subscribe" type="boolean" label="Allow subscriptions to node"><value>1</value></field><field var="pubsub#subscription_required" type="boolean" label="New subscriptions require configuration"><value>0</value></field><field var="pubsub#deliver_payloads" type="boolean" label="Deliver payloads with event notifications"><value>1</value></field><field var="pubsub#notify_config" type="boolean" label="Notify subscribers when the node configuration changes"><value>1</value></field><field var="pubsub#notify_delete" type="boolean" label="Notify subscribers when the node is deleted"><value>1</value></field><field var="pubsub#notify_retract" type="boolean" label="Notify subscribers when items are removed from the node"><value>1</value></field><field var="pubsub#presence_based_delivery" type="boolean" label="Only deliver notifications to available users"><value>0</value></field><field var="pubsub#type" type="text-single" label="Type of payload data to be provided at this node"><value></value></field><field var="pubsub#body_xslt" type="text-single" label="Message body XSLT"><value></value></field><field var="pubsub#dataform_xslt" type="text-single" label="Payload XSLT"><value></value></field><field var="pubsub#access_model" type="list-single" label="Specify who may subscribe and retrieve items"><option><value>authorize</value></option><option><value>open</value></option><option><value>presence</value></option><option><value>roster</value></option><option><value>whitelist</value></option><value>whitelist</value></field><field var="pubsub#publish_model" type="list-single" label="Publisher model"><option><value>publishers</value></option><option><value>subscribers</value></option><option><value>open</value></option><value>publishers</value></field><field var="pubsub#roster_groups_allowed" type="list-multi" label="Roster groups allowed to subscribe"/><field var="pubsub#contact" type="jid-multi" label="People to contact with questions"/><field var="pubsub#language" type="text-single" label="Default language"><value>English</value></field><field var="pubsub#owner" type="jid-multi" label="Node owners"><value>admin@localhost</value></field><field var="pubsub#publisher" type="jid-multi" label="Node publishers"><value>s4user-1792853631648-e8c0c@localhost</value></field><field var="pubsub#itemreply" type="list-single" label="Select entity that should receive replies to items"><option><value>owner</value></option><option><value>publisher</value></option><value>owner</value></field><field var="pubsub#replyroom" type="jid-multi" label="Multi-user chat room to which replies should be sent"/><field var="pubsub#replyto" type="jid-multi" label="Users to which replies should be sent"/><field var="pubsub#send_item_subscribe" type="boolean" label="Send items to new subscribers"><value>1</value></field><field var="pubsub#persist_items" type="boolean" label="Persist items to storage"><value>0</value></field><field var="pubsub#max_items" type="text-single" label="Maximum number of items to persist"><value>1</value></field><field var="pubsub#max_payload_size" type="text-single" label="Max payload size in bytes"><value>10485760</value></field></x></configure></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="c756b46c-8e72-4cc6-9c31-500c4be99f5e" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><affiliations node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="25"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='23' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="c756b46c-8e72-4cc6-9c31-500c4be99f5e" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><affiliations node="s4node-1792853633010-gqd3z"><affiliation jid="admin@localhost" affiliation="owner"/><affiliation jid="s4user-1792853631648-e8c0c@localhost" affiliation="publisher"/></affiliations></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="6209e987-1ea1-4313-b067-c8a0a011e732" to="pubsub.localhost" type="set"><pubsub xmlns="http://jabber.org/protocol/pubsub#owner"><delete node="s4node-1792853633010-gqd3z"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='24' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="6209e987-1ea1-4313-b067-c8a0a011e732" from="pubsub.localhost" to="admin@localhost/s4-1792853631655-ip650"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='25' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="06655002-356a-4697-a9f6-4d155f8541df" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#delete-user" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="06655002-356a-4697-a9f6-4d155f8541df" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="ROTy5GJUA3NHL0N" node="http://jabber.org/protocol/admin#delete-user" status="executing"><x xmlns="jabber:x:data" type="form"><title>Deleting one or more users</title><instructions>Fill out this form to delete users.</instructions><field type="hidden" var="FORM_TYPE"><value>http://jabber.org/protocol/admin</value></field><field type="jid-multi" label="The Jabber ID(s) for the account to be deleted" var="accountjids"><required/></field></x><actions execute="complete"><complete/></actions></command></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="a247dcd2-8976-4d40-9c3c-1ee22a8686a0" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#delete-user" sessionid="ROTy5GJUA3NHL0N" action="complete"><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/admin</value></field><field var="accountjids"><value>s4user-1792853631648-e8c0c@localhost</value></field></x></command></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='26' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="a247dcd2-8976-4d40-9c3c-1ee22a8686a0" from="localhost" to="admin@localhost/s4-1792853631655-ip650"><command xmlns="http://jabber.org/protocol/commands" sessionid="ROTy5GJUA3NHL0N" node="http://jabber.org/protocol/admin#delete-user" status="completed"><note type="info">Operation finished successfully.</note></command></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='27' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="get" id="506-190" to="admin@localhost/s4-1792853631655-ip650" from="localhost"><query xmlns="jabber:iq:version"/></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="506-190" to="localhost" type="result"><query xmlns="jabber:iq:version"><name>stanzajs.org</name><version>12.22.1</version></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="30"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='28' />

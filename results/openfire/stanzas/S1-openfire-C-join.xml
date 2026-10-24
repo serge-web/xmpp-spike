@@ -1,0 +1,56 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="9vhmnbc2zj" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1ibHVlLW9icyxyPTM2NDRlNWYyN2UxMGYwOTdjZmQ2OTdmZWU3NzJiMzZkMjMyMGNkNmUxYWYxN2UyMTQwMzZjMzFiOGU5NTQyZjA=</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj0zNjQ0ZTVmMjdlMTBmMDk3Y2ZkNjk3ZmVlNzcyYjM2ZDIzMjBjZDZlMWFmMTdlMjE0MDM2YzMxYjhlOTU0MmYwMjFjMGU2NzQtY2M1Yi00MjRjLWI5OTMtMmM0ODI4ZDFkNWE5LHM9QktNaTIxRWo4eEdwVExXZVhJU25FWG9DVnQ4L1FSam8saT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9MzY0NGU1ZjI3ZTEwZjA5N2NmZDY5N2ZlZTc3MmIzNmQyMzIwY2Q2ZTFhZjE3ZTIxNDAzNmMzMWI4ZTk1NDJmMDIxYzBlNjc0LWNjNWItNDI0Yy1iOTkzLTJjNDgyOGQxZDVhOSxwPTJGanRZbDNZY3hINGgxRnM5S09rb24rYXFvTT0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj1kNDU1eTlvNlhKcW82dWY2M29uY1JPbmR3Szg9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="9vhmnbc2zj" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="z0r4ed3DKnC7aYnMEVHRiK7Y0+o="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="9506f72e-bc5c-4e21-ad87-cd58afeabe16" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>m-1792853500070-hjiee</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="9506f72e-bc5c-4e21-ad87-cd58afeabe16" to="localhost/35195338-35a4-4aad-b040-e2aa42fda4e8"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>blue-obs@localhost/m-1792853500070-hjiee</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="48695696-ad0f-436c-b648-e207848c7af1"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="54e750b3-ca91-4db6-85bf-10cb1f040ee8" to="s1-c@conference.localhost/blue-obs"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="48695696-ad0f-436c-b648-e207848c7af1" from="blue-obs@localhost/m-1792853500070-hjiee" to="blue-obs@localhost/m-1792853500070-hjiee"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="54e750b3-ca91-4db6-85bf-10cb1f040ee8" to="blue-obs@localhost/m-1792853500070-hjiee" from="s1-c@conference.localhost/blue-obs" type="error"><x xmlns="http://jabber.org/protocol/muc"></x><x xmlns="vcard-temp:x:update"><photo/></x><error code="407" type="auth"><registration-required xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">This is a member-only room. Membership is required.</text></error></presence>

@@ -1,0 +1,62 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="6u0nghkkbe" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1yZWQtY28scj1jMzkzYjcxOGNhMTNmZDcyYTRhZTJiNTMzNTBkOWNjNjBlZDhkNTUwNTFlZjYyMTdkOGZlZWI0YjEwYjE5ZDhk</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj1jMzkzYjcxOGNhMTNmZDcyYTRhZTJiNTMzNTBkOWNjNjBlZDhkNTUwNTFlZjYyMTdkOGZlZWI0YjEwYjE5ZDhkYjgyZmM5ZTgtMTRmMC00NTJhLThhZjgtMjdiY2Q1YzhkZmMzLHM9eTQwT3c5QjJtQmxxSGJPZ3VxWUZSbVBPZ3E5eEpjVUUsaT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9YzM5M2I3MThjYTEzZmQ3MmE0YWUyYjUzMzUwZDljYzYwZWQ4ZDU1MDUxZWY2MjE3ZDhmZWViNGIxMGIxOWQ4ZGI4MmZjOWU4LTE0ZjAtNDUyYS04YWY4LTI3YmNkNWM4ZGZjMyxwPTNLd0NLK0cyZ2psRGxlZHYraVlpbEtMWHo3MD0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj1XMHVNaWhkWlNjZ2RoUitzK0xYa1YvNjdqNGs9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="6u0nghkkbe" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="z0r4ed3DKnC7aYnMEVHRiK7Y0+o="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="799ffa54-d8e4-48df-b55b-e2360029f8ef" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>reg-1792853509800-vquu5</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="799ffa54-d8e4-48df-b55b-e2360029f8ef" to="localhost/cedf183a-14e1-4488-a4b6-cb0e066b537c"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>red-co@localhost/reg-1792853509800-vquu5</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="ffce1312-b21c-4c1d-87c8-7049ddb68e2f"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="cdc3de5f-e137-490d-805f-0a215580b3b2" to="s1-f@conference.localhost" type="get"><query xmlns="jabber:iq:register"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="ffce1312-b21c-4c1d-87c8-7049ddb68e2f" from="red-co@localhost/reg-1792853509800-vquu5" to="red-co@localhost/reg-1792853509800-vquu5"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="cdc3de5f-e137-490d-805f-0a215580b3b2" from="s1-f@conference.localhost" to="red-co@localhost/reg-1792853509800-vquu5"><query xmlns="jabber:iq:register"><x xmlns="jabber:x:data" type="form"><title>Registration with the room</title><instructions>Please provide the following information to register with this room.</instructions><field var="FORM_TYPE" type="hidden"><value>http://jabber.org/protocol/muc#register</value></field><field var="muc#register_first" type="text-single" label="First Name"><required/></field><field var="muc#register_last" type="text-single" label="Last Name"><required/></field><field var="muc#register_roomnick" type="text-single" label="Desired Nickname"><required/></field><field var="muc#register_url" type="text-single" label="Your URL"/><field var="muc#register_email" type="text-single" label="Email Address"/><field var="muc#register_faqentry" type="text-multi" label="FAQ Entry"/></x></query></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="reg-1792853509836-7qqo9" from="s1-f@conference.localhost" to="red-co@localhost/reg-1792853509800-vquu5"/>

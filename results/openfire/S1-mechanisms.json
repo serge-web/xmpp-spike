@@ -1,0 +1,45 @@
+{
+  "A moderated+membersonly, obs=member": {
+    "join": "joined role=participant aff=member",
+    "post": "DELIVERED"
+  },
+  "B voice revoked by moderator: in-session": {
+    "rolePresence": "no visitor presence",
+    "inSessionError": "forbidden"
+  },
+  "B voice revoked by moderator: after reconnect, no moderator": {
+    "join": "joined role=participant aff=member",
+    "post": "DELIVERED"
+  },
+  "C moderated+membersonly, obs=none": {
+    "join": "join refused: registration-required"
+  },
+  "D moderated open room, obs=none": {
+    "join": "joined role=visitor aff=none",
+    "post": "rejected: forbidden"
+  },
+  "D ... red-co (outcast)": {
+    "join": "join refused: forbidden"
+  },
+  "D ... anonymous user": {
+    "join": "joined role=visitor aff=none",
+    "post": "rejected: forbidden"
+  },
+  "D ... umpire-1 (no affiliation, not outcast)": {
+    "join": "joined role=visitor aff=none",
+    "post": "rejected: forbidden"
+  },
+  "E presencebroadcast=moderator only, obs=member": {
+    "join": "joined role=participant aff=member",
+    "post": "DELIVERED"
+  },
+  "F registration enabled: red-co self-registers in members-only room": {
+    "form": "form ok",
+    "regType": "result",
+    "members": "[{\"affiliation\":\"member\",\"jid\":\"red-co@localhost\"},{\"affiliation\":\"member\",\"jid\":\"blue-co@localhost\"}]"
+  },
+  "F ... red-co join after registering": {
+    "join": "joined role=participant aff=member",
+    "post": "DELIVERED"
+  }
+}

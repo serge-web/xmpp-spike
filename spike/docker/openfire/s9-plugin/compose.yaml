@@ -1,0 +1,24 @@
+# S9 only: an isolated OpenFire stack (own project, ports and volume) with the sketch plugin loaded.
+# The main stack in ../compose.yaml never sees this plugin.
+name: wrx-openfire-s9
+services:
+  openfire:
+    image: ghcr.io/igniterealtime/openfire:v5.1.2@sha256:5c9119cd4ea6edaa4dfead0cccbeb98847614d47d61715de8fd98c3b189670d6
+    entrypoint: ["/entrypoint-wrapper.sh"]
+    environment:
+      WRX_READONLY_JIDS: blue-obs@localhost
+    ports:
+      - "0.0.0.0:17070:7070"
+      - "0.0.0.0:19090:9090"
+    volumes:
+      - ../openfire.xml:/usr/local/openfire/conf_org/openfire.xml:ro
+      - ../entrypoint-wrapper.sh:/entrypoint-wrapper.sh:ro
+      - ./out:/opt/plugins:ro
+      - data:/var/lib/openfire
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:7070/"]
+      interval: 3s
+      timeout: 5s
+      retries: 60
+volumes:
+  data:

@@ -1,0 +1,317 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="32nr4d6xyn" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="ANONYMOUS">=</auth>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="32nr4d6xyn" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="fb89b507-c80c-47b4-a29b-28cdc60a2a75" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="fb89b507-c80c-47b4-a29b-28cdc60a2a75" to="localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="0819f6b3-9064-4283-aac6-1e7ef4f89826"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="e75d4201-19c5-45b2-aa56-32902ab38e05" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="game-setup"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="0819f6b3-9064-4283-aac6-1e7ef4f89826" from="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="e75d4201-19c5-45b2-aa56-32902ab38e05" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="game-setup"><item id="current"><json xmlns="urn:xmpp:json:0">{"title":"Test game"}</json></item></items></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5ca53236-16e7-4e33-a97c-e3953e1f551a" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="assets:theme"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="5ca53236-16e7-4e33-a97c-e3953e1f551a" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="assets:theme"><item id="logo"><json xmlns="urn:xmpp:json:0">{"logo":"data:image/png;base64,AAAA"}</json></item></items></pubsub></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="a6f3552f-bf5e-4c34-b922-cead05ab163c" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="objectives:blue"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='2' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="a6f3552f-bf5e-4c34-b922-cead05ab163c" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="objectives:blue"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='3' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="ffa57142-4ebc-4939-bec6-14f5fbb5061e" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="objectives:red"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="ffa57142-4ebc-4939-bec6-14f5fbb5061e" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="objectives:red"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='4' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="10159c08-85c8-453d-b992-e4fe25a5ff87" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="announcements"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="10159c08-85c8-453d-b992-e4fe25a5ff87" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="announcements"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="f5eda072-b07f-42b3-b585-a73ffff4337f" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="forces:blue"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="5"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='5' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="f5eda072-b07f-42b3-b585-a73ffff4337f" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="forces:blue"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="beb88da3-1e2e-42ff-9eff-4acbdc51a07d" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="roles:blue-co"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='6' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="beb88da3-1e2e-42ff-9eff-4acbdc51a07d" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="roles:blue-co"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="90f27dde-2c04-43c9-9e11-14eb61aa7a91" to="pubsub.localhost" type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="game-state"/><set xmlns="http://jabber.org/protocol/rsm"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='7' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="90f27dde-2c04-43c9-9e11-14eb61aa7a91" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="game-state"/><set xmlns="http://jabber.org/protocol/rsm"></set></pubsub><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><closed-node xmlns="http://jabber.org/protocol/pubsub#errors"/></error></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="b7c54b7a-e83b-44c0-8ab9-16ae4a6233a8" to="blue-hq@conference.localhost/anon-1792853631380-lamyx"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='8' />
+
+<!-- in -->
+<presence xmlns="jabber:client" id="b7c54b7a-e83b-44c0-8ab9-16ae4a6233a8" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46" from="blue-hq@conference.localhost/anon-1792853631380-lamyx" type="error"><x xmlns="http://jabber.org/protocol/muc"></x><x xmlns="vcard-temp:x:update"><photo/></x><error code="407" type="auth"><registration-required xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">This is a member-only room. Membership is required.</text></error></presence>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='9' />
+
+<!-- out -->
+<presence xmlns="jabber:client" id="edc78c8f-1224-4f1c-8223-0d898a933749" to="red-hq@conference.localhost/anon-1792853631384-6vwnk"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="edc78c8f-1224-4f1c-8223-0d898a933749" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46" from="red-hq@conference.localhost/anon-1792853631384-6vwnk" type="error"><x xmlns="http://jabber.org/protocol/muc"></x><x xmlns="vcard-temp:x:update"><photo/></x><error code="407" type="auth"><registration-required xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">This is a member-only room. Membership is required.</text></error></presence>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="10"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="1a9601a1-e6c2-4a2f-abd0-8a47b9909101" to="negotiation@conference.localhost/anon-1792853631388-xfc21"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='10' />
+
+<!-- in -->
+<presence xmlns="jabber:client" id="1a9601a1-e6c2-4a2f-abd0-8a47b9909101" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46" from="negotiation@conference.localhost/anon-1792853631388-xfc21" type="error"><x xmlns="http://jabber.org/protocol/muc"></x><x xmlns="vcard-temp:x:update"><photo/></x><error code="407" type="auth"><registration-required xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">This is a member-only room. Membership is required.</text></error></presence>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='11' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="9304eb86-ce8b-4ab2-b028-a82d7dcd92ef" to="blue-hq@conference.localhost" type="set"><query xmlns="urn:xmpp:mam:2" queryid="9304eb86-ce8b-4ab2-b028-a82d7dcd92ef"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="9304eb86-ce8b-4ab2-b028-a82d7dcd92ef" from="blue-hq@conference.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="urn:xmpp:mam:2" queryid="9304eb86-ce8b-4ab2-b028-a82d7dcd92ef"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">You are currently not allowed to access the archive of room 'blue-hq@conference.localhost'.</text></error></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='12' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="27df48e2-fb07-418a-af4b-8bb8b23eeaca" to="red-hq@conference.localhost" type="set"><query xmlns="urn:xmpp:mam:2" queryid="27df48e2-fb07-418a-af4b-8bb8b23eeaca"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="27df48e2-fb07-418a-af4b-8bb8b23eeaca" from="red-hq@conference.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="urn:xmpp:mam:2" queryid="27df48e2-fb07-418a-af4b-8bb8b23eeaca"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">You are currently not allowed to access the archive of room 'red-hq@conference.localhost'.</text></error></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='13' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="a29087bd-9e6b-42ee-827a-163c8226debd" to="negotiation@conference.localhost" type="set"><query xmlns="urn:xmpp:mam:2" queryid="a29087bd-9e6b-42ee-827a-163c8226debd"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="a29087bd-9e6b-42ee-827a-163c8226debd" from="negotiation@conference.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="urn:xmpp:mam:2" queryid="a29087bd-9e6b-42ee-827a-163c8226debd"><set xmlns="http://jabber.org/protocol/rsm"><max>5</max></set><x xmlns="jabber:x:data" type="submit"><field var="FORM_TYPE" type="hidden"><value>urn:xmpp:mam:2</value></field></x></query><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">You are currently not allowed to access the archive of room 'negotiation@conference.localhost'.</text></error></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='14' />
+
+<!-- out -->
+<presence xmlns="jabber:client" id="80534fbf-3293-4da0-9a58-227a5aad10a1" to="anonroom-1792853631412-hqtat@conference.localhost/anon"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="80534fbf-3293-4da0-9a58-227a5aad10a1" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46" from="anonroom-1792853631412-hqtat@conference.localhost/anon" type="error"><x xmlns="http://jabber.org/protocol/muc"></x><x xmlns="vcard-temp:x:update"><photo/></x><error code="405" type="cancel"><not-allowed xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">You do not have permission to create a new room.</text></error></presence>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="15"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='15' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5e79421a-a0a7-4fb4-8daf-dc02c55baf49" to="pubsub.localhost" type="set"><pubsub xmlns="http://jabber.org/protocol/pubsub"><publish node="game-setup"><item><json xmlns="urn:xmpp:json:0">{"hacked":true}</json></item></publish></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='16' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="5e79421a-a0a7-4fb4-8daf-dc02c55baf49" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><publish node="game-setup"><item><json xmlns="urn:xmpp:json:0">{"hacked":true}</json></item></publish></pubsub><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="5289904e-d570-47d0-b10b-965ecbe5e3f2" to="pubsub.localhost" type="set"><pubsub xmlns="http://jabber.org/protocol/pubsub"><create node="anonnode-1792853631419-e0gkh"/></pubsub></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="5289904e-d570-47d0-b10b-965ecbe5e3f2" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><pubsub xmlns="http://jabber.org/protocol/pubsub"><create node="anonnode-1792853631419-e0gkh"/></pubsub><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="6922eda0-adf1-44a5-ae12-815f9a9d0836" to="localhost" type="set"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#get-registered-users-list" action="execute"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='17' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="error" id="6922eda0-adf1-44a5-ae12-815f9a9d0836" from="localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><command xmlns="http://jabber.org/protocol/commands" node="http://jabber.org/protocol/admin#get-registered-users-list" action="execute"></command><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/></error></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="bc15516b-cb53-43d3-b185-27cdfd04f8ef" to="pubsub.localhost" type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='18' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="bc15516b-cb53-43d3-b185-27cdfd04f8ef" from="pubsub.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="http://jabber.org/protocol/disco#items"><item jid="pubsub.localhost" name="" node="roles:blue-co"/><item jid="pubsub.localhost" name="" node="rooms:blue-hq"/><item jid="pubsub.localhost" name="" node="roles:umpire-1"/><item jid="pubsub.localhost" name="" node="announcements"/><item jid="pubsub.localhost" name="" node="objectives:red"/><item jid="pubsub.localhost" name="" node="s3-big"/><item jid="pubsub.localhost" name="" node="roles:red-co"/><item jid="pubsub.localhost" name="" node="roles:blue-obs"/><item jid="pubsub.localhost" name="" node="game-state"/><item jid="pubsub.localhost" name="" node="forces:umpire"/><item jid="pubsub.localhost" name="" node="assets:theme"/><item jid="pubsub.localhost" name="" node="rooms:red-hq"/><item jid="pubsub.localhost" name="" node="forces:blue"/><item jid="pubsub.localhost" name="" node="forces:red"/><item jid="pubsub.localhost" name="" node="game-setup"/><item jid="pubsub.localhost" name="" node="objectives:blue"/><item jid="pubsub.localhost" name="" node="rooms:negotiation"/></query></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='19' />
+
+<!-- out -->
+<iq xmlns="jabber:client" id="e30a17e6-8f3f-4a9b-a9ba-4599b2562ef3" to="conference.localhost" type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="e30a17e6-8f3f-4a9b-a9ba-4599b2562ef3" from="conference.localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="http://jabber.org/protocol/disco#items"></query></iq>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3' />
+
+<!-- out -->
+<a xmlns="urn:xmpp:sm:3" h="20"/>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="8b4801b2-41a5-4961-9cf2-68e032a27e9c" to="localhost" type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='20' />
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="8b4801b2-41a5-4961-9cf2-68e032a27e9c" from="localhost" to="ea1ae362-eef4-4c2a-892f-c75aee8efd46@localhost/ea1ae362-eef4-4c2a-892f-c75aee8efd46"><query xmlns="http://jabber.org/protocol/disco#items"><item jid="search.localhost" name="User Search"/><item jid="proxy.localhost" name="Socks 5 Bytestreams Proxy"/><item jid="pubsub.localhost" name="Publish-Subscribe service"/><item jid="conference.localhost" name="Public Chatrooms"/></query></iq>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='21' />
