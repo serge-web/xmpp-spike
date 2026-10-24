@@ -1,0 +1,71 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="tl22m9txj" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="ANONYMOUS">=</auth>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="tl22m9txj" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="4e3f6f6a-4a1c-4222-9307-d0e04c352597" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="4e3f6f6a-4a1c-4222-9307-d0e04c352597" to="localhost/bcd82d40-e785-4544-9213-67c6c96ad83d"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="f4b519d1-c7b6-44ff-8e18-0c62868fea65"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="d04ce4e4-c2ef-4400-b548-17bdce19c8c4" to="s1-d@conference.localhost/anon"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="f4b519d1-c7b6-44ff-8e18-0c62868fea65" from="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d" to="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="c2b1f731-6052-47bb-b154-9b96c89e4e91" to="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d" from="s1-d@conference.localhost/blue-co"><x xmlns="vcard-temp:x:update"><photo/></x><occupant-id xmlns="urn:xmpp:occupant-id:0" id="29e47d35a967f972c506758091c9eda0d185591d"/><x xmlns="http://jabber.org/protocol/muc#user"><item affiliation="member" role="participant"/></x></presence>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="d04ce4e4-c2ef-4400-b548-17bdce19c8c4" to="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d" from="s1-d@conference.localhost/anon"><x xmlns="vcard-temp:x:update"><photo/></x><occupant-id xmlns="urn:xmpp:occupant-id:0" id="2cf9862b7192aad1423fe8e05ae19e4e7a34b0b3"/><x xmlns="http://jabber.org/protocol/muc#user"><item jid="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d" affiliation="none" role="visitor"/><status code="110"/><status code="170"/></x></presence>
+
+<!-- out -->
+<message xmlns="jabber:client" id="40cc9403-5138-4b08-a2c1-5f5c447cdb06" to="s1-d@conference.localhost" type="groupchat"><origin-id xmlns="urn:xmpp:sid:0" id="40cc9403-5138-4b08-a2c1-5f5c447cdb06"/><body>post-1792853502618-40z8b</body></message>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<message xmlns="jabber:client" from="s1-d@conference.localhost" type="groupchat" id="484915f7-e9b2-4a97-bda4-d29af69171b0" to="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d"><subject/></message>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />
+
+<!-- in -->
+<message xmlns="jabber:client" id="40cc9403-5138-4b08-a2c1-5f5c447cdb06" to="bcd82d40-e785-4544-9213-67c6c96ad83d@localhost/bcd82d40-e785-4544-9213-67c6c96ad83d" type="error" from="s1-d@conference.localhost"><origin-id xmlns="urn:xmpp:sid:0" id="40cc9403-5138-4b08-a2c1-5f5c447cdb06"></origin-id><body>post-1792853502618-40z8b</body><stanza-id xmlns="urn:xmpp:sid:0" id="43d041b0-86a1-4c11-b8e0-39d8271a8c99" by="s1-d@conference.localhost"/><occupant-id xmlns="urn:xmpp:occupant-id:0" id="2cf9862b7192aad1423fe8e05ae19e4e7a34b0b3"/><error code="403" type="auth"><forbidden xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/><text xmlns="urn:ietf:params:xml:ns:xmpp-stanzas">You are not allowed to send a public message to the room (you might require 'voice').</text></error></message>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='2' />

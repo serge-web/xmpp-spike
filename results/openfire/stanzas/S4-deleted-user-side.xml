@@ -1,0 +1,62 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="ki7pco4be" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><mechanism>ANONYMOUS</mechanism><mechanism>SCRAM-SHA-1</mechanism></mechanisms><ver xmlns="urn:xmpp:features:rosterver"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="jpvxbjTwaZJkEsfLJUtOnhjRjJw="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1zNHVzZXItMTc5Mjg1MzYzMTY0OC1lOGMwYyxyPWI4MmM5ZGYzYjQ2MWRjMWRlYzkwNWYwNDU0ZDY3NDg1OWFiYjYxM2NiYzQ0YzdiZTRjMTQyMGY1MWRkZTE4Y2Y=</auth>
+
+<!-- in -->
+<challenge xmlns="urn:ietf:params:xml:ns:xmpp-sasl">cj1iODJjOWRmM2I0NjFkYzFkZWM5MDVmMDQ1NGQ2NzQ4NTlhYmI2MTNjYmM0NGM3YmU0YzE0MjBmNTFkZGUxOGNmZDdiOGNkZGUtZmYzMS00YzdlLWI4ZGUtOWI5YmM5ODlmMzhiLHM9TC9xejA5RGxBRmlvTDNjdkh1VGhVZi9LMnpHRXkzNXAsaT00MDk2</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9YjgyYzlkZjNiNDYxZGMxZGVjOTA1ZjA0NTRkNjc0ODU5YWJiNjEzY2JjNDRjN2JlNGMxNDIwZjUxZGRlMThjZmQ3YjhjZGRlLWZmMzEtNGM3ZS1iOGRlLTliOWJjOTg5ZjM4YixwPXFKbnlhR1M1QzQ5SGZSUHl6WC9BdXdMSWxjND0=</response>
+
+<!-- in -->
+<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl">dj11UUZ0alYranFtNlVPcDB3NWp2WGpaZTNHSEE9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" from="localhost" id="ki7pco4be" xml:lang="en" version="1.0"/>
+
+<!-- in -->
+<stream:features xmlns:stream="http://etherx.jabber.org/streams"><ver xmlns="urn:xmpp:features:rosterver"/><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/><session xmlns="urn:ietf:params:xml:ns:xmpp-session"><optional/></session><sm xmlns="urn:xmpp:sm:2"/><sm xmlns="urn:xmpp:sm:3"/><csi xmlns="urn:xmpp:csi:0"/><c xmlns="http://jabber.org/protocol/caps" hash="sha-1" node="https://www.igniterealtime.org/projects/openfire/" ver="z0r4ed3DKnC7aYnMEVHRiK7Y0+o="/><limits xmlns="urn:xmpp:stream-limits:0"><max-bytes>1048576</max-bytes><idle-seconds>360</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="f91ab569-0cf0-4d75-9b45-f152ff197fe1" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>t-1792853633024-g7l9u</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="result" id="f91ab569-0cf0-4d75-9b45-f152ff197fe1" to="localhost/b35c33c8-aaf5-4661-8289-7d53ee3a733c"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><jid>s4user-1792853631648-e8c0c@localhost/t-1792853633024-g7l9u</jid></bind></iq>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="2692a05b-b3d4-4a37-b14b-ad35420f53a1"/>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- in -->
+<presence xmlns="jabber:client" id="2692a05b-b3d4-4a37-b14b-ad35420f53a1" from="s4user-1792853631648-e8c0c@localhost/t-1792853633024-g7l9u" to="s4user-1792853631648-e8c0c@localhost/t-1792853633024-g7l9u"><x xmlns="vcard-temp:x:update"><photo/></x></presence>
+
+<!-- in -->
+<message xmlns="jabber:client" from="s4room-1792853632968-6dsjq@conference.localhost" to="s4user-1792853631648-e8c0c@localhost"><x xmlns="http://jabber.org/protocol/muc#user"><invite from="admin@localhost"/></x><x xmlns="jabber:x:conference" jid="s4room-1792853632968-6dsjq@conference.localhost"></x><delay xmlns="urn:xmpp:delay" from="localhost" stamp="2026-10-24T14:53:53.000Z"/></message>
+
+<!-- in -->
+<enabled xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<iq xmlns="jabber:client" type="get" id="257-191" to="s4user-1792853631648-e8c0c@localhost/t-1792853633024-g7l9u" from="localhost"><query xmlns="jabber:iq:version"/></iq>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="257-191" to="localhost" type="result"><query xmlns="jabber:iq:version"><name>stanzajs.org</name><version>12.22.1</version></query></iq>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1' />

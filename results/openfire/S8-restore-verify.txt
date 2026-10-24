@@ -1,0 +1,100 @@
+ok   login admin
+ok   login blue-co
+ok   login blue-obs
+ok   login red-co
+ok   login umpire-1
+ok   room blue-hq members-only+persistent
+ok   room blue-hq members blue-obs@localhost,blue-co@localhost,umpire-1@localhost
+ok   room red-hq members-only+persistent
+ok   room red-hq members red-co@localhost,umpire-1@localhost
+ok   room negotiation members-only+persistent
+ok   room negotiation members red-co@localhost,blue-co@localhost,umpire-1@localhost
+ok   node game-setup access_model=open
+ok   node assets:theme access_model=open
+ok   node forces:blue access_model=whitelist
+ok   node forces:blue: blue-co can read (ok)
+ok   node forces:blue: blue-obs can read (ok)
+ok   node forces:blue: red-co can read (ok)
+ok   node forces:blue: umpire-1 can read (ok)
+ok   node forces:blue publishers 
+ok   node forces:red access_model=whitelist
+ok   node forces:red: blue-co can read (ok)
+ok   node forces:red: blue-obs can read (ok)
+ok   node forces:red: red-co can read (ok)
+ok   node forces:red: umpire-1 can read (ok)
+ok   node forces:red publishers 
+ok   node forces:umpire access_model=whitelist
+ok   node forces:umpire: blue-co can read (ok)
+ok   node forces:umpire: blue-obs can read (ok)
+ok   node forces:umpire: red-co can read (ok)
+ok   node forces:umpire: umpire-1 can read (ok)
+ok   node forces:umpire publishers 
+ok   node roles:blue-co access_model=whitelist
+ok   node roles:blue-co: blue-co can read (ok)
+ok   node roles:blue-co: blue-obs can read (ok)
+ok   node roles:blue-co: red-co can read (ok)
+ok   node roles:blue-co: umpire-1 can read (ok)
+ok   node roles:blue-co publishers 
+ok   node roles:blue-obs access_model=whitelist
+ok   node roles:blue-obs: blue-co can read (ok)
+ok   node roles:blue-obs: blue-obs can read (ok)
+ok   node roles:blue-obs: red-co can read (ok)
+ok   node roles:blue-obs: umpire-1 can read (ok)
+ok   node roles:blue-obs publishers 
+ok   node roles:red-co access_model=whitelist
+ok   node roles:red-co: blue-co can read (ok)
+ok   node roles:red-co: blue-obs can read (ok)
+ok   node roles:red-co: red-co can read (ok)
+ok   node roles:red-co: umpire-1 can read (ok)
+ok   node roles:red-co publishers 
+ok   node roles:umpire-1 access_model=whitelist
+ok   node roles:umpire-1: blue-co can read (ok)
+ok   node roles:umpire-1: blue-obs can read (ok)
+ok   node roles:umpire-1: red-co can read (ok)
+ok   node roles:umpire-1: umpire-1 can read (ok)
+ok   node roles:umpire-1 publishers 
+ok   node rooms:blue-hq access_model=whitelist
+ok   node rooms:blue-hq: blue-co can read (ok)
+ok   node rooms:blue-hq: blue-obs can read (ok)
+ok   node rooms:blue-hq: red-co can read (ok)
+ok   node rooms:blue-hq: umpire-1 can read (ok)
+ok   node rooms:blue-hq publishers 
+ok   node rooms:red-hq access_model=whitelist
+ok   node rooms:red-hq: blue-co can read (ok)
+ok   node rooms:red-hq: blue-obs can read (ok)
+ok   node rooms:red-hq: red-co can read (ok)
+ok   node rooms:red-hq: umpire-1 can read (ok)
+ok   node rooms:red-hq publishers 
+ok   node rooms:negotiation access_model=whitelist
+ok   node rooms:negotiation: blue-co can read (ok)
+ok   node rooms:negotiation: blue-obs can read (ok)
+ok   node rooms:negotiation: red-co can read (ok)
+ok   node rooms:negotiation: umpire-1 can read (ok)
+ok   node rooms:negotiation publishers 
+ok   node objectives:blue access_model=whitelist
+ok   node objectives:blue: blue-co can read (ok)
+ok   node objectives:blue: blue-obs can read (ok)
+ok   node objectives:blue: red-co cannot read (not-allowed)
+ok   node objectives:blue: umpire-1 can read (ok)
+ok   node objectives:blue publishers umpire-1@localhost
+ok   node objectives:red access_model=whitelist
+ok   node objectives:red: blue-co cannot read (not-allowed)
+ok   node objectives:red: blue-obs cannot read (not-allowed)
+ok   node objectives:red: red-co can read (ok)
+ok   node objectives:red: umpire-1 can read (ok)
+ok   node objectives:red publishers umpire-1@localhost
+ok   node announcements access_model=whitelist
+ok   node announcements: blue-co can read (ok)
+ok   node announcements: blue-obs can read (ok)
+ok   node announcements: red-co can read (ok)
+ok   node announcements: umpire-1 can read (ok)
+ok   node announcements publishers 
+ok   node game-state access_model=whitelist
+ok   node game-state: blue-co can read (ok)
+ok   node game-state: blue-obs can read (ok)
+ok   node game-state: red-co can read (ok)
+ok   node game-state: umpire-1 can read (ok)
+ok   node game-state publishers 
+ok   item s8-1792853127303 in objectives:blue
+ok   MAM blue-hq contains s8-1792853127303 (latest 34)
+all ok
