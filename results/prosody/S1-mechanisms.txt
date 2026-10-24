@@ -1,0 +1,11 @@
+M1 after revoke, admin still in room: {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}}
+M1 after revoke, admin left (same session): {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}}
+M1 rejoin role/aff: participant member post: {"delivered":1}
+M2 obs role/aff: visitor none post: {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}} raw: {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}}
+M2 obs after reconnect: visitor {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}}
+M2 red-co (outcast) join: {"by":"s1-m2@conference.localhost","condition":"forbidden","type":"auth"}
+M2 anonymous join: visitor jid glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht
+M2 new unlisted user join: visitor
+M3 obs join: {"by":"s1-m3@conference.localhost","condition":"registration-required","type":"auth"}
+M4 revoke in unmoderated room: ok post: {"delivered":0,"error":{"alternateLanguageText":[{"lang":"","value":"You do not currently have permission to speak in this chat"}],"condition":"forbidden","text":"You do not currently have permission to speak in this chat","type":"auth"}}
+M4 rejoin role: participant

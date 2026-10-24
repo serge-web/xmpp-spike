@@ -149,3 +149,6 @@ vite.config.ts.timestamp-*
 .turbo
 spike/scratch/
 .claude/worktrees/
+spike/docker/prosody/tls/
+spike/docker/prosody/backup/
+spike/docker/prosody/image/
