@@ -69,8 +69,14 @@ async function verify(marker: string) {
     const b = m.archive?.item?.message?.body;
     if (b) found.push(b);
   });
-  await co.searchHistory(`blue-hq@${cfg.mucDomain}`, { paging: { before: '', max: 50 } });
-  check(found.includes(marker), `MAM blue-hq contains ${marker} (${found.length} msgs in last page)`);
+  // Page back (up to 40 x 50) so later traffic, e.g. a writer during a hot backup, doesn't hide the marker.
+  let before = '';
+  for (let page = 0; page < 40 && !found.includes(marker); page++) {
+    const fin = await co.searchHistory(`blue-hq@${cfg.mucDomain}`, { paging: { before, max: 50 } });
+    before = fin.paging?.first ?? '';
+    if (fin.complete || !before) break;
+  }
+  check(found.includes(marker), `MAM blue-hq contains ${marker} (searched ${found.length} msgs)`);
   if (failures.length) {
     console.log(`${failures.length} failure(s)`);
     process.exitCode = 1;

@@ -211,6 +211,21 @@ The reference config now removes everything WRX1 doesn't use. The full suite (83
   - MAM retention (`ejabberdctl delete_old_mam_messages` from cron, if games are archived elsewhere);
   - `max_user_sessions` (10).
 
+## Hot backup and load (de-risking, 2026-10-24)
+**Hot backup:** `ops/hot-backup.sh` runs SQLite's online `.backup` inside the container, then `PRAGMA integrity_check` (ok), while ejabberd keeps serving.
+- A writer posted about 400 room messages during the backup. The 56 written before the snapshot point were in the restored archive.
+- Restore (`ops/hot-restore.sh`: stop, replace `ejabberd.db`, start) passed `spike/s8-state.ts verify`. A marker written after the backup was absent, and the observer was still `visitor`.
+- With `default_db: sql`, Mnesia holds no persistent data (only `LATEST.LOG`), so the SQLite file is the whole state.
+
+**Load (`spike/load.ts`, one Node process driving every client, hardened config, SQLite):**
+| Players (3 rooms) | Post interval | Duration | Messages in → deliveries | Room latency p50 / p95 / max | PubSub event p50 / p95 | Errors / disconnects | ejabberd CPU / RAM |
+|---|---|---|---|---|---|---|---|
+| 40 | 2 s | 60 s | 1,143 → 15,259 (all) | 10 / 31 / 1,040 ms | 11 / 30 ms | 0 / 0 | <1% / 94 MB |
+| 200 | 1 s | 30 s | 5,149 → 343,283 (all) | 218 / 678 / 1,379 ms | 92 / 13,886 ms | 0 / 0 | ~45% / 250 MB |
+- The 200-player run is far beyond expected WRX1 traffic, which is a few messages per player per minute: about 11k deliveries/s.
+- Its PubSub p95 is most likely a load-generator limit (one Node process parsing about 11k msg/s), not the server, which had CPU headroom. Treat it as an upper bound, not a server figure.
+- Join for 200 clients took 5.3 s.
+
 ## Operational notes
 - **Install:** one container, official image, one YAML file. Admin bootstrap is a single `ejabberdctl register`; everything else is over XMPP.
 - **Storage:** switch to bundled SQLite (`default_db: sql`). The stock Mnesia backend failed S5 performance. With SQLite the whole state is one volume.

@@ -103,6 +103,18 @@ Multiple sessions:
 
 **Design implication of R-B:** re-applying an observer's voice revocation needs the observer to be in the room once, so the admin must be able to log in as the observer. **The admin UI must manage observer passwords** (set or reset them; S4 shows this works over XMPP), and observers must not be able to change their own password, or the admin can't re-apply R-B. Otherwise any membership change for an observer leaves it able to post until it is fixed.
 
+## De-risking done after selection (2026-10-24)
+- **S1 side channels:** private messages, status text and nickname changes were open on stock room options; they're now closed by room settings. Other routes (posting without joining, MUC/Sub, subject, corrections, voice requests) were already blocked.
+- **S1 mechanism:** it is deliberate ejabberd code, but **it only works in moderated rooms** (now asserted). It held on 26.07 and through an in-place upgrade to 26.09.
+- **Admin-tooling contract:** rules R-A to R-E (above) with C01 tests.
+- **Hardened config:** SCRAM-SHA-256; no `/api`, no public web admin, no `mod_adhoc_api`; minimal modules. Full suite passes.
+- **Hot backup** under write load, restored and verified.
+- **Load:** 40 players with 0 errors and p95 31 ms; 200 players with 0 errors and p95 678 ms (room).
+- **Residual risks:**
+  - no WebSocket stanza size cap (room messages over ~885 KB drop the sender);
+  - observer passwords must be admin-managed (R-B);
+  - join history is lost on restart (use MAM).
+
 ## Contract-suite follow-ups (for ARC-10)
 - Make grant/revoke affiliations come from the server profile if non-XEP-0060 servers (OpenFire) are ever targeted again.
 - `setSubscription` should pass `subid` when a JID has several subscriptions.
