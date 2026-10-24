@@ -153,3 +153,35 @@ export async function joinRoom(client: Client, room: string, nick: string, histo
 }
 
 export const uniq = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+export const NS_JSON = 'urn:xmpp:json:0';
+
+/** Publish a JSON item (XEP-0335 container) to the fixture PubSub service. */
+export function publishJson(client: Client, node: string, json: unknown, id?: string) {
+  const service = serverConfig().pubsubDomain;
+  return client.publish(service, node, { itemType: NS_JSON, json } as XMPP.Stanzas.PubsubItemContent, id);
+}
+
+export interface Outcome {
+  ok: boolean;
+  condition?: string;
+  errorType?: string;
+  text?: string;
+  value?: unknown;
+}
+
+/** Settle an IQ promise into ok / error condition, for asserting server-side denials. */
+export async function outcome(p: Promise<unknown>): Promise<Outcome> {
+  try {
+    return { ok: true, value: await p };
+  } catch (e) {
+    const err = (e as { error?: { condition?: string; type?: string; text?: string } }).error;
+    if (!err) throw e;
+    return {
+      ok: false,
+      ...(err.condition ? { condition: err.condition } : {}),
+      ...(err.type ? { errorType: err.type } : {}),
+      ...(err.text ? { text: err.text } : {}),
+    };
+  }
+}

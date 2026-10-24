@@ -31,7 +31,7 @@ const configs: Record<ServerName, ServerConfig> = {
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:5280/xmpp-websocket',
+    websocketUrl: 'ws://localhost:5380/xmpp-websocket', // 5380 avoids ejabberd's 5280 so stacks can run side by side
   },
 };
 
