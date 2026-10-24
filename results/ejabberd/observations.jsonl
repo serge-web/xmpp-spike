@@ -1,0 +1,10 @@
+{"check":"S1","key":"blue-obs join + post","value":{"role":"visitor","affiliation":"member","error":{"alternateLanguageText":[{"lang":"en","value":"Visitors are not allowed to send messages to all occupants"}],"condition":"forbidden","text":"Visitors are not allowed to send messages to all occupants","type":"auth"}},"at":"2026-10-24T14:10:24.561Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:10:35.437Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:10:35.504Z"}
+{"check":"S3","key":"raised node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:10:36.520Z"}
+{"check":"S2","key":"red-co getItems objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:10:37.225Z"}
+{"check":"S2","key":"red-co subscribe objectives:blue","value":{"ok":false,"condition":"not-allowed","errorType":"cancel"},"at":"2026-10-24T14:10:37.230Z"}
+{"check":"S2","key":"red-co disco#items objectives:blue","value":{"items":0},"at":"2026-10-24T14:10:37.233Z"}
+{"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:10:37.238Z"}
+{"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:13:13.165Z"}
+{"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:13:13.215Z"}

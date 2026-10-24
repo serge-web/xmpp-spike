@@ -2,7 +2,7 @@
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { serverConfig } from '../config.js';
-import { captureStanzas, connect, disconnectAll, outcome, publishJson, saveStanzas, uniq, type Client } from '../harness.js';
+import { captureStanzas, connect, disconnectAll, observe, outcome, publishJson, saveStanzas, uniq, type Client } from '../harness.js';
 import { nodes, roles } from '../fixtures/game.js';
 
 const svc = () => serverConfig().pubsubDomain;
@@ -28,7 +28,7 @@ afterAll(async () => {
 describe('S2 objectives confidentiality', () => {
   it('red-co cannot fetch objectives:blue items', async () => {
     const r = await outcome(clients['red-co']!.getItems(svc(), nodes.objectives('blue')));
-    console.info('[S2] red-co getItems objectives:blue ->', r.condition, r.errorType);
+    await observe('S2', 'red-co getItems objectives:blue', r);
     expect(r.ok).toBe(false);
   });
 
@@ -39,14 +39,14 @@ describe('S2 objectives confidentiality', () => {
 
   it('red-co cannot subscribe to objectives:blue', async () => {
     const r = await outcome(clients['red-co']!.subscribeToNode(svc(), nodes.objectives('blue')));
-    console.info('[S2] red-co subscribe objectives:blue ->', r.condition, r.errorType);
+    await observe('S2', 'red-co subscribe objectives:blue', r);
     expect(r.ok).toBe(false);
   });
 
   it('red-co cannot discover the items of objectives:blue', async () => {
     const r = await outcome(clients['red-co']!.getDiscoItems(svc(), nodes.objectives('blue')));
     const items = r.ok ? ((r.value as { items?: unknown[] }).items ?? []) : [];
-    console.info('[S2] red-co disco#items objectives:blue ->', r.ok ? `${items.length} items` : r.condition);
+    await observe('S2', 'red-co disco#items objectives:blue', r.ok ? { items: items.length } : r);
     expect(items).toHaveLength(0);
   });
 
@@ -54,7 +54,7 @@ describe('S2 objectives confidentiality', () => {
     const read = await outcome(clients['blue-co']!.getItems(svc(), nodes.objectives('blue')));
     expect(read.ok).toBe(true);
     const pub = await outcome(publishJson(clients['blue-co']!, nodes.objectives('blue'), { text: 'nope' }));
-    console.info('[S2] blue-co publish objectives:blue ->', pub.condition, pub.errorType);
+    await observe('S2', 'blue-co publish objectives:blue', pub);
     expect(pub.ok).toBe(false);
   });
 

@@ -136,6 +136,9 @@ modules:
     plugins:
       - flat
       - pep
+    # S3: node owners cannot set pubsub#max_payload_size above the server default (stock 250000;
+    # higher values get <resource-constraint/>). Raise the server default here if needed, e.g.
+    # default_node_config: {max_payload_size: 2000000}. Left stock: 100 KB items fit.
   mod_roster:
     versioning: true
   mod_shared_roster: {}

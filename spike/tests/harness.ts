@@ -1,6 +1,6 @@
 // Connection and multi-client helpers shared by every check.
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as XMPP from 'stanza';
 import { serverConfig } from './config.js';
@@ -184,4 +184,16 @@ export async function outcome(p: Promise<unknown>): Promise<Outcome> {
       ...(err.text ? { text: err.text } : {}),
     };
   }
+}
+
+/**
+ * Record a behaviour observation for the decision record and the mock team:
+ * appends {check, key, value} to results/<server>/observations.jsonl and echoes it.
+ */
+export async function observe(check: string, key: string, value: unknown): Promise<void> {
+  const dir = join('results', serverConfig().name);
+  await mkdir(dir, { recursive: true });
+  const line = JSON.stringify({ check, key, value, at: new Date().toISOString() });
+  await appendFile(join(dir, 'observations.jsonl'), line + '\n');
+  console.info(`[${check}] ${key}: ${JSON.stringify(value)}`);
 }
