@@ -1,0 +1,50 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='6055015381612331605' version='1.0' xml:lang='en' from='localhost'/>
+
+<!-- in -->
+<stream:features xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism><mechanism>PLAIN</mechanism><mechanism>SCRAM-SHA-1</mechanism><mechanism>X-OAUTH2</mechanism></mechanisms></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1zNHVzZXItMTc5Mjg1MTI5NDA1Mi1pdGNsOCxyPWNhNGM3OWJkNTM0NzBlMzAyYmU4MzE3MWZlMGEzZTU1ZTY2YThjZjQwY2UzNDFmNjhkMTYzMWQ5NTRhYzAwMDk=</auth>
+
+<!-- in -->
+<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj1jYTRjNzliZDUzNDcwZTMwMmJlODMxNzFmZTBhM2U1NWU2NmE4Y2Y0MGNlMzQxZjY4ZDE2MzFkOTU0YWMwMDA5WFZXeEtOc2NzSmZmNnpNeWpUZExpZz09LHM9R3JldWJYWnFYVVpxZkJWVGRYRlNOUT09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
+
+<!-- out -->
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9Y2E0Yzc5YmQ1MzQ3MGUzMDJiZTgzMTcxZmUwYTNlNTVlNjZhOGNmNDBjZTM0MWY2OGQxNjMxZDk1NGFjMDAwOVhWV3hLTnNjc0pmZjZ6TXlqVGRMaWc9PSxwPVhYS0FVcU5nK3I3azBjbGJRNFF3T25XbGRpZz0=</response>
+
+<!-- in -->
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1kd0ZCUEFBa0ZTMUxBNVFRZFY5NkRrN01YQTg9</success>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
+
+<!-- in -->
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='3867496800286348006' version='1.0' xml:lang='en' from='localhost'/>
+
+<!-- in -->
+<stream:features xmlns:stream='http://etherx.jabber.org/streams'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'/><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><c ver='+l9yHc5NU8LZDysgyCghWLZagpQ=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><sub xmlns='urn:xmpp:features:pre-approval'/><ver xmlns='urn:xmpp:features:rosterver'/></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="71fb8fd2-079d-47e1-808a-30f04bc97556" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>t-1792851294455-e4onj</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns='jabber:client' type='result' id='71fb8fd2-079d-47e1-808a-30f04bc97556'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>s4user-1792851294052-itcl8@localhost/t-1792851294455-e4onj</jid></bind></iq>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- in -->
+<enabled xmlns='urn:xmpp:sm:3'/>
+
+<!-- in -->
+<stream:error xmlns:stream='http://etherx.jabber.org/streams'><text xml:lang='en' xmlns='urn:ietf:params:xml:ns:xmpp-streams'>User removed</text><conflict xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+
+<!-- in -->
+<close xmlns='urn:ietf:params:xml:ns:xmpp-framing'/>
+
+<!-- out -->
+<close xmlns="urn:ietf:params:xml:ns:xmpp-framing"/>

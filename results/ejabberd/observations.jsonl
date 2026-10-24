@@ -8,3 +8,23 @@
 {"check":"S2","key":"blue-co publish objectives:blue","value":{"ok":false,"condition":"forbidden","errorType":"auth"},"at":"2026-10-24T14:10:37.238Z"}
 {"check":"S3","key":"default node: largest round-trip bytes (64KB granularity)","value":{"lo":230272,"lastFailure":{"size":294208,"ok":false,"condition":"not-acceptable","errorType":"modify","stage":"publish"}},"at":"2026-10-24T14:13:13.165Z"}
 {"check":"S3","key":"create node with max_payload_size=8MB","value":"resource-constraint","at":"2026-10-24T14:13:13.215Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.089Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.136Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851240972-hx1m4@localhost"]},"at":"2026-10-24T14:14:01.212Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851240972-hx1m4@localhost"],"at":"2026-10-24T14:14:01.282Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:01.334Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:01.436Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.318Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.394Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851271230-gzjyd@localhost"]},"at":"2026-10-24T14:14:31.477Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:14:31.617Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851271230-gzjyd@localhost"],"at":"2026-10-24T14:14:31.634Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:31.686Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:31.786Z"}
+{"check":"S4","key":"add-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.168Z"}
+{"check":"S4","key":"change-user-password","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.213Z"}
+{"check":"S4","key":"get-online-users-list","value":{"values":["http://jabber.org/protocol/admin","admin@localhost","s4user-1792851294052-itcl8@localhost"]},"at":"2026-10-24T14:14:54.293Z"}
+{"check":"S4","key":"end-user-session: what the user session saw","value":"disconnected","at":"2026-10-24T14:14:54.427Z"}
+{"check":"S4","key":"room member list after set","value":["s4user-1792851294052-itcl8@localhost"],"at":"2026-10-24T14:14:54.445Z"}
+{"check":"S4","key":"delete-user","value":"xmpp ad-hoc ok","at":"2026-10-24T14:14:54.487Z"}
+{"check":"S4","key":"delete-user: what the online session saw","value":"disconnected","at":"2026-10-24T14:14:54.590Z"}

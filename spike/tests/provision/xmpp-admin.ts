@@ -22,9 +22,21 @@ export async function adhoc(client: Client, to: string, node: string, values: Re
   const cmd = first.command;
   if (!cmd) throw new Error(`${node}: no command payload`);
   if (cmd.status === 'completed') return cmd;
+  // Fit our values to the form the server returned: servers differ on singular/plural field names
+  // (ejabberd end-user-session uses `accountjid` where XEP-0133 specifies `accountjids`).
+  const offered = new Set((cmd.form?.fields ?? []).map((f) => f.name));
+  const fit = (name: string, value: string | string[]): [string, string | string[]] => {
+    if (offered.size === 0 || offered.has(name)) return [name, value];
+    if (name.endsWith('s') && offered.has(name.slice(0, -1))) return [name.slice(0, -1), Array.isArray(value) ? value[0]! : value];
+    if (offered.has(`${name}s`)) return [`${name}s`, Array.isArray(value) ? value : [value]];
+    return [name, value];
+  };
   const fields: DataFormField[] = [
     { name: 'FORM_TYPE', type: 'hidden', value: ADMIN_NS },
-    ...Object.entries(values).map(([name, value]) => ({ name, value }) as DataFormField),
+    ...Object.entries(values).map(([n, v]) => {
+      const [name, value] = fit(n, v);
+      return { name, value } as DataFormField;
+    }),
   ];
   const res = await client.sendIQ({
     to,
