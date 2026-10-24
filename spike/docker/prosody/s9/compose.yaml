@@ -1,0 +1,26 @@
+# S9 escape-hatch stack: same image and config as the main stack, plus custom modules mounted
+# into the stock plugin directory. Separate project, volume and port; never used by other checks.
+#   docker compose -f spike/docker/prosody/s9/compose.yaml up -d --wait
+#   docker exec wrx-prosody-s9-prosody-1 prosodyctl shell "module:load('wrx_hello', 'localhost')"
+name: wrx-prosody-s9
+services:
+  prosody:
+    image: prosodyim/prosody:13.0@sha256:3003867be7f61877890d0f2ff0f1e2a439fd727bfd4bf5bc250c9c3278d5f757
+    ports:
+      - "5390:5280"
+    environment:
+      LOCAL: admin
+      DOMAIN: localhost
+      PASSWORD: spike-password
+    volumes:
+      - ../prosody.cfg.lua:/etc/prosody/prosody.cfg.lua:ro
+      - ./modules/mod_wrx_hello.lua:/usr/lib/prosody/modules/mod_wrx_hello.lua:ro
+      - ./modules/mod_wrx_muc_readonly.lua:/usr/lib/prosody/modules/mod_wrx_muc_readonly.lua:ro
+      - data:/var/lib/prosody
+    healthcheck:
+      test: ["CMD", "prosodyctl", "status"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+volumes:
+  data:
