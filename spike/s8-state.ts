@@ -1,13 +1,13 @@
 // S8 backup/restore evidence. Server-neutral apart from SERVER=<name>.
-//   SERVER=prosody npx tsx spike/docker/prosody/ops/state.ts seed     -> writes a marker, prints it
-//   SERVER=prosody npx tsx spike/docker/prosody/ops/state.ts verify <marker>
+//   SERVER=prosody npx tsx spike/s8-state.ts seed     -> writes a marker, prints it
+//   SERVER=prosody npx tsx spike/s8-state.ts verify <marker>
 // verify checks: every fixture account logs in; rooms exist with their config and affiliations;
 // every node exists with its access model and affiliations; the marker item is in objectives:blue;
 // the marker message is in blue-hq's MAM archive.
-import { serverConfig } from '../../../tests/config.js';
-import { connect, disconnectAll, publishJson, waitFor, joinRoom } from '../../../tests/harness.js';
-import { ADMIN, roles, rooms, nodes } from '../../../tests/fixtures/game.js';
-import { nodePlan } from '../../../tests/provision/game.js';
+import { serverConfig } from './tests/config.js';
+import { connect, disconnectAll, publishJson, waitFor, joinRoom } from './tests/harness.js';
+import { ADMIN, roles, rooms, nodes } from './tests/fixtures/game.js';
+import { nodePlan } from './tests/provision/game.js';
 
 const cfg = serverConfig();
 const bare = (u: string) => `${u}@${cfg.domain}`;

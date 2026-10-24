@@ -152,3 +152,5 @@ spike/scratch/
 spike/docker/prosody/tls/
 spike/docker/prosody/backup/
 spike/docker/prosody/image/
+spike/docker/ejabberd/image/
+spike/docker/ejabberd/backup/

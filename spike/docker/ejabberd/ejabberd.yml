@@ -153,9 +153,9 @@ modules:
     plugins:
       - flat
       - pep
-    # S10: stock disco#items on the service lists every node name to anyone, anonymous included.
-    # Clients address nodes by known name, so hide the listing entirely.
-    max_nodes_discoitems: 1
+    # S10 finding: disco#items on the service lists every node name to anyone, anonymous included.
+    # max_nodes_discoitems: 0 crashes the query (mnesia badarg -> internal-server-error) and 1 still
+    # lists an arbitrary node, so neither hides the names. Left stock; see results/ejabberd.md.
     # S3: node owners cannot set pubsub#max_payload_size above the server default (stock 250000;
     # higher values get <resource-constraint/>). Raise the server default here if needed, e.g.
     # default_node_config: {max_payload_size: 2000000}. Left stock: 100 KB items fit.

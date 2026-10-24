@@ -2,40 +2,40 @@
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='422882249596523839' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='2350790086756250574' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
 <stream:features xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism><mechanism>PLAIN</mechanism><mechanism>SCRAM-SHA-1</mechanism><mechanism>X-OAUTH2</mechanism></mechanisms></stream:features>
 
 <!-- out -->
-<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1hZG1pbixyPTA3ZTAwYzY1Zjc2NDhjNGFmYmQ2ODY0NDEzZTA5ODBkOTEzMjg4YjU3ZWM2NmNjZTFjNzc0MzEyMzQyOWI1YTI=</auth>
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1">biwsbj1hZG1pbixyPTJmOTdjMGVhNTcyYTU5MzgwNWJiOGYzZjcyOGNhZWQ1NmI0ODhmMTA1NTNmY2VhNzcyYWI4NzQxNmM0NzFhMWQ=</auth>
 
 <!-- in -->
-<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj0wN2UwMGM2NWY3NjQ4YzRhZmJkNjg2NDQxM2UwOTgwZDkxMzI4OGI1N2VjNjZjY2UxYzc3NDMxMjM0MjliNWEycHdOanhtczFFZ1h4cjJObTdNdzd6dz09LHM9U0tDeXIrMTZGZ3RoOWkwRWZqYlJ5Zz09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
+<challenge xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>cj0yZjk3YzBlYTU3MmE1OTM4MDViYjhmM2Y3MjhjYWVkNTZiNDg4ZjEwNTUzZmNlYTc3MmFiODc0MTZjNDcxYTFkWHkzSnc0cDYyaGZMSzhmOXdZWit2UT09LHM9U0tDeXIrMTZGZ3RoOWkwRWZqYlJ5Zz09LGk9NDA5NixoPXQ3N3NLR1NwNXBaeUJBUXNzWHFwTC9LaDEyVT0=</challenge>
 
 <!-- out -->
-<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9MDdlMDBjNjVmNzY0OGM0YWZiZDY4NjQ0MTNlMDk4MGQ5MTMyODhiNTdlYzY2Y2NlMWM3NzQzMTIzNDI5YjVhMnB3Tmp4bXMxRWdYeHIyTm03TXc3enc9PSxwPWZZOFp1N0VvdDgyUW92ZWNLaVhhM3ZQZUR6dz0=</response>
+<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl">Yz1iaXdzLHI9MmY5N2MwZWE1NzJhNTkzODA1YmI4ZjNmNzI4Y2FlZDU2YjQ4OGYxMDU1M2ZjZWE3NzJhYjg3NDE2YzQ3MWExZFh5M0p3NHA2MmhmTEs4Zjl3WVordlE9PSxwPTZPSmVaK2V3RDlTeTVvSE9vRnA3YzRIY3haTT0=</response>
 
 <!-- in -->
-<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj0vSVpkSlpWN04wcjNITjVYbllXZlVoKzNKK2M9</success>
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>dj1wMW1BT29CWWxYcFl5WHBReThVV09sK0FUOUk9</success>
 
 <!-- out -->
 <open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="localhost" version="1.0"/>
 
 <!-- in -->
-<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='16719882914660375189' version='1.0' xml:lang='en' from='localhost'/>
+<open xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='4968736645770226024' version='1.0' xml:lang='en' from='localhost'/>
 
 <!-- in -->
 <stream:features xmlns:stream='http://etherx.jabber.org/streams'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'/><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><c ver='+xm1sE9Oi3aRBvAQ4ZiPqWHMC9s=' node='https://www.process-one.net/ejabberd/' hash='sha-1' xmlns='http://jabber.org/protocol/caps'/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><sub xmlns='urn:xmpp:features:pre-approval'/><ver xmlns='urn:xmpp:features:rosterver'/></stream:features>
 
 <!-- out -->
-<iq xmlns="jabber:client" id="e48da3b1-d197-4ef8-b62e-e1713d8647a9" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/></iq>
+<iq xmlns="jabber:client" id="b27bfe0e-72f8-40ab-8568-55acc361f40d" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/></iq>
 
 <!-- in -->
-<iq xmlns='jabber:client' type='result' id='e48da3b1-d197-4ef8-b62e-e1713d8647a9'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>admin@localhost/71587334780476456425730</jid></bind></iq>
+<iq xmlns='jabber:client' type='result' id='b27bfe0e-72f8-40ab-8568-55acc361f40d'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>admin@localhost/120981999455612416614707</jid></bind></iq>
 
 <!-- out -->
-<presence xmlns="jabber:client" id="c276cfe9-ff59-4d8a-96ab-f11423eb9e7b"/>
+<presence xmlns="jabber:client" id="f1628646-7145-4dff-8f19-60245f30be1f"/>
 
 <!-- out -->
 <enable xmlns="urn:xmpp:sm:3" resume="0"/>
