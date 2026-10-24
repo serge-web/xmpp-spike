@@ -88,7 +88,7 @@ docker compose -f spike/docker/ejabberd/compose.yaml down -v
 
 Replace `ejabberd` with `openfire` or `prosody` to test the others. The tests **fail** if the server is unreachable; they never skip.
 
-> These commands describe the intended setup. Update them once the harness exists.
+> The harness scaffold exists (`spike/tests/harness.ts`); compose stacks and checks are still to be written.
 
 ## Conventions
 
