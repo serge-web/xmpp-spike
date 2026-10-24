@@ -1,0 +1,19 @@
+# ejabberd 26.09, official image (Docker Hub ejabberd/ecs), pinned by digest.
+name: wrx-ejabberd
+services:
+  ejabberd:
+    image: ejabberd/ecs:26.09@sha256:8ebff5b218e686d5dbd93850ea17556d5b70d4c15918c3613e9302a357798e0e
+    ports:
+      - "5222:5222" # c2s (not used by tests; browser path is WebSocket)
+      - "5280:5280" # HTTP: /ws WebSocket, /admin web console, /api
+    volumes:
+      - ./ejabberd.yml:/home/ejabberd/conf/ejabberd.yml:ro
+      - ./bootstrap.sh:/home/ejabberd/bootstrap.sh:ro
+      - db:/home/ejabberd/database
+    healthcheck:
+      test: ["CMD", "ejabberdctl", "status"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+volumes:
+  db:
