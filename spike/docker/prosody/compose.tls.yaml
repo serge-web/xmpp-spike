@@ -1,0 +1,9 @@
+# S8 overlay: serve certificates issued by the internal test CA (ops/make-test-ca.sh).
+#   docker compose -f compose.yaml -f compose.tls.yaml up -d
+# Replaces the image's self-signed /etc/prosody/certs. Prosody indexes the directory by the
+# certificate's subjectAltNames, so one cert covers localhost and its components; wss:// is
+# served on container 5281 (host 5381) at /xmpp-websocket.
+services:
+  prosody:
+    volumes:
+      - ./tls/certs:/etc/prosody/certs:ro
