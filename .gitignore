@@ -148,3 +148,6 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 spike/scratch/
+spike/docker/prosody/tls/
+spike/docker/prosody/backup/
+spike/docker/prosody/image/

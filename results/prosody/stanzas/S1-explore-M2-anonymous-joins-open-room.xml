@@ -1,0 +1,59 @@
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="anon.localhost" version="1.0"/>
+
+<!-- in -->
+<open xml:lang='en' from='anon.localhost' version='1.0' xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='4b099c8c-c531-467d-80ad-281efc108647'/>
+
+<!-- in -->
+<stream:features xmlns='jabber:client' xmlns:stream='http://etherx.jabber.org/streams'><mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'><mechanism>ANONYMOUS</mechanism></mechanisms><limits xmlns='urn:xmpp:stream-limits:0'><max-bytes>10000</max-bytes><idle-seconds>840</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="ANONYMOUS">=</auth>
+
+<!-- in -->
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
+
+<!-- out -->
+<open xmlns="urn:ietf:params:xml:ns:xmpp-framing" xml:lang="en" to="anon.localhost" version="1.0"/>
+
+<!-- in -->
+<open xml:lang='en' from='anon.localhost' version='1.0' xmlns='urn:ietf:params:xml:ns:xmpp-framing' id='4cb74875-7a20-4018-89b7-0c1de5201d52'/>
+
+<!-- in -->
+<stream:features xmlns='jabber:client' xmlns:stream='http://etherx.jabber.org/streams'><sub xmlns='urn:xmpp:features:pre-approval'/><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><required/></bind><session xmlns='urn:ietf:params:xml:ns:xmpp-session'><optional/></session><ver xmlns='urn:xmpp:features:rosterver'/><c xmlns='http://jabber.org/protocol/caps' hash='sha-1' node='http://prosody.im' ver='TYuvZQJNyDt5C1jmIS6RiXCoVGs='/><sm xmlns='urn:xmpp:sm:2'/><sm xmlns='urn:xmpp:sm:3'/><limits xmlns='urn:xmpp:stream-limits:0'><max-bytes>262144</max-bytes><idle-seconds>840</idle-seconds></limits></stream:features>
+
+<!-- out -->
+<iq xmlns="jabber:client" id="0de364f4-b26c-44fa-8bde-8143981672db" type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource>x-1792851560235-eu3ht</resource></bind></iq>
+
+<!-- in -->
+<iq xmlns='jabber:client' type='result' id='0de364f4-b26c-44fa-8bde-8143981672db'><bind xmlns='urn:ietf:params:xml:ns:xmpp-bind'><jid>glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht</jid></bind></iq>
+
+<!-- out -->
+<enable xmlns="urn:xmpp:sm:3" resume="0"/>
+
+<!-- out -->
+<presence xmlns="jabber:client" id="7d3af9cc-f3f5-4077-a591-6ca5b3b31983" to="s1-m2@conference.localhost/anon-1792851560254-oadf7"><x xmlns="http://jabber.org/protocol/muc"/></presence>
+
+<!-- out -->
+<r xmlns="urn:xmpp:sm:3"/>
+
+<!-- in -->
+<enabled xmlns='urn:xmpp:sm:3'/>
+
+<!-- in -->
+<presence xml:lang='en' from='s1-m2@conference.localhost/blue-co' xmlns='jabber:client' to='glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht' id='b16d53b5-39a4-42bb-b37d-6ca6c881773e'><occupant-id xmlns='urn:xmpp:occupant-id:0' id='4N6SL4ksH4EDWLUKkLaqt2fAHTwSMbt9EIpyke+GWvg='/><x xmlns='http://jabber.org/protocol/muc#user'><item affiliation='member' role='participant'/></x></presence>
+
+<!-- in -->
+<presence xml:lang='en' from='s1-m2@conference.localhost/blue-obs' xmlns='jabber:client' to='glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht' id='9d320f18-ff20-4ea9-913d-4e7173b4f0c2'><occupant-id xmlns='urn:xmpp:occupant-id:0' id='H0INboxubtj6Uw3vLSNXK0rVe4reR5yqn96fs89hXT8='/><x xmlns='http://jabber.org/protocol/muc#user'><item affiliation='none' role='visitor'/></x></presence>
+
+<!-- in -->
+<presence xml:lang='en' from='s1-m2@conference.localhost/anon-1792851560254-oadf7' xmlns='jabber:client' to='glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht' id='7d3af9cc-f3f5-4077-a591-6ca5b3b31983'><occupant-id xmlns='urn:xmpp:occupant-id:0' id='y/bB4o2qEhtZ3DLV8WgcIF+Cei/sycoVryrNubcI7qM='/><x xmlns='http://jabber.org/protocol/muc#user'><item affiliation='none' role='visitor' jid='glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht'/><status code='110'/></x></presence>
+
+<!-- in -->
+<message xmlns='jabber:client' type='groupchat' from='s1-m2@conference.localhost' to='glm8nxesow1bcvv5rzxdtu1l@anon.localhost/x-1792851560235-eu3ht'><subject/></message>
+
+<!-- in -->
+<a xmlns='urn:xmpp:sm:3' h='1'/>
+
+<!-- in -->
+<r xmlns='urn:xmpp:sm:3'/>
