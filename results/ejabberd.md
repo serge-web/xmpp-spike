@@ -54,6 +54,15 @@ REST / secret needed: no.
 | **nickname change** | **visible to the room** | `<not-allowed/>` "Visitors are not allowed to change their nicknames in this room" (`allow_visitor_nickchange: false`) |
 The three options are now set in `provision/ejabberd.ts`, and the mock must reproduce those errors.
 
+**Why the S1 mechanism works, and how stable it is (de-risking, 2026-10-24).**
+- **It is deliberate code, not an accident.** `src/mod_muc_room.erl` (tag 26.09) keeps a `roles` map keyed by bare JID.
+  - `set_role` writes into it. A `none` role is not stored unless the user is an outcast; the comment says "if someone is kicked, they will maintain the same role they had before".
+  - `make_opts` persists the map with the room.
+  - `get_occupant_initial_role` applies it on join **only when the room is `moderated`**.
+- **Moderation is load-bearing:** with `moderatedroom=false` the observer joins as `participant` and can post. Re-enabling moderation restores `visitor`, because the stored map survives. `S01b` now asserts that every game room is moderated, and admin tooling must never offer unmoderated game rooms.
+- **Across versions:** 26.07 passes S00, S01 and S01b (19 tests). An in-place upgrade 26.07 → 26.09 on the same SQLite volume kept the observer as `visitor` and passed `s8-state.ts verify` with all fixture state intact.
+- The stored role map isn't shown by `ejabberdctl get_room_options`, so an audit has to join as the observer or read the database.
+
 ### S2 PubSub confidentiality and write control (R3, R10)
 Result: PASS
 Mechanism / config: `pubsub#access_model=whitelist`, with readers as `member` and publishers as `publisher` affiliations, and the admin as owner. `pubsub#publish_model=publishers`. `game-setup` and `assets:theme` are `open`.
@@ -194,7 +203,7 @@ Evidence: `S12-live-changes.test.ts`, `S12-move-force.xml`, `S12-deleted-user.xm
 
 ## Risks and surprises
 0. **Join history isn't persisted** across restarts (S5); use MAM for history.
-1. **S1 relies on persisted voice revocation**, an ejabberd behaviour that isn't in XEP-0045. It needs the observer to be online once during provisioning (done with the admin-set password), and it is **silently cleared by any affiliation change** (e.g. none→member). Admin tooling must re-apply it. A server upgrade could change it, so keep S1 in CI.
+1. **S1 relies on persisted voice revocation**, deliberate ejabberd code (see S1) that isn't in XEP-0045, and it only applies while the room is moderated. It needs the observer to be online once during provisioning (done with the admin-set password), and it is **silently cleared by any affiliation change** (e.g. none→member). Admin tooling must re-apply it. A server upgrade could change it, so keep S1 in CI.
 2. **S10 node-name enumeration**: accepted by human decision. Admin page warning required (see S10).
 3. **PubSub revocation needs subscription removal as well as the affiliation change.** If admin tooling forgets this, a player moved off a force keeps receiving that force's objectives.
 4. **No WebSocket stanza size limit** (32 MB accepted). Find and set a limit for the reference deployment (e.g. a reverse proxy frame limit, or `ejabberd_http` options), or accept the risk.

@@ -27,7 +27,8 @@ const configs: Record<ServerName, ServerConfig> = {
     domain: 'localhost',
     mucDomain: 'conference.localhost',
     pubsubDomain: 'pubsub.localhost',
-    websocketUrl: 'ws://localhost:5280/ws',
+    // EJABBERD_WS overrides for side stacks (e.g. the version/upgrade probe on 6280).
+    websocketUrl: process.env['EJABBERD_WS'] ?? 'ws://localhost:5280/ws',
   },
   prosody: {
     name: 'prosody',

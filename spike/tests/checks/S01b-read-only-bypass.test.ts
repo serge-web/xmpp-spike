@@ -140,6 +140,19 @@ describe('S1b observer bypass probes', () => {
     expect(p.muc?.role).toBe('visitor');
   });
 
+  it('every game room is moderated (stored visitor roles only apply in moderated rooms)', async () => {
+    const a = await connect('admin', { resource: uniq('s1b-mod') });
+    const out: Record<string, unknown> = {};
+    for (const id of ['blue-hq', 'red-hq', 'negotiation']) {
+      const jid = `${id}@${serverConfig().mucDomain}`;
+      await a.joinRoom(jid, 'admin');
+      out[id] = (await a.getRoomConfig(jid)).fields?.find((f) => f.name === 'muc#roomconfig_moderatedroom')?.value;
+      await a.leaveRoom(jid, 'admin');
+    }
+    await observe('S1b', 'rooms moderated', out);
+    expect(Object.values(out).every((v) => v === true)).toBe(true);
+  });
+
   it('voice request is not available', async () => {
     await freshObserver();
     const m = uniq('voicereq');
