@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S9 escape-hatch effort check only. Never installed in the spike stack used by the other checks. -->
+<plugin>
+    <class>org.wrx.spike.openfire.WrxReadOnlyPlugin</class>
+    <name>WRX1 read-only sketch</name>
+    <description>S9 hello world: logs on load, and rejects MUC groupchat messages from JIDs listed in system property wrx.readonly.jids.</description>
+    <author>WRX1 spike</author>
+    <version>0.1.0</version>
+    <date>2026-10-24</date>
+    <minServerVersion>5.1.0</minServerVersion>
+</plugin>

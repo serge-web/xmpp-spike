@@ -153,3 +153,7 @@ spike/docker/openfire/plugins/
 spike/docker/prosody/tls/
 spike/docker/prosody/backup/
 spike/docker/prosody/image/
+spike/docker/openfire/tls/
+spike/docker/openfire/backup/
+spike/docker/openfire/image/
+spike/docker/openfire/s9-plugin/out/
