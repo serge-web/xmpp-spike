@@ -94,6 +94,33 @@ describe('C01 admin-tooling contract', () => {
     await expect(ops.addToRoom(watcher, { room: roomA, observer: true })).rejects.toThrow(/R-B/);
   });
 
+  it('R-B precondition: an observer cannot change its own password (admin keeps control)', async () => {
+    const o = await connect(watcher, { password: PW, resource: uniq('o') });
+    const r = await outcome(o.sendIQ({ type: 'set', to: cfg().domain, account: { username: watcher, password: 'self-chosen' } } as never));
+    await observe('C01', 'observer XEP-0077 password change', r.ok ? 'ALLOWED' : r);
+    expect(r.ok).toBe(false);
+    o.disconnect();
+    expect((await connect(watcher, { password: PW, resource: uniq('o') })).sessionStarted).toBe(true);
+  });
+
+  it('R-F destroying a room also deletes its MAM archive (game retention = room lifetime)', async () => {
+    const { profile } = await adapterFor();
+    const tmp = roomJid(`${tag}-ret`);
+    await ensureRoom(a, tmp, profile.roomConfig, { [bare(player)]: 'member' });
+    const p = await connect(player, { password: PW, resource: uniq('p') });
+    await joinRoom(p, tmp, player);
+    const body = uniq('retained');
+    p.sendMessage({ to: tmp, type: 'groupchat', body });
+    await waitFor(p, 'message', (m) => m.body === body);
+    p.disconnect();
+    await a.destroyRoom(tmp);
+    await ensureRoom(a, tmp, profile.roomConfig, {});
+    const fin = await a.searchHistory(tmp, { paging: { max: 0 } });
+    await observe('C01', 'MAM count after destroy + recreate', fin.paging?.count ?? 0);
+    expect(fin.paging?.count ?? 0).toBe(0);
+    await a.destroyRoom(tmp);
+  });
+
   it('R-C ensureModerated finds and fixes an unmoderated room; observer is a visitor again', async () => {
     await a.joinRoom(roomJid(roomA), 'admin');
     await a.configureRoom(roomJid(roomA), {

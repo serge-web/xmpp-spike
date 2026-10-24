@@ -99,9 +99,10 @@ Multiple sessions:
 | **R-B** Any room affiliation change for an observer re-applies the voice revocation | An affiliation change clears the stored `visitor` role | helper gives visitor; raw none→member gives **participant**; helper again gives visitor |
 | **R-C** Game rooms stay moderated | Stored roles only apply in moderated rooms | `ensureModerated` detects and fixes; observer is visitor again |
 | **R-D** Move a role: grant new, then revoke old | No lock-out window | ejected from old room (110, 321); old node closed; new room and node work |
-| **R-E** Delete a role: remove room and node affiliations and subscriptions, then the account | Some servers leave stale affiliations (Prosody) | no member, affiliation or subscription left; login fails |
+| **R-E** Delete a role: remove room and node affiliations and subscriptions, then the account (idempotent) | Some servers leave stale affiliations (Prosody); ejabberd answers deleting a missing account with `item-not-found` | no member, affiliation or subscription left; login fails |
+| **R-F** Game history lives as long as its rooms | Destroying a room deletes its MAM archive | archive count 0 after destroy and recreate |
 
-**Design implication of R-B:** re-applying an observer's voice revocation needs the observer to be in the room once, so the admin must be able to log in as the observer. **The admin UI must manage observer passwords** (set or reset them; S4 shows this works over XMPP), and observers must not be able to change their own password, or the admin can't re-apply R-B. Otherwise any membership change for an observer leaves it able to post until it is fixed.
+**Design implication of R-B** (precondition checked: players can't change their own password): re-applying an observer's voice revocation needs the observer to be in the room once, so the admin must be able to log in as the observer. **The admin UI must manage observer passwords** (set or reset them; S4 shows this works over XMPP), and observers must not be able to change their own password, or the admin can't re-apply R-B. Otherwise any membership change for an observer leaves it able to post until it is fixed.
 
 ## De-risking done after selection (2026-10-24)
 - **S1 side channels:** private messages, status text and nickname changes were open on stock room options; they're now closed by room settings. Other routes (posting without joining, MUC/Sub, subject, corrections, voice requests) were already blocked.
@@ -110,6 +111,8 @@ Multiple sessions:
 - **Hardened config:** SCRAM-SHA-256; no `/api`, no public web admin, no `mod_adhoc_api`; minimal modules. Full suite passes.
 - **Hot backup** under write load, restored and verified.
 - **Load:** 40 players with 0 errors and p95 31 ms; 200 players with 0 errors and p95 678 ms (room).
+- **Production settings:** wss-only overlay, 50 kB/s player rate limit, MAM retention = room lifetime, players can't change passwords (C01 checks the last two).
+- **CI:** a GitHub Actions workflow runs the full suite against the pinned ejabberd stack (85 tests, under 3 min from cold).
 - **Residual risks:**
   - no WebSocket stanza size cap (room messages over ~885 KB drop the sender);
   - observer passwords must be admin-managed (R-B);

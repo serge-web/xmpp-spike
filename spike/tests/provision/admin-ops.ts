@@ -7,13 +7,17 @@
 //   R-C  Game rooms must stay moderated (stored roles only apply in moderated rooms; S1).
 //   R-D  Moving a role between forces grants the new access before revoking the old (S12).
 //   R-E  Deleting a role also removes its room affiliations, node affiliations and subscriptions
-//        (Prosody leaves room affiliations behind; S12).
+//        (Prosody leaves room affiliations behind; S12). Idempotent: ejabberd answers delete-user for a
+//        missing account with <item-not-found/> "No hook has processed this command" (a hook crash).
+//   R-F  Game history lives as long as the room: destroying a room deletes its MAM archive.
+//   Precondition for R-B: players cannot change their own passwords (no in-band registration), so
+//   the admin can always log in as an observer to re-apply its voice revocation.
 
 import type { Stanzas } from 'stanza';
 import { serverConfig } from '../config.js';
 import { connect, type Client } from '../harness.js';
 import type { ServerProfile } from './game.js';
-import { admin as adhoc, leaveRoom, nodeSubscribers, setSubscription } from './xmpp-admin.js';
+import { admin as adhoc, errorCondition, leaveRoom, nodeSubscribers, setSubscription } from './xmpp-admin.js';
 
 type Aff = NonNullable<Stanzas.PubsubAffiliation['affiliation']>;
 
@@ -143,6 +147,10 @@ export class AdminOps {
   async deleteRole(user: string, held: { rooms: string[]; nodes: string[] }): Promise<void> {
     for (const r of held.rooms) await this.removeFromRoom(user, r);
     for (const n of held.nodes) await this.revokeNode(user, n);
-    await adhoc.deleteUser(this.a, this.cfg.domain, this.bare(user));
+    try {
+      await adhoc.deleteUser(this.a, this.cfg.domain, this.bare(user));
+    } catch (e) {
+      if (errorCondition(e) !== 'item-not-found') throw e; // already deleted
+    }
   }
 }

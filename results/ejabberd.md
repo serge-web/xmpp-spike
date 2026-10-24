@@ -205,11 +205,14 @@ The reference config now removes everything WRX1 doesn't use. The full suite (83
   - plus the image-default extras removed at setup (bosh, mqtt, proxy65, push, register, sip, stun, upload, fail2ban).
   Admin over XMPP is now XEP-0133 (`mod_configure`) plus MUC and PubSub owner only.
 - **Rooms:** the S1b settings (`allow_private_messages_from_visitors: nobody`, `allow_visitor_status: false`, `allow_visitor_nickchange: false`, `allow_voice_requests: false`), moderated and members-only.
-- **Still to decide for production:**
-  - serve only `wss://` (drop the plain 5280 listener);
-  - a c2s shaper value (currently `fast`, 100 kB/s, for S5 seeding);
-  - MAM retention (`ejabberdctl delete_old_mam_messages` from cron, if games are archived elsewhere);
-  - `max_user_sessions` (10).
+- **Production settings (decided 2026-10-24):**
+  - **wss only:** `compose.prod.yaml` publishes only 5443 (`ports: !override`), with `restart: unless-stopped`. Plain `ws://` 5280 and c2s 5222 aren't reachable from the host. S00–S02 pass over `wss://` with the internal CA.
+  - **Rate limit:** shaper `player` is 50 kB/s with a 300 kB burst for all users; the admin is unlimited. A 100 KB item goes through at once. The full suite and the 40-player load pass (0 errors, room p95 60 ms). The stock `normal` (3000 B/s) would delay a 100 KB item by ~30 s.
+  - **MAM retention = room lifetime:** destroying a room deletes its archive (stock `clear_archive_on_room_destroy`). C01 R-F checks this. Delete a game by destroying its rooms; no cron purge.
+  - **Password control:** players can't change their own password (no `mod_register`; XEP-0077 gives `service-unavailable`). This is the precondition for admin rule R-B, checked in C01.
+  - `max_user_sessions: 10` kept.
+- **CI target:** `.github/workflows/contract-ejabberd.yml` runs the whole suite (S00–S12, S01b, C01) against the pinned stack on push and PR. Actions are pinned to commit SHAs. It ran locally from a fresh volume: 85/85 in under 3 min.
+- **ejabberd quirk:** XEP-0133 `delete-user` for a missing account crashes the `mod_configure` hook (`mod_configure.erl:1485`, badmatch). The client gets `<item-not-found/>` "No hook has processed this command". `AdminOps.deleteRole` treats that as already deleted.
 
 ## Hot backup and load (de-risking, 2026-10-24)
 **Hot backup:** `ops/hot-backup.sh` runs SQLite's online `.backup` inside the container, then `PRAGMA integrity_check` (ok), while ejabberd keeps serving.

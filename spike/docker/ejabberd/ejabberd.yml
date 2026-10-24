@@ -86,18 +86,20 @@ api_permissions:
     from: ejabberd_ctl
     who: all
     what: "*"
+# Per-connection inbound rate limits. "player": 50 kB/s sustained with a 300 kB burst, so a ~100 kB
+# PubSub item (S3) goes through at once and S5's 10k-message seed (~25 kB/s) isn't throttled, while a
+# runaway client is held to a modest rate. The admin (provisioning, bulk publishes) is unlimited.
+# Stock "normal" (3000 B/s, 20 kB burst) would delay a 100 kB item by ~30 s.
 shaper:
-  normal:
-    rate: 3000
-    burst_size: 20000
-  fast: 100000
+  player:
+    rate: 50000
+    burst_size: 300000
 
 shaper_rules:
   max_user_sessions: 10
   c2s_shaper:
     none: admin
-    # Tests seed 10k MAM messages (S5); the stock 3000 B/s shaper would throttle that.
-    fast: all
+    player: all
 
 # Hardening: only what WRX1 uses. Removed vs the image default: adhoc_api (whole admin API over
 # XMPP), http_api, last, privacy, private, shared_roster (S7: groups not needed), vcard (user
